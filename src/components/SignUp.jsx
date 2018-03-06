@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Form, Container } from 'semantic-ui-react';
-import styled ,{ css } from 'react-emotion';
+import { Button, Form } from 'semantic-ui-react';
+import styled from 'react-emotion';
 
 const SignUpWrap = styled('div')`
   margin: 0 auto;

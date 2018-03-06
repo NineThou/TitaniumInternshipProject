@@ -1,14 +1,15 @@
 import React from 'react';
+import { Item } from 'semantic-ui-react';
 import SinglePost from './SinglePost';
 import postList from './posts.json';
 
 
 const PostList = () => (
-  <div>
+  <Item>
     {
       postList.map(({ id, text, title }) => <SinglePost key={id} text={text} title={title} />)
     }
-  </div>
+  </Item>
 );
 
 
