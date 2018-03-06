@@ -7,19 +7,25 @@ const Main = () => (
     <NavLink to="/home">
       <Menu.Item
         name="home"
-        activeClassName="active"
+        activeclassname="active"
       />
     </NavLink>
     <NavLink to="/login">
       <Menu.Item
         name="Login"
-        activeClassName="active"
+        activeclassname="active"
       />
     </NavLink>
     <NavLink to="/signup">
       <Menu.Item
         name="SignUp"
-        activeClassName="active"
+        activeclassname="active"
+      />
+    </NavLink>
+    <NavLink to="/events">
+      <Menu.Item
+        name="Events"
+        activeclassname="active"
       />
     </NavLink>
     <NavLink to="/posts">
