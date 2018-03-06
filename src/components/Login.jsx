@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Input, Button, Form } from 'semantic-ui-react'; 
 import styled, { css } from 'react-emotion';
 
@@ -36,16 +36,16 @@ const button = css`
 `
 
 const Login = () => (
-  <MainWrap>
-    <Title>Login Page</Title>
-    <LoginWrap className='formWrap'>
-      <Form.Group width='equal'>
-        <Form.Field fluid control={Input} label='Login' className={input}  placeholder='enter your login' />
-        <Form.Field fluid control={Input} label='Password' className={input} placeholder='enter your password' />
-        <Form.Field control={Button} inverted color='grey' className={button} content='Login'/>
-      </Form.Group>
-    </LoginWrap>
-  </MainWrap>
+    <MainWrap>
+      <Title>Login Page</Title>
+      <LoginWrap className='formWrap'>
+        <Form.Group width='equal'>
+          <Form.Field type="email" fluid control={Input} label='Login' className={input}  placeholder='enter your login' />
+          <Form.Field fluid control={Input} label='Password' className={input} placeholder='enter your password' />
+          <Form.Field control={Button} inverted color='grey' className={button} content='Login'/>
+        </Form.Group>
+      </LoginWrap>
+    </MainWrap>
 )
 
 export default Login;
