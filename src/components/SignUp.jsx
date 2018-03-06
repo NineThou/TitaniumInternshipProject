@@ -25,4 +25,6 @@ const SignUp = () => (
   </Form>
 );
 
+
 export default SignUp;
+
