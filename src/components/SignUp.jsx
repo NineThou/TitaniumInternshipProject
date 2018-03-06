@@ -6,7 +6,7 @@ class SignUp extends React.Component {
     super(props);
     this.state = {
       firstPassword: '',
-      secondPassword: '',
+      secondPassword: ''
     }
   }
 
