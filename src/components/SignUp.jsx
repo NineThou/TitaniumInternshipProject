@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,7 @@ class SignUp extends React.Component {
           </div>
           <div class="field">
             <label>Password</label>
-            <input placeholder="Password" type="password" ref={(input) => }/>
+            <input placeholder="Password" type="password"/>
           </div>
           <div class="field">
             <label>Repeat password</label>
@@ -32,5 +33,6 @@ class SignUp extends React.Component {
     )
   };
 }
+
 
 export default SignUp;
