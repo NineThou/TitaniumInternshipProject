@@ -16,11 +16,10 @@ import Home from './components/Home';
 const router = (
   <BrowserRouter>
     <div>
-    	<Main />
-    	<hr/>
-    	<Route path='/home' component={Home}></Route>
-    	<Route path='/login' component={Login}></Route>
-    	<Route path='/signup' component={SignUp}></Route>
+      <Main />
+      <Route path='/home' component={Home}></Route>
+      <Route path='/login' component={Login}></Route>
+      <Route path='/signup' component={SignUp}></Route>
     </div>
   </BrowserRouter>
   
