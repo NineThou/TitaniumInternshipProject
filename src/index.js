@@ -10,12 +10,14 @@ import Main from './components/Main';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Home from './components/Home';
+
 import Events from './components/Events';
 
 import './App.css';
+import Posts from './components/Posts';
 
 
-/* eslint-disable */
+/* eslint-disable react/jsx-filename-extension */
 const router = (
   <BrowserRouter>
     <div>
@@ -24,11 +26,11 @@ const router = (
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
       <Route path="/events" component={Events}/>
+      <Route path="/posts" component={Posts} />
     </div>
   </BrowserRouter>
-  
-)
-/* eslint-enable */
+);
+
 
 ReactDOM.render(router, global.document.getElementById('root'));
 registerServiceWorker();
