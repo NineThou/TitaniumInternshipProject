@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Login = () => (
 	  <div>
@@ -15,7 +15,7 @@ const Login = () => (
 	        <label>Repeat password</label>
 	        <input placeholder="Repeat password" type="password"/>
 	    </div>
-	    <button type="submit" class="ui button" role="button">Submit</button>
+	    <button type="submit" class="ui button">Submit</button>
 	    </form>
 	  </div>
 )
