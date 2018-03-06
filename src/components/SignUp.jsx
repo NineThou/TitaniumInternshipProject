@@ -1,30 +1,28 @@
 import React from 'react';
-
+import { Button, Form } from 'semantic-ui-react';
 
 const SignUp = () => (
-  <div>
-    <form className="ui form">
-      <div className="field">
-        <label htmlFor="email">
-          <input placeholder="E-mail" id="email" type="email" />
-        E-mail
-        </label>
-      </div>
-      <div className="field">
-        <label htmlFor="password">
-          <input placeholder="Password" type="password" />
-        Password
-        </label>
-      </div>
-      <div className="field">
-        <label htmlFor="password">
-          <input placeholder="Repeat password" type="password" id="password" />
-        Repeat password
-        </label>
-      </div>
-      <button type="submit" className="ui button">Submit</button>
-    </form>
-  </div>
+  <Form size="large" widths="equal">
+    <Form.Field width={5}>
+      <label htmlFor="email">
+      E-mail
+        <input placeholder="E-mail" id="email" type="email" />
+      </label>
+    </Form.Field>
+    <Form.Field width={5}>
+      <label htmlFor="password">
+      Password
+        <input placeholder="Password" type="password" />
+      </label>
+    </Form.Field>
+    <Form.Field width={5}>
+      <label htmlFor="password">
+      Repeat password
+        <input placeholder="Repeat password" type="password" id="password" />
+      </label>
+    </Form.Field>
+    <Button type="submit">Submit</Button>
+  </Form>
 );
 
 export default SignUp;
