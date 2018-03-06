@@ -40,4 +40,6 @@ const SignUp = () => (
   </SignUpWrap>
 );
 
+
 export default SignUp;
+
