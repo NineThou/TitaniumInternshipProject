@@ -1,7 +1,7 @@
 import React from 'react';
 import { Item } from 'semantic-ui-react';
 import SinglePost from './SinglePost';
-import postList from './posts.json';
+import postList from '../utils/posts.json';
 
 
 const PostList = () => (
