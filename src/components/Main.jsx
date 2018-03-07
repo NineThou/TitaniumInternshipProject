@@ -31,13 +31,13 @@ const Main = () => (
     <NavLink to="/posts">
       <Menu.Item
         name="Posts"
-        activeClassName="active"
+        activelassname="active"
       />
     </NavLink>
     <NavLink to="/users">
       <Menu.Item
         name="Users"
-        activeClassName="active"
+        activeclassname="active"
       />
     </NavLink>
   </Menu>

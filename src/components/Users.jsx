@@ -12,7 +12,7 @@ const columns = [
   {
     id: 'userName',
     Header: 'Username',
-    accessor: ({ username }) => username || 'username',
+    accessor: (users) => users.local.username || 'No username',
   },
   {
     id: 'walletAddress',
@@ -31,6 +31,23 @@ const columns = [
       return role === '1' ? 'user' : 'admin';
     },
   },
+  {
+    expander: true,
+    Header: () => <strong>More</strong>,
+    width: 65,
+    Expander: ({ isExpanded, ...rest}) => (
+      <div>
+        {isExpanded ? <span>&#x2299;</span> : <span>&#x2295;</span>}
+      </div>
+    ),
+    style: {
+      cursor: 'pointer',
+      fontSize: 25,
+      padding: '0',
+      textAlign: 'center',
+      userSelect: 'none',
+    },
+  },
 ];
 
 const Users = () => (
@@ -39,6 +56,8 @@ const Users = () => (
     columns={columns}
     defaultPageSize={10}
     showPageSizeOptions={false}
+    className="-striped -highlight"
+    SubComponent={({ original }) => <div style={{ padding: '10px' }}>{Object.keys(original).filter(key => key === 'role' || key === 'status').map(key => <p key={key}>{key + ': ' + original[key]}</p>)}</div>}
     filterable
   />
 );

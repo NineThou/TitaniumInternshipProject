@@ -1,6 +1,7 @@
 import React from 'react';
 import { List } from 'semantic-ui-react';
 import styled from 'react-emotion';
+import PropTypes from 'prop-types';
 
 const EventWrap = styled('div')`
   background-color: #B2BABB;
@@ -30,5 +31,9 @@ const EventsItem = ({ details }) => (
     </List.Item>
   </EventWrap>
 );
+
+EventsItem.propTypes = {
+  details: PropTypes.arrayOf.isRequired,
+};
 
 export default EventsItem;
