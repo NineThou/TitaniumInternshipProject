@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { Item } from 'semantic-ui-react';
-import postList from './posts.json';
+import postList from '../utils/posts.json';
 import SinglePost from './SinglePost';
 
 const PostWrap = styled('div')`
