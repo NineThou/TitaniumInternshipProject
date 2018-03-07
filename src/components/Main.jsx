@@ -28,6 +28,12 @@ const Main = () => (
         activeclassname="active"
       />
     </NavLink>
+    <NavLink to="/posts">
+      <Menu.Item
+        name="Posts"
+        activeClassName="active"
+      />
+    </NavLink>
   </Menu>
 );
 

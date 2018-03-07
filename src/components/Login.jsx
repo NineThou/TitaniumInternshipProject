@@ -2,6 +2,7 @@ import React from 'react';
 import { Input, Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 
+
 const MainWrap = styled('div')`
   width: 100%;
   display: flex;
