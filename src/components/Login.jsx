@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Input, Button, Form } from 'semantic-ui-react'; 
+import React from 'react';
+import { Input, Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 
 
@@ -8,7 +8,7 @@ const MainWrap = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const LoginWrap = styled('Form')`
   display: flex;
@@ -22,31 +22,31 @@ const LoginWrap = styled('Form')`
   border: 3px solid black;
   border-radius: 8px;
   background-color: #839192;
-`
+`;
 const Title = styled('h1')`
   margin: 0 auto;
-`
+`;
 
 const input = css`
   margin: 10px;
-`
+`;
 const button = css`
   position: relative;
   left: 10px;
   top: 10px;
-`
+`;
 
 const Login = () => (
   <MainWrap>
     <Title>Login Page</Title>
-    <LoginWrap className='formWrap'>
-      <Form.Group width='equal'>
-        <Form.Field type="email" fluid control={Input} label='Login' className={input}  placeholder='enter your login' />
-        <Form.Field fluid control={Input} label='Password' className={input} placeholder='enter your password' />
-        <Form.Field control={Button} inverted color='grey' className={button} content='Login'/>
+    <LoginWrap className="formWrap">
+      <Form.Group width="equal">
+        <Form.Field type="email" fluid control={Input} label="Login" className={input} placeholder="enter your login" />
+        <Form.Field fluid control={Input} label="Password" className={input} placeholder="enter your password" />
+        <Form.Field control={Button} inverted color="grey" className={button} content="Login" />
       </Form.Group>
     </LoginWrap>
   </MainWrap>
-)
+);
 
 export default Login;

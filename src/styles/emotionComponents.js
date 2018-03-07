@@ -1,10 +1,10 @@
-import styled, { css } from 'react-emotion';
+import { css } from 'react-emotion';
 
 export const active = css`
-	background-color: #616A6B;
+  background-color: #616A6B;
 `;
 export const bodyBackground = css`
-  background-color: #616A6B !important;
+  background-image: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-614708.jpg") !important;
   height: 100%;
 `;
 
