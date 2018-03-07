@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { Item } from 'semantic-ui-react';
-import PostList from './PostList';
+import postList from '../../utils/posts.json';
+import SinglePost from './SinglePost';
 
 const PostWrap = styled('div')`
   margin: 0 auto;
@@ -13,7 +14,11 @@ const PostWrap = styled('div')`
 const Posts = () => (
   <PostWrap>
     <Item.Group divided="true">
-      <PostList />
+      <Item>
+        {
+          postList.map(({ id, text, title }) => <SinglePost key={id} text={text} title={title} />)
+        }
+      </Item>
     </Item.Group>
   </PostWrap>
 );

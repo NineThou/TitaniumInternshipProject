@@ -6,10 +6,10 @@ import EventsItem from './EventsItem';
 const Events = () => (
   <Container>
     <List>
-      {eventSamples.map(event => <EventsItem key={event.id} details={event} />) }
+      {eventSamples.map(event => <EventsItem key={event.id} details={event} />)}
     </List>
   </Container>
 );
 
-
 export default Events;
+

@@ -14,7 +14,7 @@ import Home from './components/Home';
 import Events from './components/Events';
 
 import './App.css';
-import Posts from './components/Posts';
+import Posts from './components/posts/Posts';
 
 
 /* eslint-disable react/jsx-filename-extension */
@@ -25,7 +25,7 @@ const router = (
       <Route path="/home" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/events" component={Events}/>
+      <Route path="/events" component={Events} />
       <Route path="/posts" component={Posts} />
     </div>
   </BrowserRouter>
