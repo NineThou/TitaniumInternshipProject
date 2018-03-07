@@ -34,6 +34,12 @@ const Main = () => (
         activeClassName="active"
       />
     </NavLink>
+    <NavLink to="/users">
+      <Menu.Item
+        name="Users"
+        activeClassName="active"
+      />
+    </NavLink>
   </Menu>
 );
 

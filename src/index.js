@@ -10,11 +10,12 @@ import Main from './components/Main';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Home from './components/Home';
-
-import Events from './components/Events';
-
-import './App.css';
+import Events from './components/Events/Events';
 import Posts from './components/posts/Posts';
+import Users from './components/Users';
+
+// css
+import './App.css';
 
 
 /* eslint-disable react/jsx-filename-extension */
@@ -27,6 +28,7 @@ const router = (
       <Route path="/signup" component={SignUp} />
       <Route path="/events" component={Events} />
       <Route path="/posts" component={Posts} />
+      <Route path="/users" component={Users} />
     </div>
   </BrowserRouter>
 );
