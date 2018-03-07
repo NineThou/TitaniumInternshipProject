@@ -32,4 +32,3 @@ const EventsItem = ({ details }) => (
 );
 
 export default EventsItem;
-
