@@ -23,7 +23,7 @@ const router = (
   <BrowserRouter>
     <div>
       <Main />
-      <Route path="/home" component={Home} />
+      <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
       <Route path="/events" component={Events} />

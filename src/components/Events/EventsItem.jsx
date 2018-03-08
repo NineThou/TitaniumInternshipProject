@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const EventWrap = styled('div')`
   background-color: #B2BABB;
-  border: 3px solid black;
+  border: 3px solid #586180;
   border-radius: 8px;
   margin: 10px !important;
   padding: 10px;

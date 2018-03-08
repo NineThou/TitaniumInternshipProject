@@ -1,11 +1,11 @@
-//modules
+// modules
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Container, List } from 'semantic-ui-react';
 
 // json
 import eventSamples from '../../utils/events.json';
 
+// components
 import EventsItem from './EventsItem';
 
 const Events = () => (

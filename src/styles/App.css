@@ -5,4 +5,14 @@ body {
 .inverted {
   border-radius: 0 !important;
   background-color: #586180 !important;
+  height: 20px;
+}
+
+.item {
+  height: 100% !important;
+}
+
+.home {
+  position: relative;
+  bottom: 5px;
 }

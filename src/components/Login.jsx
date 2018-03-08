@@ -19,9 +19,9 @@ const LoginWrap = styled('Form')`
   position: relative;
   top: 50px;
   color: black;
-  border: 3px solid black;
-  border-radius: 8px;
-  background-color: #839192;
+  border: 3px solid #586180;
+  border-radius: 5px;
+  background-color: #B2BABB;
 `;
 const Title = styled('h1')`
   margin: 0 auto;
@@ -43,7 +43,7 @@ const Login = () => (
       <Form.Group width="equal">
         <Form.Field type="email" fluid control={Input} label="Login" className={input} placeholder="enter your login" />
         <Form.Field fluid control={Input} label="Password" className={input} placeholder="enter your password" />
-        <Form.Field control={Button} inverted color="grey" className={button} content="Login" />
+        <Form.Field control={Button} className={button} content="Login" />
       </Form.Group>
     </LoginWrap>
   </MainWrap>

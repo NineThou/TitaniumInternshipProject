@@ -6,6 +6,11 @@ const SignUpWrap = styled('div')`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  background-color: #B2BABB;
+  border: 3px solid #586180;
+  width: 350px;
+  padding: 10px;
+  border-radius: 5px;
 `;
 
 const ContainerWrap = styled('Container')`
@@ -34,7 +39,7 @@ const SignUp = () => (
             <input placeholder="Repeat password" type="password" id="password" />
           </label>
         </Form.Field>
-        <Button inverted color="grey" type="submit">Submit</Button>
+        <Button type="submit">Submit</Button>
       </Form>
     </ContainerWrap>
   </SignUpWrap>
