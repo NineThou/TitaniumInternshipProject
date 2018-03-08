@@ -15,7 +15,7 @@ import Posts from './components/posts/Posts';
 import Users from './components/Users';
 
 // css
-import './App.css';
+import './styles/App.css';
 
 
 /* eslint-disable react/jsx-filename-extension */

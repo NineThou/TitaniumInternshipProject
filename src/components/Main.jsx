@@ -7,13 +7,13 @@ const Main = () => (
     <NavLink to="/home">
       <Menu.Item
         name="home"
-        activeclassname="active"
+        activeClassName="active"
       />
     </NavLink>
     <NavLink to="/login">
       <Menu.Item
         name="Login"
-        activeclassname="active"
+        activeClassName="active"
       />
     </NavLink>
     <NavLink to="/signup">

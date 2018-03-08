@@ -1,0 +1,8 @@
+body {
+  background-color: #D0D8CD;
+}
+
+.inverted {
+  border-radius: 0 !important;
+  background-color: #586180 !important;
+}

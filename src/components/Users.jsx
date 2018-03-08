@@ -57,7 +57,7 @@ const Users = () => (
     defaultPageSize={10}
     showPageSizeOptions={false}
     className="-striped -highlight"
-    SubComponent={({ original }) => <div style={{ padding: '10px' }}>{Object.keys(original).filter(key => key === 'role' || key === 'status').map(key => <p key={key}>{key + ': ' + original[key]}</p>)}</div>}
+    SubComponent={({ original }) => <div style={{ padding: '10px' }}>{Object.keys(original).filter(key => key === 'role' || key === 'status').map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)}</div>}
     filterable
   />
 );
