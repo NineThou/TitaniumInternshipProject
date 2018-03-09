@@ -1,10 +1,11 @@
 body {
-  background-color: #D0D8CD;
+  background-color: #1a1a1d;
+  color: white;
 }
 
 .inverted {
   border-radius: 0 !important;
-  background-color: #586180 !important;
+  background-color: #c3073f !important;
   height: 20px;
 }
 
@@ -15,4 +16,8 @@ body {
 .home {
   position: relative;
   bottom: 5px;
+}
+
+.-btn {
+  background-color: #6f2232 !important;
 }

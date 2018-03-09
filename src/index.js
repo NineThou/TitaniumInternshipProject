@@ -6,13 +6,14 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 // components
-import Main from './components/Main';
+import NavBar from './components/NavBar';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Home from './components/Home';
 import Events from './components/Events/Events';
 import Posts from './components/posts/Posts';
 import Users from './components/Users';
+import EventInfo from './components/Events/EventInfo';
 
 // css
 import './styles/App.css';
@@ -22,11 +23,12 @@ import './styles/App.css';
 const router = (
   <BrowserRouter>
     <div>
-      <Main />
+      <NavBar />
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
       <Route path="/events" component={Events} />
+      <Route path="/eventInfo/:eventId" component={EventInfo} />
       <Route path="/posts" component={Posts} />
       <Route path="/users" component={Users} />
     </div>

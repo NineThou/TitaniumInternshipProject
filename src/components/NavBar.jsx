@@ -12,7 +12,10 @@ class NavBar extends Component {
     return (
       <Menu inverted icon="labeled">
         <NavLink to="/">
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
+          <Menu.Item
+            name='home'
+            active={activeItem === 'home'}
+            onClick={this.handleItemClick}>
             <Icon name='home' size='tiny'/>
           </Menu.Item>
         </NavLink>
@@ -54,7 +57,7 @@ class NavBar extends Component {
       </Menu>
     );
   }
-};
+}
 
 
 export default NavBar;

@@ -1,14 +1,23 @@
+// modules
 import React from 'react';
-import { List } from 'semantic-ui-react';
+import { List, Button } from 'semantic-ui-react';
 import styled from 'react-emotion';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+// colors
+import { grey, purple } from '../../styles/colors';
+
+
 const EventWrap = styled('div')`
-  background-color: #B2BABB;
-  border: 3px solid #586180;
+  color: white;
+  background-color: ${grey};
+  border: 3px solid ${purple};
   border-radius: 8px;
-  margin: 10px !important;
-  padding: 10px;
+  margin: 30px !important;
+  padding: 10px !important;
+  padding-bottom: 50px !important;
+  height: 100%;
 `;
 
 const Anchor = styled('a')`
@@ -21,19 +30,26 @@ const Anchor = styled('a')`
 const EventsItem = ({ details }) => (
   <EventWrap>
     <List.Item>
-      <List.Content>
-        <List.Content>{details.title}</List.Content>
-        <List.Content>{details.body}</List.Content>
-        <List>
-          {details.tags.map(tag => <Anchor href="#" key={tag}><List.Content>#{tag}</List.Content></Anchor>)}
-        </List>
-      </List.Content>
+      <List.Content>{details.title}</List.Content>
+      <List.Content>{details.body}</List.Content>
+      <List>
+        {details.tags.map(tag => <Anchor href="#" key={tag}><List.Content>#{tag}</List.Content></Anchor>)}
+      </List>
+      <Link to={`/eventInfo/${details.id}`}>
+        <List.Content>
+          <Button floated="left">Read More</Button>
+        </List.Content>
+      </Link>
     </List.Item>
   </EventWrap>
 );
 
 EventsItem.propTypes = {
-  details: PropTypes.arrayOf.isRequired,
+  details: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    tags: PropTypes.array.isRequired,
+  }),
 };
 
 export default EventsItem;
