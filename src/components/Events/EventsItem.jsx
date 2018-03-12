@@ -46,10 +46,10 @@ const EventsItem = ({ details }) => (
 
 EventsItem.propTypes = {
   details: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    tags: PropTypes.array.isRequired,
-  }),
+    title: PropTypes.string,
+    body: PropTypes.string,
+    tags: PropTypes.array,
+  }).isRequired,
 };
 
 export default EventsItem;

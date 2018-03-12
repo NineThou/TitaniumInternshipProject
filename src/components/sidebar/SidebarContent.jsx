@@ -1,64 +1,47 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import styled, { css } from 'react-emotion';
 
+const navLinkStyle = css`
+  padding: 1em;
+  font-size: 20px;
+  display: block;
+`;
 
-class SidebarContent extends Component {
-  state = {};
+const activeNav = css`
+  background: hotpink;
+  color: crimson;
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
-  render() {
-    const { activeItem } = this.state;
-    return (
-      <Menu vertical inverted icon="labeled">
-        <NavLink to="/">
-          <Menu.Item
-            name='home'
-            active={activeItem === 'home'}
-            onClick={this.handleItemClick}>
-            <Icon name='home' size='tiny'/>
-          </Menu.Item>
-        </NavLink>
-        <NavLink to="/login">
-          <Menu.Item
-            name="Login"
-            active={activeItem === 'Login'}
-            onClick={this.handleItemClick}
-          />
-        </NavLink>
-        <NavLink to="/signup">
-          <Menu.Item
-            name="SignUp"
-            active={activeItem === 'SignUp'}
-            onClick={this.handleItemClick}
-          />
-        </NavLink>
-        <NavLink to="/events">
-          <Menu.Item
-            name="Events"
-            active={activeItem === 'Events'}
-            onClick={this.handleItemClick}
-          />
-        </NavLink>
-        <NavLink to="/posts">
-          <Menu.Item
-            name="Posts"
-            active={activeItem === 'Posts'}
-            onClick={this.handleItemClick}
-          />
-        </NavLink>
-        <NavLink to="/users">
-          <Menu.Item
-            name="Users"
-            active={activeItem === 'Users'}
-            onClick={this.handleItemClick}
-          />
-        </NavLink>
-      </Menu>
-    );
+  :hover {
+    color: crimson;
   }
-}
+`;
 
+const CustomSidebar = styled(Menu)`
+  height: 100%;
+  &.ui.menu {
+    background: lightcoral;
+  }
+`;
+
+const SidebarContent = () => (
+  <CustomSidebar vertical>
+    <NavLink
+      className={navLinkStyle}
+      to="/"
+    >
+      <Icon name="home" size="large" />
+    </NavLink>
+    <NavLink
+      className={navLinkStyle}
+      to="/login"
+      activeClassName={activeNav}
+    >
+      Login
+    </NavLink>
+
+  </CustomSidebar>
+);
 
 export default SidebarContent;

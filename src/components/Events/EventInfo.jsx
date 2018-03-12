@@ -24,11 +24,13 @@ const colors = css`
 `;
 
 const EventInfo = ({ match }) => {
-  const i = +match.params.eventId - 1;
-  const { title } = eventSamples[i];
-  const { more } = eventSamples[i];
-  const { body } = eventSamples[i];
-  const { tags } = eventSamples[i];
+  const data = eventSamples[match.params.eventId - 1];
+  const {
+    title,
+    more,
+    body,
+    tags,
+  } = data;
   return (
     <InfoWrap>
       <Message className={colors}>
@@ -42,6 +44,7 @@ const EventInfo = ({ match }) => {
           {more}
         </p>
         <List>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           {tags.map(tag => <a href="#" key={tag}><List.Content>#{tag}</List.Content></a>)}
         </List>
       </Message>
@@ -52,9 +55,9 @@ const EventInfo = ({ match }) => {
 EventInfo.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      eventId: PropTypes.string.isRequired,
+      eventId: PropTypes.string,
     }),
-  }),
+  }).isRequired,
 };
 
 export default withRouter(EventInfo);
