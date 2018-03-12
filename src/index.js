@@ -6,7 +6,6 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 // components
-import NavBar from './components/NavBar';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Home from './components/Home';

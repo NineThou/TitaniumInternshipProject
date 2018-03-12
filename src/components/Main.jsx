@@ -1,6 +1,4 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 import SidebarContent from './sidebar/SidebarContent';
 import styled from 'react-emotion';
@@ -57,11 +55,7 @@ class Main extends React.Component {
   
   render() {
     const { children } = this.props
-    var sidebarProps = {
-      sidebar: this.state.sidebarOpen,
-      docked: this.state.sidebarDocked,
-      onSetOpen: this.onSetSidebarOpen
-    };
+
 
     return (
       <Sidebar
