@@ -56,7 +56,7 @@ class Main extends React.Component {
 
   
   render() {
-    const sidebar = <SidebarContent />
+    const { children } = this.props
     var sidebarProps = {
       sidebar: this.state.sidebarOpen,
       docked: this.state.sidebarDocked,
@@ -65,7 +65,7 @@ class Main extends React.Component {
 
     return (
       <Sidebar
-        sidebar={sidebar}
+        sidebar={<SidebarContent />}
         open={this.state.open}
         docked={this.state.sidebarDocked}
         onSetOpen={this.onSetOpen}
@@ -75,7 +75,7 @@ class Main extends React.Component {
           <Bar />
           <Bar />
         </ToggleButton>
-        
+        {children}
       </Sidebar>
     );
   }
