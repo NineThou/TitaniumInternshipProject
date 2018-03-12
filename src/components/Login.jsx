@@ -1,8 +1,11 @@
+// modules
 import React from 'react';
 import { Input, Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
-import { grey, purple } from '../styles/colors';
+import { Link } from 'react-router-dom';
 
+// colors
+import { grey, purple } from '../styles/colors';
 
 const MainWrap = styled('div')`
   width: 100%;
@@ -11,8 +14,7 @@ const MainWrap = styled('div')`
   align-items: center;
 `;
 
-// error below
-const LoginWrap = styled('Form')`
+const LoginWrap = styled('div')`
   display: flex;
   flex-direction: column;
   width: 350px;
@@ -25,6 +27,7 @@ const LoginWrap = styled('Form')`
   border-radius: 5px;
   background-color: #B2BABB;
 `;
+
 const Title = styled('h1')`
   margin: 0 auto;
 `;
@@ -37,7 +40,6 @@ const button = css`
   left: 10px;
   top: 10px;
 `;
-
 
 const colors = css`
   color: white !important;

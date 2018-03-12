@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
+import { black, grey, brightred } from '../../styles/colors';
 
 const navLinkStyle = css`
   padding: 1em;
@@ -10,35 +11,73 @@ const navLinkStyle = css`
 `;
 
 const activeNav = css`
-  background: hotpink;
-  color: crimson;
-
+  background: ${brightred};
+  color: white;
   :hover {
-    color: crimson;
+    color: white;
   }
+`;
+
+const inactive = css`
+  color: white;
+  :hover {
+    background-color: ${grey};
+    color: white;
+  }
+  transition: all 0.3s ease;
+  text-align: center;
 `;
 
 const CustomSidebar = styled(Menu)`
   height: 100%;
+  width: 100% !important;
   &.ui.menu {
-    background: lightcoral;
+    background: ${black};
   }
 `;
 
 const SidebarContent = () => (
   <CustomSidebar vertical>
     <NavLink
-      className={navLinkStyle}
+      className={`${inactive} ${navLinkStyle}`}
       to="/"
     >
       <Icon name="home" size="large" />
     </NavLink>
     <NavLink
-      className={navLinkStyle}
+      className={`${inactive} ${navLinkStyle}`}
       to="/login"
       activeClassName={activeNav}
     >
       Login
+    </NavLink>
+    <NavLink
+      className={`${inactive} ${navLinkStyle}`}
+      to="/signup"
+      activeClassName={activeNav}
+    >
+      SignUp
+    </NavLink>
+    <NavLink
+      className={`${inactive} ${navLinkStyle}`}
+      to="/users"
+      activeClassName={activeNav}
+    >
+      Users
+    </NavLink>
+    <NavLink
+      className={`${inactive} ${navLinkStyle}`}
+      to="/events"
+      activeClassName={activeNav}
+    >
+      Events
+    </NavLink>
+    <NavLink
+      className={`${inactive} ${navLinkStyle}`}
+      to="/posts"
+      activeClassName={activeNav}
+    >
+      Posts
     </NavLink>
 
   </CustomSidebar>
