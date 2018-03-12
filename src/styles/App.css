@@ -3,12 +3,6 @@ body {
   color: white;
 }
 
-.inverted {
-  border-radius: 0 !important;
-  background-color: #c3073f !important;
-  height: 20px;
-}
-
 .item {
   height: 100% !important;
 }

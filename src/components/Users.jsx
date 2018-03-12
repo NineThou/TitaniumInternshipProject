@@ -12,7 +12,7 @@ const columns = [
   {
     id: 'userName',
     Header: 'Username',
-    accessor: (users) => users.local.username || 'No username',
+    accessor: row => row.local.username || 'No username',
   },
   {
     id: 'walletAddress',
@@ -27,15 +27,13 @@ const columns = [
   {
     id: 'role',
     Header: 'User Role',
-    accessor: ({ role }) => {
-      return role === '1' ? 'user' : 'admin';
-    },
+    accessor: ({ role }) => (role === '1' ? 'user' : 'admin'),
   },
   {
     expander: true,
     Header: () => <strong>More</strong>,
     width: 65,
-    Expander: ({ isExpanded, ...rest}) => (
+    Expander: ({ isExpanded, ...rest}) => ( // eslint-disable-line
       <div>
         {isExpanded ? <span>&#x2299;</span> : <span>&#x2295;</span>}
       </div>
@@ -57,7 +55,15 @@ const Users = () => (
     defaultPageSize={10}
     showPageSizeOptions={false}
     className="-striped -highlight"
-    SubComponent={({ original }) => <div style={{ padding: '10px' }}>{Object.keys(original).filter(key => key === 'role' || key === 'status').map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)}</div>}
+    SubComponent={({ original }) => (
+      <div style={{ padding: '10px' }}>
+        {
+          Object.keys(original)
+          .filter(key => key === 'role' || key === 'status')
+          .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
+        }
+      </div>
+    )}
     filterable
   />
 );

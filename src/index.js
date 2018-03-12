@@ -4,7 +4,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import registerServiceWorker from './registerServiceWorker';
 
-
 // components
 import Login from './components/Login';
 import SignUp from './components/SignUp';
@@ -17,7 +16,6 @@ import Main from './components/Main';
 
 // css
 import './styles/App.css';
-
 
 /* eslint-disable react/jsx-filename-extension */
 const router = (

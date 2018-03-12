@@ -1,16 +1,17 @@
 import React from 'react';
 import Sidebar from 'react-sidebar';
-import SidebarContent from './sidebar/SidebarContent';
 import styled from 'react-emotion';
+import SidebarContent from './sidebar/SidebarContent';
 
-const mql = window.matchMedia(`(min-width: 800px)`);
+const mql = global.window.matchMedia('(min-width: 800px)');
 
 const Bar = styled('div')`
-    width: 35px;
-    height: 5px;
-    background-color: white;
-    margin: 6px 0;
-`
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+`;
+
 const ToggleButton = styled('button')`
   background: none;
   border: none;
@@ -21,41 +22,37 @@ const ToggleButton = styled('button')`
   @media (min-width: 800px) {
     display: none;
   }
-`
+`;
 
 class Main extends React.Component {
   state = {
     open: this.props.open,
-    docked: this.props.docked,
-    mql: mql,
-  }
-  
+    mql,
+  };
+
   componentWillMount() {
     mql.addListener(this.mediaQueryChanged);
-    this.setState({mql: mql, sidebarDocked: mql.matches});
+    this.setState({ mql, sidebarDocked: mql.matches });
   }
-  
+
   componentWillUnmount() {
     this.state.mql.removeListener(this.mediaQueryChanged);
   }
-  
-  mediaQueryChanged = () => {
-    this.setState({sidebarDocked: this.state.mql.matches});
-  }
-  
-  onSetOpen = (open) => {
-    this.setState({open: open});
-  }
-  
-  menuButtonClick = (e) => {
-    e.preventDefault();
-    this.onSetOpen(!this.state.open);
-  }
 
-  
+
+  onSetOpen = open => this.setState({ open });
+
+  mediaQueryChanged = () => this.setState({ sidebarDocked: this.state.mql.matches });
+
+  menuButtonClick = () => this.onSetOpen(!this.state.open);
+
+
   render() {
     const { children } = this.props
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5c73dd43d8c74b4d5da04fa31a4ea1adae36513f
 
     return (
       <Sidebar
