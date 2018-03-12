@@ -9,10 +9,8 @@ const mql = window.matchMedia(`(min-width: 800px)`);
 
 class Main extends React.Component {
   state = {
-    open: false,
-    docked: false,
-    shadow: true,
-    drawToggleDistance: 30,
+    open: this.props.open,
+    docked: this.props.docked,
     mql: mql,
   }
   
@@ -49,7 +47,7 @@ class Main extends React.Component {
         docked={this.state.docked}
         onSetOpen={this.onSetOpen}
       >
-        <a onClick={this.menuButtonClick} href="#">=</a>
+        <button onClick={this.menuButtonClick}>=</button>
       </Sidebar>
     )
   }

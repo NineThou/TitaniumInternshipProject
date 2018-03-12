@@ -14,6 +14,7 @@ import Events from './components/Events/Events';
 import Posts from './components/posts/Posts';
 import Users from './components/Users';
 import EventInfo from './components/Events/EventInfo';
+import Main from './components/Main';
 
 // css
 import './styles/App.css';
@@ -23,7 +24,7 @@ import './styles/App.css';
 const router = (
   <BrowserRouter>
     <div>
-      <NavBar />
+      <Main />
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
