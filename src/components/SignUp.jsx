@@ -9,7 +9,7 @@ import { grey, purple } from '../styles/colors';
 const SignUpWrap = styled('div')`
   display: flex;
   flex-direction: column;
-  width: 380px;
+  width: 350px;
   height: 280px;
   margin: 0 auto;
   position: relative;

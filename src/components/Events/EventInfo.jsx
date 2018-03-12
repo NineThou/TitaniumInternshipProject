@@ -12,8 +12,9 @@ import eventSamples from '../../utils/events.json';
 import { grey, purple } from '../../styles/colors';
 
 const InfoWrap = styled('div')`
-  width: 40%;
+  width: 80%;
   margin: 0 auto;
+  margin-top: 30px;
 `;
 
 const colors = css`
