@@ -1,5 +1,6 @@
 import React from 'react';
-import { Input, Button, Form } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
+import { Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { grey, purple } from '../styles/colors';
 
@@ -11,8 +12,8 @@ const MainWrap = styled('div')`
   align-items: center;
 `;
 
-// error below
-const LoginWrap = styled('Form')`
+
+const LoginWrap = styled('div')`
   display: flex;
   flex-direction: column;
   width: 350px;
@@ -24,20 +25,32 @@ const LoginWrap = styled('Form')`
   border: 3px solid #586180;
   border-radius: 5px;
   background-color: #B2BABB;
+  padding-top: 5px;
 `;
+
+const Link = css`
+  margin-left: 20px;
+  color: white !important;
+  :hover {
+    color: lightgray !important;
+  }
+`;
+
+const formSize = css`
+  width: 320px; 
+`;
+
 const Title = styled('h1')`
   margin: 0 auto;
 `;
 
-const input = css`
-  margin: 10px;
-`;
-const button = css`
-  position: relative;
-  left: 10px;
-  top: 10px;
+const ContainerWrap = styled('div')`
+  margin: 0 auto;
 `;
 
+const white = css`
+  color: white !important;
+`;
 
 const colors = css`
   color: white !important;
@@ -49,18 +62,26 @@ const Login = () => (
   <MainWrap>
     <Title>Login Page</Title>
     <LoginWrap className={`formWrap ${colors}`}>
-      <Form.Group width="equal">
-        <Form.Field
-          type="email"
-          fluid
-          control={Input}
-          label="Login"
-          className={input}
-          placeholder="enter your login"
-        />
-        <Form.Field fluid control={Input} label="Password" className={input} placeholder="enter your password" />
-        <Form.Field control={Button} className={button} content="Login" />
-      </Form.Group>
+      <ContainerWrap>
+        <Form size="large" width="equal">
+          <Form.Field className={formSize}>
+            <label htmlFor="email" className={white}>
+              E-mail
+              <input placeholder="Email" id="email" type="email" />
+            </label>
+          </Form.Field>
+          <Form.Field className={formSize}>
+            <label htmlFor="password" className={white}>
+            Password
+              <input placeholder="Password" type="password" />
+            </label>
+          </Form.Field>
+          <span>
+            <Button type="submit">Submit</Button>
+            <NavLink className={Link} to="/signup">Don&apos;t have an account?</NavLink>
+          </span>
+        </Form>
+      </ContainerWrap>
     </LoginWrap>
   </MainWrap>
 );

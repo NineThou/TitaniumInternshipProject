@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
+import { NavLink } from 'react-router-dom';
 
 // colors
 import { grey, purple } from '../styles/colors';
@@ -21,8 +22,15 @@ const SignUpWrap = styled('div')`
   padding-top: 5px;
 `;
 
-// error below
-const ContainerWrap = styled('Container')`
+const Link = css`
+  margin-left: 15px;
+  color: white !important;
+  :hover {
+    color: lightgray !important;
+  }
+`;
+
+const ContainerWrap = styled('div')`
   margin: 0 auto;
 `;
 
@@ -70,7 +78,10 @@ const SignUp = () => (
               <input placeholder="Repeat password" type="password" id="password" />
             </label>
           </Form.Field>
-          <Button type="submit">Submit</Button>
+          <span>
+            <Button type="submit">Submit</Button>
+            <NavLink className={Link} to="/login">Already have an account?</NavLink>
+          </span>
         </Form>
       </ContainerWrap>
     </SignUpWrap>
