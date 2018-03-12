@@ -47,9 +47,16 @@ const colors = css`
 const Login = () => (
   <MainWrap>
     <Title>Login Page</Title>
-    <LoginWrap className="formWrap" className={colors}>
+    <LoginWrap className={`formWrap ${colors}`}>
       <Form.Group width="equal">
-        <Form.Field type="email" fluid control={Input} label="Login" className={input} placeholder="enter your login" />
+        <Form.Field
+          type="email"
+          fluid
+          control={Input}
+          label="Login"
+          className={input}
+          placeholder="enter your login"
+        />
         <Form.Field fluid control={Input} label="Password" className={input} placeholder="enter your password" />
         <Form.Field control={Button} className={button} content="Login" />
       </Form.Group>

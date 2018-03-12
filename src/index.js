@@ -24,14 +24,15 @@ import './styles/App.css';
 const router = (
   <BrowserRouter>
     <div>
-      <Main />
-      <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={SignUp} />
-      <Route path="/events" component={Events} />
-      <Route path="/eventInfo/:eventId" component={EventInfo} />
-      <Route path="/posts" component={Posts} />
-      <Route path="/users" component={Users} />
+      <Main>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/events" component={Events} />
+        <Route path="/eventInfo/:eventId" component={EventInfo} />
+        <Route path="/posts" component={Posts} />
+        <Route path="/users" component={Users} />
+      </Main>
     </div>
   </BrowserRouter>
 );
