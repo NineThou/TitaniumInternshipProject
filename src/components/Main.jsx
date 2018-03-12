@@ -49,10 +49,6 @@ class Main extends React.Component {
 
   render() {
     const { children } = this.props
-<<<<<<< HEAD
-
-=======
->>>>>>> 5c73dd43d8c74b4d5da04fa31a4ea1adae36513f
 
     return (
       <Sidebar

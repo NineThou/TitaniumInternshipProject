@@ -15,13 +15,8 @@ const MainWrap = styled('div')`
 const LoginWrap = styled('Form')`
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-  width: 380px;
-  height: 220px;
-=======
   width: 350px;
   height: 210px;
->>>>>>> 5c73dd43d8c74b4d5da04fa31a4ea1adae36513f
   margin: 0 auto;
   position: relative;
   top: 50px;
