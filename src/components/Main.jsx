@@ -3,9 +3,27 @@ import { Menu } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 import SidebarContent from './sidebar/SidebarContent';
+import styled from 'react-emotion';
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 
+const Bar = styled('div')`
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+`
+const ToggleButton = styled('button')`
+  background: none;
+  border: none;
+  outline: none;
+  :hover {
+    cursor: pointer;
+  }
+  @media (min-width: 800px) {
+    display: none;
+  }
+`
 
 class Main extends React.Component {
   state = {
@@ -39,17 +57,27 @@ class Main extends React.Component {
   
   render() {
     const sidebar = <SidebarContent />
+    var sidebarProps = {
+      sidebar: this.state.sidebarOpen,
+      docked: this.state.sidebarDocked,
+      onSetOpen: this.onSetSidebarOpen
+    };
 
     return (
       <Sidebar
         sidebar={sidebar}
         open={this.state.open}
-        docked={this.state.docked}
+        docked={this.state.sidebarDocked}
         onSetOpen={this.onSetOpen}
       >
-        <button onClick={this.menuButtonClick}>=</button>
+        <ToggleButton onClick={this.menuButtonClick}>
+          <Bar />
+          <Bar />
+          <Bar />
+        </ToggleButton>
+        
       </Sidebar>
-    )
+    );
   }
 }
 
