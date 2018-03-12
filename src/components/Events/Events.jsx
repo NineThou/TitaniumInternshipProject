@@ -1,7 +1,11 @@
+// modules
 import React from 'react';
 import { Container, List } from 'semantic-ui-react';
-import eventSamples from '../events.json';
 
+// json
+import eventSamples from '../../utils/events.json';
+
+// components
 import EventsItem from './EventsItem';
 
 const Events = () => (
@@ -11,6 +15,7 @@ const Events = () => (
     </List>
   </Container>
 );
+
 
 export default Events;
 
