@@ -1,9 +1,11 @@
+// modules
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
-import { grey, purple } from '../styles/colors';
 
+// colors
+import { grey, purple } from '../styles/colors';
 
 const MainWrap = styled('div')`
   width: 100%;
@@ -11,7 +13,6 @@ const MainWrap = styled('div')`
   flex-direction: column;
   align-items: center;
 `;
-
 
 const LoginWrap = styled('div')`
   display: flex;
@@ -28,7 +29,7 @@ const LoginWrap = styled('div')`
   padding-top: 5px;
 `;
 
-const Link = css`
+const LinkWrap = css`
   margin-left: 20px;
   color: white !important;
   :hover {
@@ -78,7 +79,7 @@ const Login = () => (
           </Form.Field>
           <span>
             <Button type="submit">Submit</Button>
-            <NavLink className={Link} to="/signup">Don&apos;t have an account?</NavLink>
+            <NavLink className={LinkWrap} to="/signup">Don&apos;t have an account?</NavLink>
           </span>
         </Form>
       </ContainerWrap>
