@@ -1,6 +1,6 @@
-######Internship project for learning ReactJS
+###### Internship project for learning ReactJS
 
-##Installing
+## Installing
 1. Clone repo
 
 2. Open terminal in cloned folder and run `npm install`
