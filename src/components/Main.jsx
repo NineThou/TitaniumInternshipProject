@@ -11,32 +11,25 @@ class Main extends React.Component {
   state = {
     open: this.props.open,
     docked: this.props.docked,
-    mql: mql,
+    mql,
   }
-  
+
   componentWillMount() {
     mql.addListener(this.mediaQueryChanged);
-    this.setState({mql: mql, sidebarDocked: mql.matches});
+    this.setState({mql, sidebarDocked: mql.matches});
   }
-  
+
   componentWillUnmount() {
     this.state.mql.removeListener(this.mediaQueryChanged);
   }
-  
-  mediaQueryChanged = () => {
-    this.setState({sidebarDocked: this.state.mql.matches});
-  }
-  
-  onSetOpen = (open) => {
-    this.setState({open: open});
-  }
-  
-  menuButtonClick = (e) => {
-    e.preventDefault();
-    this.onSetOpen(!this.state.open);
-  }
 
-  
+  mediaQueryChanged = () => this.setState({sidebarDocked: this.state.mql.matches})
+
+  onSetOpen = open => this.setState({open})
+
+  menuButtonClick = () => this.onSetOpen(!this.state.open)
+
+
   render() {
     const sidebar = <SidebarContent />
 
@@ -44,7 +37,7 @@ class Main extends React.Component {
       <Sidebar
         sidebar={sidebar}
         open={this.state.open}
-        docked={this.state.docked}
+        docked={this.state.sidebarDocked}
         onSetOpen={this.onSetOpen}
       >
         <button onClick={this.menuButtonClick}>=</button>
