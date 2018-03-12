@@ -1,4 +1,4 @@
-###### Internship project for learning ReactJS
+# Internship project for learning ReactJS
 
 ## Installing
 1. Clone repo
