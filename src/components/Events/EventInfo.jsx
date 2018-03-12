@@ -1,6 +1,6 @@
 // modules
 import React from 'react';
-import { Message } from 'semantic-ui-react';
+import { Message, List } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
@@ -23,9 +23,11 @@ const colors = css`
 `;
 
 const EventInfo = ({ match }) => {
-  const i = +match.params.eventId;
+  const i = +match.params.eventId - 1;
   const { title } = eventSamples[i];
   const { more } = eventSamples[i];
+  const { body } = eventSamples[i];
+  const { tags } = eventSamples[i];
   return (
     <InfoWrap>
       <Message className={colors}>
@@ -33,8 +35,14 @@ const EventInfo = ({ match }) => {
           {title}
         </Message.Header>
         <p>
+          {body}
+        </p>
+        <p>
           {more}
         </p>
+        <List>
+          {tags.map(tag => <a href="#" key={tag}><List.Content>#{tag}</List.Content></a>)}
+        </List>
       </Message>
     </InfoWrap>
   );

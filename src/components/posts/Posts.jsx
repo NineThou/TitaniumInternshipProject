@@ -18,7 +18,7 @@ const PostWrap = styled('div')`
 
 const Posts = () => (
   <PostWrap>
-    <Item.Group divided="true">
+    <Item.Group divided>
       <Item>
         {
           postList.map(({ id, text, title }) => <SinglePost key={id} text={text} title={title} />)
