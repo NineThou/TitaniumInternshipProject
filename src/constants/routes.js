@@ -13,6 +13,7 @@ import Login from '../components/Login';
 import Events from '../components/Events/Events';
 import Main from '../components/Sidebar';
 import Header from '../components/Header/Header';
+import PostInfo from '../components/posts/PostInfo';
 
 /* eslint-disable react/jsx-filename-extension */
 const router = (

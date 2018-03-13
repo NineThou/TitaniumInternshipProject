@@ -52,11 +52,6 @@ const Name = styled('div')`
 const Header = () => (
   <Head>
     <Name>
-      Hi, Tomash Andrew
-    </Name>
-const Header = () => (
-  <Head>
-    <Name>
       Hi, John Smith
     </Name>
     <ClockArea>
