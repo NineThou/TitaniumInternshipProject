@@ -14,6 +14,7 @@ const Bar = styled('div')`
 `;
 
 const ToggleButton = styled('button')`
+  z-index: 1000; 
   background: none;
   border: none;
   outline: none;
@@ -71,7 +72,7 @@ class Main extends React.Component {
     this.setState({
       change: !this.state.change,
     });
-  }
+  };
 
   render() {
     const { children } = this.props;

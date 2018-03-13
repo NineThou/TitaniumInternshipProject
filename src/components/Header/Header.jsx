@@ -14,12 +14,15 @@ const Head = styled('div')`
   overflow: hidden;
   display: grid;
   grid-template-areas: "name title clock";
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 33% 33% 33%;
   -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   font-weight: 700;
   font-size: 30px;
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
 `;
 
 const Title = styled('div')`
@@ -35,7 +38,7 @@ const ClockArea = styled('div')`
   align-items: center;
   justify-content: flex-end;
   padding-right: 30px;
-  
+  margin-right: 20px; 
 `;
 
 const Name = styled('div')`
@@ -45,13 +48,19 @@ const Name = styled('div')`
   justify-content: center;
 `;
 
+const TitleText = styled('h1')`
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
+`;
+
 const Header = () => (
   <Head>
     <Name>
       Hi, John Smith
     </Name>
     <Title>
-      <h1>Blog</h1>
+      <TitleText>Blog</TitleText>
     </Title>
     <ClockArea>
       <Clock />
