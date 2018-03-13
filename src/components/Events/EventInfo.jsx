@@ -12,6 +12,7 @@ import eventSamples from '../../events.json';
 import { grey } from '../../styles/colors';
 
 const InfoWrap = styled('div')`
+  display: flex;
   position: relative;
   top: 30px;
   display: flex;
@@ -24,6 +25,9 @@ const InfoWrap = styled('div')`
   -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   border: 0 !important;
+  @media (max-width: 1050px) {
+    flex-direction: column;
+  }
 `;
 
 const ContentWrap = styled('div')`
@@ -37,8 +41,15 @@ const colors = css`
 
 const imgpos = css` 
   width: 100%;
-  min-height: 300px;
-  max-height: 400px;
+  max-height: 600px;
+  @media (max-width: 1150px) {
+    max-height: 1000px;
+  }
+  @media (max-width: 1050px) {
+    max-height: 100%;
+    width: 100%;
+  }
+  
 `;
 
 const EventInfo = ({ match }) => {
@@ -51,7 +62,7 @@ const EventInfo = ({ match }) => {
   } = data;
   return (
     <InfoWrap>
-      <Image className={imgpos} src="https://picsum.photos/400/800/?random" />
+      <Image className={imgpos} src="https://picsum.photos/1000/?random" />
       <ContentWrap className={colors}>
         <h1>
           {title}
