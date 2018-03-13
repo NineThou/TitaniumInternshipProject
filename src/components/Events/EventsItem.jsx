@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // colors
-import { grey, purple } from '../../styles/colors';
+import { grey, lavender } from '../../styles/colors';
 
 
 const EventWrap = styled('div')`
   color: white;
   background-color: ${grey};
-  border: 3px solid ${purple};
+  border: 3px solid ${lavender};
   border-radius: 8px;
   margin: 30px !important;
   padding: 10px !important;

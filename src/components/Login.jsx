@@ -5,7 +5,7 @@ import { Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 
 // colors
-import { grey, purple } from '../styles/colors';
+import { grey, purple, lavender } from '../styles/colors';
 
 const MainWrap = styled('div')`
   width: 100%;
@@ -58,7 +58,7 @@ const white = css`
 const colors = css`
   color: white !important;
   background-color: ${grey} !important;
-  border: 3px solid ${purple};
+  border: 3px solid ${lavender};
 `;
 
 const Login = () => (

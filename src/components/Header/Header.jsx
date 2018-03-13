@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css} from 'react-emotion';
-import { black } from '../../styles/colors';
+import { lavender } from '../../styles/colors';
 
 // clock
 import Clock from './Clock';
@@ -8,7 +8,7 @@ import Clock from './Clock';
 const Head = styled('div')` 
   z-index: 999;
   position: relative;
-  background-color: ${black};
+  background-color: ${lavender};
   height: 70px;
   width: 100%;
   overflow: hidden;
@@ -23,6 +23,7 @@ const Head = styled('div')`
   @media (max-width: 800px) {
     font-size: 20px;
   }
+  margin: 0;
 `;
 
 const ClockArea = styled('div')`

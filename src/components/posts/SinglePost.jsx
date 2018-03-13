@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 
 // colors
-import { grey, purple } from '../../styles/colors';
+import { grey, lavender } from '../../styles/colors';
 
 const PostWrap = styled('div')`
   background-color: #B2BABB;
@@ -18,7 +18,7 @@ const PostWrap = styled('div')`
 const colors = css`
   color: white !important;
   background-color: ${grey} !important;
-  border: 3px solid ${purple};
+  border: 3px solid ${lavender};
 `;
 
 const SinglePost = ({ text, title }) => (
