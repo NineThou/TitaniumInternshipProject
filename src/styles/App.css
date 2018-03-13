@@ -1,10 +1,14 @@
 body {
-  background-color: #1a1a1d !important;
+  background-color: #dcc7aa !important;
   color: white;
 }
 
 .item {
   height: 100% !important;
+}
+
+.ReactTable {
+  color: black;
 }
 
 .home {
@@ -13,11 +17,15 @@ body {
 }
 
 .-btn {
-  background-color: #6f2232 !important;
+  background-color: #fba100 !important;
 }
 
 body ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 0;
   height: 10px;
+}
+
+.ui.menu {
+  border-radius: 0 !important;
 }

@@ -5,7 +5,7 @@ import styled, { css } from 'react-emotion';
 import { NavLink } from 'react-router-dom';
 
 // colors
-import { grey, purple } from '../styles/colors';
+import { grey, lavender } from '../styles/colors';
 
 const SignUpWrap = styled('div')`
   display: flex;
@@ -49,7 +49,7 @@ const Title = styled('h1')`
 
 const colors = css`
   background-color: ${grey} !important;
-  border: 3px solid ${purple};
+  border: 3px solid ${lavender};
 `;
 
 const white = css`
