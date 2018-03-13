@@ -5,7 +5,7 @@ import styled, { css } from 'react-emotion';
 import { NavLink } from 'react-router-dom';
 
 // colors
-import { grey, purple } from '../styles/colors';
+import { grey, lavender } from '../styles/colors';
 
 const SignUpWrap = styled('div')`
   display: flex;
@@ -42,12 +42,14 @@ const MainWrap = styled('div')`
 `;
 
 const Title = styled('h1')`
+  position: relative;
+  top: 20px;
   margin: 0 auto;
 `;
 
 const colors = css`
   background-color: ${grey} !important;
-  border: 3px solid ${purple};
+  border: 3px solid ${lavender};
 `;
 
 const white = css`
@@ -56,7 +58,7 @@ const white = css`
 
 const SignUp = () => (
   <MainWrap>
-    <Title>Registration</Title>
+    <Title>Sign Up</Title>
     <SignUpWrap className={colors}>
       <ContainerWrap>
         <Form size="large" widths="equal">

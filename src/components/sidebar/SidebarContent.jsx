@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
-import { black, grey, brightred } from '../../styles/colors';
+import { lavender, grey, sunshine,  } from '../../styles/colors';
 
 const navLinkStyle = css`
   padding: 1em;
@@ -11,11 +11,11 @@ const navLinkStyle = css`
 `;
 
 const activeNav = css`
-  background-color: ${brightred};
+  background-color: ${sunshine};
   color: white;
   :hover {
     color: white;
-    background-color: ${brightred} !important;
+    background-color: ${sunshine} !important;
   }
 `;
 
@@ -26,21 +26,25 @@ const inactive = css`
     color: white;
   }
   transition: all 0.3s ease;
-  text-align: center;
+  text-align: left;
 `;
 
 const CustomSidebar = styled(Menu)`
   height: 100%;
   width: 100% !important;
   &.ui.menu {
-    background: ${black};
+    background: ${lavender};
   }
+`;
+
+const icon = css`
+  text-align: center;
 `;
 
 const SidebarContent = () => (
   <CustomSidebar vertical>
     <NavLink
-      className={`${inactive} ${navLinkStyle}`}
+      className={`${inactive} ${navLinkStyle} ${icon}`}
       to="/"
     >
       <Icon name="home" size="large" />
