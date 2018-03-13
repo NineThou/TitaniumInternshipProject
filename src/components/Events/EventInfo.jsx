@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 
 // json
-import eventSamples from '../../utils/events.json';
+import eventSamples from '../../events.json';
 
 // colors
 import { grey, purple } from '../../styles/colors';
