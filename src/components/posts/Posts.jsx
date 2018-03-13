@@ -3,7 +3,7 @@ import React from 'react';
 import { Item } from 'semantic-ui-react';
 
 // json
-import postList from '../../utils/posts.json';
+import postList from '../../posts.json';
 
 // components
 import SinglePost from './SinglePost';

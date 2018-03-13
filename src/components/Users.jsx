@@ -6,7 +6,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
 // json
-import users from '../utils/users.json';
+import users from '../users.json';
 
 const columns = [
   {

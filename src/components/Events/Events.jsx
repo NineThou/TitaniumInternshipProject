@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, List } from 'semantic-ui-react';
 
 // json
-import eventSamples from '../../utils/events.json';
+import eventSamples from '../../events.json';
 
 // components
 import EventsItem from './EventsItem';
