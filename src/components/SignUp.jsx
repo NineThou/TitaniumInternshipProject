@@ -42,6 +42,8 @@ const MainWrap = styled('div')`
 `;
 
 const Title = styled('h1')`
+  position: relative;
+  top: 20px;
   margin: 0 auto;
 `;
 
@@ -56,7 +58,7 @@ const white = css`
 
 const SignUp = () => (
   <MainWrap>
-    <Title>Registration</Title>
+    <Title>Sign Up</Title>
     <SignUpWrap className={colors}>
       <ContainerWrap>
         <Form size="large" widths="equal">
