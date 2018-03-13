@@ -25,7 +25,8 @@ const router = (
         <Route path="/signup" component={SignUp} />
         <Route path="/events" component={Events} />
         <Route path="/eventInfo/:eventId" component={EventInfo} />
-        <Route path="/posts" component={Posts} />
+        <Route path="/posts/:postId" component={PostInfo} />
+        <Route exact path="/posts" component={Posts} />
         <Route path="/users" component={Users} />
       </Main>
     </div>

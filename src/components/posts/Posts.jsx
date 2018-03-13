@@ -1,6 +1,6 @@
 // modules
 import React from 'react';
-import { Item } from 'semantic-ui-react';
+import { Container, List } from 'semantic-ui-react';
 
 // json
 import postList from '../../posts.json';
@@ -10,13 +10,13 @@ import SinglePost from './SinglePost';
 
 
 const Posts = () => (
-  <Item.Group divided>
-    <Item>
+  <Container>
+    <List>
       {
-        postList.map(({ id, text, title }) => <SinglePost key={id} text={text} title={title} />)
+        postList.map(event => <SinglePost key={event.id} details={event} />)
       }
-    </Item>
-  </Item.Group>
+    </List>
+  </Container>
 );
 
 
