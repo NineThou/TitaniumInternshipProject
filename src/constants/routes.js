@@ -11,13 +11,8 @@ import Users from '../components/Users';
 import EventInfo from '../components/Events/EventInfo';
 import Login from '../components/Login';
 import Events from '../components/Events/Events';
-<<<<<<< HEAD
-import Main from '../components/Main';
-import PostInfo from '../components/posts/PostInfo';
-=======
 import Main from '../components/Sidebar';
 import Header from '../components/Header/Header';
->>>>>>> 62290ca496f26a709c229f228bfb3881717596d4
 
 /* eslint-disable react/jsx-filename-extension */
 const router = (
