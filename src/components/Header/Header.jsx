@@ -2,6 +2,7 @@ import React from 'react';
 import styled, {css} from 'react-emotion';
 import { lavender } from '../../styles/colors';
 
+
 // clock
 import Clock from './Clock';
 
@@ -26,11 +27,19 @@ const Head = styled('div')`
   margin: 0;
 `;
 
+const Title = styled('div')`
+  grid-area: title;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ClockArea = styled('div')`
   grid-area: clock;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 30px;
 `;
 
 const Name = styled('div')`
@@ -40,11 +49,15 @@ const Name = styled('div')`
   justify-content: center;
 `;
 
-
 const Header = () => (
   <Head>
     <Name>
       Hi, Tomash Andrew
+    </Name>
+const Header = () => (
+  <Head>
+    <Name>
+      Hi, John Smith
     </Name>
     <ClockArea>
       <Clock />
