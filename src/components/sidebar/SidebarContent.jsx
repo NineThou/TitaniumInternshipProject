@@ -11,10 +11,11 @@ const navLinkStyle = css`
 `;
 
 const activeNav = css`
-  background: ${brightred};
+  background-color: ${brightred};
   color: white;
   :hover {
     color: white;
+    background-color: ${brightred} !important;
   }
 `;
 

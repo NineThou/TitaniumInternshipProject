@@ -1,6 +1,6 @@
 // modules
 import React from 'react';
-import { Item, Button } from 'semantic-ui-react';
+import { Item } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 
@@ -26,11 +26,6 @@ const SinglePost = ({ text, title }) => (
     <Item.Content verticalAlign="middle">
       <Item.Header as="h2">{title}</Item.Header>
       <Item.Description>{text}</Item.Description>
-      <Item.Extra>
-        <Button floated="right">
-          Delete
-        </Button>
-      </Item.Extra>
     </Item.Content>
   </PostWrap>
 );
