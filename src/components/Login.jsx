@@ -42,6 +42,8 @@ const formSize = css`
 `;
 
 const Title = styled('h1')`
+  position: relative;
+  top: 20px;
   margin: 0 auto;
 `;
 
