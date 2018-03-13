@@ -50,6 +50,7 @@ const SidebarContent = () => (
       to="/login"
       activeClassName={activeNav}
     >
+      <i className="user outline icon" />
       Login
     </NavLink>
     <NavLink
@@ -57,6 +58,7 @@ const SidebarContent = () => (
       to="/signup"
       activeClassName={activeNav}
     >
+      <i className="clipboard outline icon" />
       SignUp
     </NavLink>
     <NavLink
@@ -64,6 +66,7 @@ const SidebarContent = () => (
       to="/users"
       activeClassName={activeNav}
     >
+      <i className="address book outline icon" />
       Users
     </NavLink>
     <NavLink
@@ -71,6 +74,7 @@ const SidebarContent = () => (
       to="/events"
       activeClassName={activeNav}
     >
+      <i className="calendar alternate outline icon" />
       Events
     </NavLink>
     <NavLink
@@ -78,6 +82,7 @@ const SidebarContent = () => (
       to="/posts"
       activeClassName={activeNav}
     >
+      <i className="archive icon" />
       Posts
     </NavLink>
 
