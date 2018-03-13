@@ -6,16 +6,18 @@ import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
 
 // colors
-import { grey, lavender } from '../../styles/colors';
+import { grey } from '../../styles/colors';
 
 const PostWrap = styled('div')`
-  background-color: #B2BABB;
-  border: 3px solid #586180;
-  border-radius: 8px;
-  margin: 30px !important;
-  padding: 10px;
-  padding-bottom: 10px !important;
   display: flex;
+  color: white;
+  background-color: ${grey};
+  margin: 30px !important;
+  height: 100%;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  
 `;
 
 const ContentWrap = styled('div')`
@@ -31,7 +33,6 @@ const imgpos = css`
 const colors = css`
   color: white !important;
   background-color: ${grey} !important;
-  border: 3px solid ${lavender};
 `;
 
 const SinglePost = ({ details }) => (
@@ -43,7 +44,7 @@ const SinglePost = ({ details }) => (
         <Item.Description>{details.text.slice(0, 250)}</Item.Description>
         <Link to={`/posts/${details.id}`}>
           <List.Content>
-            <Button floated="right">Read More</Button>
+            <Button floated="left">Read More</Button>
           </List.Content>
         </Link>
       </Item.Content>

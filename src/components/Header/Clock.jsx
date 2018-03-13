@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'react-emotion';
 
 const ClockContent = styled('h2')`
+  margin-right: 10px;
   @media (max-width: 800px) {
     font-size: 20px;
   }

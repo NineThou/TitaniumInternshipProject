@@ -5,7 +5,7 @@ import { Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 
 // colors
-import { grey, purple, lavender } from '../styles/colors';
+import { grey } from '../styles/colors';
 
 const MainWrap = styled('div')`
   width: 100%;
@@ -15,6 +15,8 @@ const MainWrap = styled('div')`
 `;
 
 const LoginWrap = styled('div')`
+  padding-top: 30px !important;
+  padding-bottom: 20px !important;
   display: flex;
   flex-direction: column;
   width: 350px;
@@ -23,10 +25,11 @@ const LoginWrap = styled('div')`
   position: relative;
   top: 50px;
   color: black;
-  border: 3px solid #586180;
-  border-radius: 5px;
   background-color: #B2BABB;
   padding-top: 5px;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
 `;
 
 const LinkWrap = css`
@@ -43,7 +46,7 @@ const formSize = css`
 
 const Title = styled('h1')`
   position: relative;
-  top: 20px;
+  bottom: 25px;
   margin: 0 auto;
 `;
 
@@ -51,36 +54,25 @@ const ContainerWrap = styled('div')`
   margin: 0 auto;
 `;
 
-const white = css`
-  color: white !important;
-`;
-
 const colors = css`
   color: white !important;
   background-color: ${grey} !important;
-  border: 3px solid ${lavender};
 `;
 
 const Login = () => (
   <MainWrap>
-    <Title>Login Page</Title>
-    <LoginWrap className={`formWrap ${colors}`}>
+    <LoginWrap className={colors}>
+      <Title>Login</Title>
       <ContainerWrap>
         <Form size="large" width="equal">
           <Form.Field className={formSize}>
-            <label htmlFor="email" className={white}>
-              E-mail
-              <input placeholder="Email" id="email" type="email" />
-            </label>
+            <input placeholder="Email" id="email" type="email" />
           </Form.Field>
           <Form.Field className={formSize}>
-            <label htmlFor="password" className={white}>
-            Password
-              <input placeholder="Password" type="password" />
-            </label>
+            <input placeholder="Password" type="password" />
           </Form.Field>
           <span>
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Sign In</Button>
             <NavLink className={LinkWrap} to="/signup">Don&apos;t have an account?</NavLink>
           </span>
         </Form>

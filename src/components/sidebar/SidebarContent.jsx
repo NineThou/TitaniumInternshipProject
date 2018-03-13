@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
-import { lavender, grey, sunshine,  } from '../../styles/colors';
+import { black, grey, blue } from '../../styles/colors';
 
 const navLinkStyle = css`
   padding: 1em;
@@ -11,11 +11,11 @@ const navLinkStyle = css`
 `;
 
 const activeNav = css`
-  background-color: ${sunshine};
+  background-color: ${blue};
   color: white;
   :hover {
     color: white;
-    background-color: ${sunshine} !important;
+    background-color: ${blue} !important;
   }
 `;
 
@@ -33,7 +33,7 @@ const CustomSidebar = styled(Menu)`
   height: 100%;
   width: 100% !important;
   &.ui.menu {
-    background: ${lavender};
+    background: ${black};
   }
 `;
 
