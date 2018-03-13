@@ -12,6 +12,7 @@ import EventInfo from '../components/Events/EventInfo';
 import Login from '../components/Login';
 import Events from '../components/Events/Events';
 import Main from '../components/Main';
+import PostInfo from '../components/posts/PostInfo';
 
 /* eslint-disable react/jsx-filename-extension */
 const router = (
@@ -23,7 +24,8 @@ const router = (
         <Route path="/signup" component={SignUp} />
         <Route path="/events" component={Events} />
         <Route path="/eventInfo/:eventId" component={EventInfo} />
-        <Route path="/posts" component={Posts} />
+        <Route path="/posts/:postId" component={PostInfo} />
+        <Route exact path="/posts" component={Posts} />
         <Route path="/users" component={Users} />
       </Main>
     </div>

@@ -1,8 +1,9 @@
 // modules
 import React from 'react';
-import { Item } from 'semantic-ui-react';
+import { Item, List, Button, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
+import { Link } from 'react-router-dom';
 
 // colors
 import { grey, purple } from '../../styles/colors';
@@ -11,8 +12,20 @@ const PostWrap = styled('div')`
   background-color: #B2BABB;
   border: 3px solid #586180;
   border-radius: 8px;
-  margin: 10px !important;
+  margin: 30px !important;
   padding: 10px;
+  padding-bottom: 10px !important;
+  display: flex;
+`;
+
+const ContentWrap = styled('div')`
+  display: flex;
+  align-items: center;
+`;
+
+const imgpos = css`
+  margin: auto 0;
+  margin-right: 50px;
 `;
 
 const colors = css`
@@ -21,18 +34,28 @@ const colors = css`
   border: 3px solid ${purple};
 `;
 
-const SinglePost = ({ text, title }) => (
+const SinglePost = ({ details }) => (
   <PostWrap className={colors}>
-    <Item.Content verticalAlign="middle">
-      <Item.Header as="h2">{title}</Item.Header>
-      <Item.Description>{text}</Item.Description>
-    </Item.Content>
+    <Image className={imgpos} src="https://picsum.photos/200/?random" />
+    <ContentWrap>
+      <Item.Content verticalAlign="middle">
+        <Item.Header as="h2">{details.title}</Item.Header>
+        <Item.Description>{details.text.slice(0, 250)}</Item.Description>
+        <Link to={`/posts/${details.id}`}>
+          <List.Content>
+            <Button floated="right">Read More</Button>
+          </List.Content>
+        </Link>
+      </Item.Content>
+    </ContentWrap>
   </PostWrap>
 );
 
 SinglePost.propTypes = {
-  title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  details: PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+  }).isRequired,
 };
 
 export default SinglePost;
