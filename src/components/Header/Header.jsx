@@ -13,8 +13,8 @@ const Head = styled('div')`
   width: 100%;
   overflow: hidden;
   display: grid;
-  grid-template-areas: "name title clock";
-  grid-template-columns: 33% 33% 33%;
+  grid-template-areas: "name clock";
+  grid-template-columns: 1fr 1fr;
   -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
@@ -25,20 +25,11 @@ const Head = styled('div')`
   }
 `;
 
-const Title = styled('div')`
-  grid-area: title;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const ClockArea = styled('div')`
   grid-area: clock;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 30px;
-  margin-right: 20px; 
+  justify-content: center;
 `;
 
 const Name = styled('div')`
@@ -48,20 +39,12 @@ const Name = styled('div')`
   justify-content: center;
 `;
 
-const TitleText = styled('h1')`
-  @media (max-width: 800px) {
-    font-size: 20px;
-  }
-`;
 
 const Header = () => (
   <Head>
     <Name>
-      Hi, John Smith
+      Hi, Tomash Andrew
     </Name>
-    <Title>
-      <TitleText>Blog</TitleText>
-    </Title>
     <ClockArea>
       <Clock />
     </ClockArea>
