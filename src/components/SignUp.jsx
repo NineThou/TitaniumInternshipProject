@@ -3,9 +3,10 @@ import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { NavLink } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 // colors
-import { grey, lavender } from '../styles/colors';
+import { grey } from '../styles/colors';
 
 const SignUpWrap = styled('div')`
   display: flex;
@@ -16,10 +17,11 @@ const SignUpWrap = styled('div')`
   position: relative;
   top: 50px;
   color: black;
-  border: 3px solid #586180;
-  border-radius: 5px;
   background-color: #B2BABB;
-  padding-top: 5px;
+  padding-top: 15px;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
 `;
 
 const Link = css`
@@ -43,46 +45,43 @@ const MainWrap = styled('div')`
 
 const Title = styled('h1')`
   position: relative;
-  top: 20px;
+  bottom: 10px;
   margin: 0 auto;
+  color: white;
 `;
 
 const colors = css`
   background-color: ${grey} !important;
-  border: 3px solid ${lavender};
 `;
 
-const white = css`
-  color: white !important;
+const formSize = css`
+  width: 320px; 
 `;
 
 const SignUp = () => (
   <MainWrap>
-    <Title>Sign Up</Title>
     <SignUpWrap className={colors}>
+      <Title>
+        <FormattedMessage id="signuppage.signup" />
+      </Title>
       <ContainerWrap>
         <Form size="large" widths="equal">
-          <Form.Field>
-            <label htmlFor="email" className={white}>
-            E-mail
-              <input placeholder="E-mail" id="email" type="email" />
-            </label>
+          <Form.Field className={formSize}>
+            <input placeholder="E-mail" id="email" type="email" />
           </Form.Field>
-          <Form.Field>
-            <label htmlFor="password" className={white}>
-            Password
-              <input placeholder="Password" type="password" />
-            </label>
+          <Form.Field className={formSize}>
+            <input placeholder="Password" type="password" />
           </Form.Field>
-          <Form.Field>
-            <label htmlFor="password" className={white}>
-            Repeat password
-              <input placeholder="Repeat password" type="password" id="password" />
-            </label>
+          <Form.Field className={formSize}>
+            <input placeholder="Repeat password" type="password" id="password" />
           </Form.Field>
-          <span>
-            <Button type="submit">Submit</Button>
-            <NavLink className={Link} to="/login">Already have an account?</NavLink>
+          <span className={formSize}>
+            <Button type="submit">
+              <FormattedMessage id="signuppage.submit" />
+            </Button>
+            <NavLink className={Link} to="/login">
+              <FormattedMessage id="signuppage.account" />
+            </NavLink>
           </span>
         </Form>
       </ContainerWrap>

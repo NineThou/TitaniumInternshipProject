@@ -25,3 +25,7 @@ export const sunshine = '#fba100';
 export const lavender = '#6c648b';
 
 export const dustyrose = '#b6a19e';
+
+export const translucent = 'rgba(255,255,255,0.3)';
+
+export const blue = '#181929';

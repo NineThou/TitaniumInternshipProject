@@ -4,23 +4,33 @@ import { Message, Button, Image } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 // json
 import postSamples from '../../posts.json';
 
 // colors
-import { grey, purple } from '../../styles/colors';
+import { grey } from '../../styles/colors';
 
 const InfoWrap = styled('div')`
+  display: flex;
+  color: white;
+  background-color: ${grey};
+  margin: 0 auto !important;
+  margin-top: 30px !important;
   width: 80%;
-  margin: 0 auto;
-  margin-top: 30px;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
 `;
 
 const colors = css`
   color: white !important;
   background-color: ${grey} !important;
-  border: 3px solid ${purple};
+`;
+
+const btn = css`
+  margin-top: 5px !important;
 `;
 
 const PostInfo = ({ match }) => {
@@ -39,8 +49,8 @@ const PostInfo = ({ match }) => {
           {text}
         </p>
         <Image src="https://picsum.photos/1400/200/?random" />
-        <Button>
-          Delete
+        <Button className={btn}>
+          <FormattedMessage id="posts.delete" />
         </Button>
       </Message>
     </InfoWrap>

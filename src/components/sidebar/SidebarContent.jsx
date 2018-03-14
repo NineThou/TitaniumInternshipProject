@@ -1,8 +1,9 @@
 import React from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
+import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
-import { lavender, grey, sunshine,  } from '../../styles/colors';
+import { black, grey, blue } from '../../styles/colors';
 
 const navLinkStyle = css`
   padding: 1em;
@@ -11,11 +12,11 @@ const navLinkStyle = css`
 `;
 
 const activeNav = css`
-  background-color: ${sunshine};
+  background-color: ${blue};
   color: white;
   :hover {
     color: white;
-    background-color: ${sunshine} !important;
+    background-color: ${blue} !important;
   }
 `;
 
@@ -33,7 +34,7 @@ const CustomSidebar = styled(Menu)`
   height: 100%;
   width: 100% !important;
   &.ui.menu {
-    background: ${lavender};
+    background: ${black};
   }
 `;
 
@@ -55,7 +56,7 @@ const SidebarContent = () => (
       activeClassName={activeNav}
     >
       <i className="user outline icon" />
-      Login
+      <FormattedMessage id="sidebar.login" />
     </NavLink>
     <NavLink
       className={`${inactive} ${navLinkStyle}`}
@@ -63,7 +64,7 @@ const SidebarContent = () => (
       activeClassName={activeNav}
     >
       <i className="clipboard outline icon" />
-      SignUp
+      <FormattedMessage id="sidebar.signup" />
     </NavLink>
     <NavLink
       className={`${inactive} ${navLinkStyle}`}
@@ -71,7 +72,7 @@ const SidebarContent = () => (
       activeClassName={activeNav}
     >
       <i className="address book outline icon" />
-      Users
+      <FormattedMessage id="sidebar.users" />
     </NavLink>
     <NavLink
       className={`${inactive} ${navLinkStyle}`}
@@ -79,7 +80,7 @@ const SidebarContent = () => (
       activeClassName={activeNav}
     >
       <i className="calendar alternate outline icon" />
-      Events
+      <FormattedMessage id="sidebar.events" />
     </NavLink>
     <NavLink
       className={`${inactive} ${navLinkStyle}`}
@@ -87,7 +88,7 @@ const SidebarContent = () => (
       activeClassName={activeNav}
     >
       <i className="archive icon" />
-      Posts
+      <FormattedMessage id="sidebar.posts" />
     </NavLink>
 
   </CustomSidebar>

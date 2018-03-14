@@ -1,6 +1,9 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { addLocaleData, IntlProvider } from 'react-intl';
 import 'semantic-ui-css/semantic.min.css';
-
+import messages from './utils/messages';
+import flattenMessages from './utils/flatten';
 // routes
 import router from './constants/routes';
 
@@ -10,5 +13,18 @@ import './styles/App.css';
 // service worker
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(router, global.document.getElementById('root'));
+// locale data
+import en from 'react-intl/locale-data/en';
+import ru from 'react-intl/locale-data/ru';
+
+
+addLocaleData([...en, ...ru]);
+
+const locale = 'en-US';
+
+ReactDOM.render(
+  <IntlProvider locale={locale} messages={flattenMessages(messages[locale])}>
+    {router}
+  </IntlProvider>
+  , global.document.getElementById('root'));
 registerServiceWorker();

@@ -1,5 +1,5 @@
 body {
-  background-color: #dcc7aa !important;
+  background-color: #121322 !important;
   color: white;
 }
 
@@ -8,7 +8,7 @@ body {
 }
 
 .ReactTable {
-  color: black;
+  color: white;
 }
 
 .home {
@@ -16,8 +16,13 @@ body {
   bottom: 5px;
 }
 
+.message {
+  margin: 0 !important;
+  border: 0 !important;
+}
+
 .-btn {
-  background-color: #fba100 !important;
+  background-color: #6c648b !important;
 }
 
 body ::-webkit-scrollbar {
