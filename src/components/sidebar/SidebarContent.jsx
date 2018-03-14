@@ -12,11 +12,6 @@ const navLinkStyle = css`
   display: block;
 `;
 
-const drop = css`
-  z-index: 2000;
-  background-color: ${black} !important;
-`;
-
 const activeNav = css`
   background-color: ${blue};
   color: white;

@@ -17,6 +17,7 @@ import './styles/App.css';
 // service worker
 import registerServiceWorker from './registerServiceWorker';
 
+/* eslint-disable react/jsx-filename-extension */
 
 addLocaleData([...en, ...ru]);
 

@@ -7,7 +7,6 @@ import { black } from '../../styles/colors';
 
 // clock
 import Clock from './Clock';
-import router from '../../constants/routes';
 
 const Head = styled('div')` 
   z-index: 999;

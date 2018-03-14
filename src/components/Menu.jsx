@@ -1,8 +1,8 @@
 import React from 'react';
 import Sidebar from 'react-sidebar';
 import styled from 'react-emotion';
-import SidebarContent from './sidebar/SidebarContent';
 import PropTypes from 'prop-types';
+import SidebarContent from './sidebar/SidebarContent';
 
 const mql = global.window.matchMedia('(min-width: 800px)');
 
