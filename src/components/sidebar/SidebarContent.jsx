@@ -3,12 +3,18 @@ import { Menu, Icon } from 'semantic-ui-react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
+import LanguageChange from '../language';
 import { black, grey, blue } from '../../styles/colors';
 
 const navLinkStyle = css`
   padding: 1em;
   font-size: 20px;
   display: block;
+`;
+
+const drop = css`
+  z-index: 2000;
+  background-color: ${black} !important;
 `;
 
 const activeNav = css`
@@ -90,7 +96,7 @@ const SidebarContent = () => (
       <i className="archive icon" />
       <FormattedMessage id="sidebar.posts" />
     </NavLink>
-
+    <LanguageChange />
   </CustomSidebar>
 );
 
