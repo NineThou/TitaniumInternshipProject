@@ -4,7 +4,7 @@ import { Item, List, Button, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
-
+import { FormattedMessage } from 'react-intl';
 // colors
 import { grey } from '../../styles/colors';
 
@@ -44,7 +44,9 @@ const SinglePost = ({ details }) => (
         <Item.Description>{details.text.slice(0, 250)}</Item.Description>
         <Link to={`/posts/${details.id}`}>
           <List.Content>
-            <Button floated="left">Read More</Button>
+            <Button floated="left">
+              <FormattedMessage id="posts.readmore" />
+            </Button>
           </List.Content>
         </Link>
       </Item.Content>

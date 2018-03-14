@@ -4,7 +4,7 @@ import { List, Button, Image } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import { FormattedMessage } from 'react-intl';
 // colors
 import { grey } from '../../styles/colors';
 
@@ -48,7 +48,9 @@ const EventsItem = ({ details }) => (
       </List>
       <Link to={`/eventInfo/${details.id}`}>
         <List.Content>
-          <Button floated="left">Read More</Button>
+          <Button floated="left">
+            <FormattedMessage id="events.readmore" />
+          </Button>
         </List.Content>
       </Link>
     </List.Item>
