@@ -4,7 +4,7 @@ import styled from 'react-emotion';
 const ClockContent = styled('h2')`
   margin-right: 10px;
   @media (max-width: 800px) {
-    font-size: 20px;
+    display: none;
   }
   @media (max-width: 462px) {
     font-size: 15px;

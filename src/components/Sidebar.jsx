@@ -19,7 +19,7 @@ const ToggleButton = styled('button')`
   border: none;
   outline: none;
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 0;
   :hover {
     cursor: pointer;
