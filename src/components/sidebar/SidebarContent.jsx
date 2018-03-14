@@ -1,10 +1,9 @@
 import React from 'react';
-import LanguageChange from '../language';
-import { Menu, Icon, Dropdown } from 'semantic-ui-react';
-import { compose, withHandlers, pure } from 'recompose';
+import { Menu, Icon } from 'semantic-ui-react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
+import LanguageChange from '../language';
 import { black, grey, blue } from '../../styles/colors';
 
 const navLinkStyle = css`
@@ -49,7 +48,7 @@ const icon = css`
   text-align: center;
 `;
 
-const SidebarContent = ({ handleEnLanguage }) => (
+const SidebarContent = () => (
   <CustomSidebar vertical>
     <NavLink
       className={`${inactive} ${navLinkStyle} ${icon}`}

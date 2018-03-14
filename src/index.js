@@ -22,7 +22,6 @@ addLocaleData([...en, ...ru]);
 
 
 const locale = localStorage.getItem('lang') || 'en-US';
-console.log(localStorage.getItem('lang'));
 
 ReactDOM.render(
   <IntlProvider locale={locale} messages={flattenMessages(messages[locale])}>
