@@ -1,5 +1,7 @@
 import React from 'react';
-import styled from 'react-emotion';
+import { Link } from 'react-router-dom';
+import styled, { css } from 'react-emotion';
+import { Icon } from 'semantic-ui-react';
 import { black } from '../../styles/colors';
 
 
@@ -24,6 +26,7 @@ const Head = styled('div')`
   font-size: 30px;
   @media (max-width: 800px) {
     font-size: 20px;
+    grid-template-areas: "hiddenhome clock";
   }
   margin: 0;
 `;
@@ -42,6 +45,24 @@ const Name = styled('div')`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  @media (max-width: 800px) {
+    display: none;
+  }
+`;
+
+const HomeLink = styled('div')`
+  display: none;
+  @media (max-width: 800px) {
+    justify-content: flex-start;
+    display: flex;
+    grid-area: hiddenhome;
+  }
+`;
+
+const iconpos = css`
+  padding-top: 25px;
+  padding-left: 20px;
+  color: white;
 `;
 
 const Header = () => (
@@ -49,6 +70,11 @@ const Header = () => (
     <Name>
       Hi, John Smith
     </Name>
+    <HomeLink>
+      <Link to="/">
+        <Icon className={iconpos} name="home" size="large" />
+      </Link>
+    </HomeLink>
     <ClockArea>
       <Clock />
     </ClockArea>
