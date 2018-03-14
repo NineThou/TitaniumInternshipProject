@@ -3,7 +3,7 @@ import { Menu, Icon } from 'semantic-ui-react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
-import LanguageChange from '../language';
+import LanguageChange from '../LanguageChange';
 import { black, grey, blue } from '../../styles/colors';
 
 const navLinkStyle = css`

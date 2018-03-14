@@ -86,9 +86,9 @@ class Main extends React.Component {
         onSetOpen={this.onSetOpen}
       >
         <ToggleButton onClick={this.menuButtonClick}>
-          <Bar className={this.state.open ? 'change' : ''} />
-          <Bar className={this.state.open ? 'change' : ''} />
-          <Bar className={this.state.open ? 'change' : ''} />
+          <Bar className={this.state.open && 'change'} />
+          <Bar className={this.state.open && 'change'} />
+          <Bar className={this.state.open && 'change'} />
         </ToggleButton>
         {children}
       </Sidebar>
