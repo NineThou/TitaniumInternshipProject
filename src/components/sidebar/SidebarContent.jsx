@@ -1,5 +1,7 @@
 import React from 'react';
-import { Menu, Icon } from 'semantic-ui-react';
+import LanguageChange from '../language';
+import { Menu, Icon, Dropdown } from 'semantic-ui-react';
+import { compose, withHandlers, pure } from 'recompose';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
@@ -9,6 +11,11 @@ const navLinkStyle = css`
   padding: 1em;
   font-size: 20px;
   display: block;
+`;
+
+const drop = css`
+  z-index: 2000;
+  background-color: ${black} !important;
 `;
 
 const activeNav = css`
@@ -42,7 +49,7 @@ const icon = css`
   text-align: center;
 `;
 
-const SidebarContent = () => (
+const SidebarContent = ({ handleEnLanguage }) => (
   <CustomSidebar vertical>
     <NavLink
       className={`${inactive} ${navLinkStyle} ${icon}`}
@@ -90,7 +97,7 @@ const SidebarContent = () => (
       <i className="archive icon" />
       <FormattedMessage id="sidebar.posts" />
     </NavLink>
-
+    <LanguageChange />
   </CustomSidebar>
 );
 
