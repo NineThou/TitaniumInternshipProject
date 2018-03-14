@@ -1,4 +1,18 @@
 import React from 'react';
+import styled from 'react-emotion';
+
+const ClockContent = styled('h2')`
+  margin-right: 10px;
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
+  @media (max-width: 462px) {
+    font-size: 15px;
+  }
+  @media (max-width: 384px) {
+    font-size: 14px;
+  }
+`;
 
 class Clock extends React.Component {
   state = {
@@ -42,7 +56,7 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <h2>{`${this.state.date.toLocaleTimeString()}, ${this.getMonth()}, ${this.state.date.getFullYear()}`}.</h2>
+        <ClockContent>{`${this.state.date.toLocaleTimeString()}, ${this.getMonth()}, ${this.state.date.getFullYear()}`}.</ClockContent>
       </div>
     );
   }

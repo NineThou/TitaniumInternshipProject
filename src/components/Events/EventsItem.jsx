@@ -1,23 +1,23 @@
 // modules
 import React from 'react';
-import { List, Button } from 'semantic-ui-react';
-import styled from 'react-emotion';
+import { List, Button, Image } from 'semantic-ui-react';
+import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 // colors
-import { grey, purple } from '../../styles/colors';
+import { grey } from '../../styles/colors';
 
 
 const EventWrap = styled('div')`
   color: white;
   background-color: ${grey};
-  border: 3px solid ${purple};
-  border-radius: 8px;
   margin: 30px !important;
-  padding: 10px !important;
   padding-bottom: 50px !important;
   height: 100%;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
 `;
 
 const Anchor = styled('a')`
@@ -27,9 +27,20 @@ const Anchor = styled('a')`
   }
 `;
 
+const imgpos = css` 
+  width: 100%;
+`;
+
+const listpadding = css`
+  padding-top: 10px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+`;
+
 const EventsItem = ({ details }) => (
   <EventWrap>
-    <List.Item>
+    <Image className={imgpos} src="https://picsum.photos/900/200/?random" />
+    <List.Item className={listpadding}>
       <List.Content>{details.title}</List.Content>
       <List.Content>{details.body}</List.Content>
       <List>
