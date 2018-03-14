@@ -14,6 +14,11 @@ const ClockContent = styled('h2')`
   }
 `;
 
+const getMonth = () => {
+  const today = new Date();
+  return today.toLocaleDateString('en-US', { month: 'long' });
+};
+
 class Clock extends React.Component {
   state = {
     date: new Date(),
@@ -30,24 +35,6 @@ class Clock extends React.Component {
     clearInterval(this.timerID);
   }
 
-  getMonth() {
-    const month = this.state.date.getMonth();
-    switch (month) {
-      case 0: return 'January';
-      case 1: return 'February';
-      case 2: return 'March';
-      case 3: return 'April';
-      case 4: return 'May';
-      case 5: return 'June';
-      case 6: return 'July';
-      case 7: return 'August';
-      case 8: return 'September';
-      case 9: return 'October';
-      case 10: return 'November';
-      case 11: return 'December';
-      default: return '???';
-    }
-  }
   tick() {
     this.setState({
       date: new Date(),
@@ -56,7 +43,7 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <ClockContent>{`${this.state.date.toLocaleTimeString()}, ${this.getMonth()}, ${this.state.date.getFullYear()}`}.</ClockContent>
+        <ClockContent>{`${this.state.date.toLocaleTimeString()}, ${getMonth()}, ${this.state.date.getFullYear()}`}.</ClockContent>
       </div>
     );
   }
