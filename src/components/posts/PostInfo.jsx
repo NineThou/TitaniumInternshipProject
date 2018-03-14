@@ -49,13 +49,8 @@ const PostInfo = ({ match }) => {
           {text}
         </p>
         <Image src="https://picsum.photos/1400/200/?random" />
-<<<<<<< HEAD
-        <Button>
-          <FormattedMessage id="posts.delete" />
-=======
         <Button className={btn}>
-          Delete
->>>>>>> 7dfa93bfe08d5cd1c4b1326e55fe358882564f0d
+          <FormattedMessage id="posts.delete" />
         </Button>
       </Message>
     </InfoWrap>

@@ -39,5 +39,44 @@ export default {
       nobonus: 'No bonus',
     },
   },
-
+  'ru-RU': {
+    events: {
+      readmore: 'Читать',
+    },
+    posts: {
+      delete: 'Удалить',
+      readmore: 'Читать',
+    },
+    sidebar: {
+      login: 'Логин',
+      signup: 'Регистрация',
+      users: 'Пользователи',
+      events: 'События',
+      posts: 'Записи',
+    },
+    loginpage: {
+      login: 'Страница логина',
+      email: 'E-mail',
+      password: 'Password',
+      submit: 'Отправить',
+      account: 'Нет аккаунта?',
+    },
+    signuppage: {
+      signup: 'Регистрация',
+      email: 'E-mail',
+      password: 'Password',
+      reppassword: 'Repeat password',
+      submit: 'Отправить',
+      account: 'Есть аккаунт?',
+    },
+    users: {
+      username: 'Имя пользователя',
+      wallet: 'Адрес кошелька',
+      referral: 'Реферальный бонус',
+      userrole: 'Роль',
+      nousername: 'Нет имени',
+      nowallet: 'Нет кошелька',
+      nobonus: 'Нет бонуса',
+    },
+  },
 };
