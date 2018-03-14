@@ -25,7 +25,7 @@ const InfoWrap = styled('div')`
   -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   border: 0 !important;
-  @media (max-width: 1050px) {
+  @media (max-width: 1614px) {
     flex-direction: column;
   }
 `;
