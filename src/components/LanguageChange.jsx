@@ -21,8 +21,7 @@ const options = [
 
 const LanguageChange = ({ onSelect }) => (
   <Select
-    placeholder="Select language"
-    defaultValue={localStorage.getItem('lang')}
+    defaultValue={localStorage.getItem('lang') || 'en-US'}
     onChange={onSelect}
     options={options}
   />
