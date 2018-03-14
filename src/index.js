@@ -26,5 +26,6 @@ ReactDOM.render(
   <IntlProvider locale={locale} messages={flattenMessages(messages[locale])}>
     {router}
   </IntlProvider>
-  , global.document.getElementById('root'));
+  , global.document.getElementById('root'),
+);
 registerServiceWorker();
