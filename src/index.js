@@ -17,6 +17,7 @@ import './styles/App.css';
 // service worker
 import registerServiceWorker from './registerServiceWorker';
 
+/* eslint-disable react/jsx-filename-extension */
 
 addLocaleData([...en, ...ru]);
 
@@ -27,5 +28,6 @@ ReactDOM.render(
   <IntlProvider locale={locale} messages={flattenMessages(messages[locale])}>
     {router}
   </IntlProvider>
-  , global.document.getElementById('root'));
+  , global.document.getElementById('root'),
+);
 registerServiceWorker();

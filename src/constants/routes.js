@@ -11,7 +11,7 @@ import Users from '../components/Users';
 import EventInfo from '../components/Events/EventInfo';
 import Login from '../components/Login';
 import Events from '../components/Events/Events';
-import Main from '../components/Sidebar';
+import Menu from '../components/Menu';
 import Header from '../components/Header/Header';
 import PostInfo from '../components/posts/PostInfo';
 
@@ -19,7 +19,7 @@ import PostInfo from '../components/posts/PostInfo';
 const router = (
   <BrowserRouter>
     <div>
-      <Main>
+      <Menu>
         <Header />
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
@@ -29,7 +29,7 @@ const router = (
         <Route path="/posts/:postId" component={PostInfo} />
         <Route exact path="/posts" component={Posts} />
         <Route path="/users" component={Users} />
-      </Main>
+      </Menu>
     </div>
   </BrowserRouter>
 );

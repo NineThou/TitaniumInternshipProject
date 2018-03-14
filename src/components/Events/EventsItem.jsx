@@ -5,6 +5,7 @@ import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+
 // colors
 import { grey } from '../../styles/colors';
 

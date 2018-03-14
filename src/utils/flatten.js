@@ -4,6 +4,7 @@ function flattenMessages(nestedMessages, prefix = '') {
     const prefixedKey = prefix ? `${prefix}.${key}` : key;
 
     if (typeof value === 'string') {
+      /* eslint no-param-reassign: "error" */
       messages[prefixedKey] = value;
     } else {
       Object.assign(messages, flattenMessages(value, prefixedKey));

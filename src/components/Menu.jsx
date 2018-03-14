@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from 'react-sidebar';
 import styled from 'react-emotion';
+import PropTypes from 'prop-types';
 import SidebarContent from './sidebar/SidebarContent';
 
 const mql = global.window.matchMedia('(min-width: 800px)');
@@ -46,11 +47,20 @@ const ToggleButton = styled('button')`
 `;
 
 
-class Main extends React.Component {
+class Menu extends React.Component {
+  static propTypes = {
+    children: PropTypes.arrayOf(PropTypes.element),
+    open: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    open: false,
+    children: [],
+  };
+
   state = {
     open: this.props.open,
     mql,
-    change: false,
   };
 
   componentWillMount() {
@@ -69,9 +79,6 @@ class Main extends React.Component {
 
   menuButtonClick = () => {
     this.onSetOpen(!this.state.open);
-    this.setState({
-      change: !this.state.change,
-    });
   };
 
 
@@ -84,6 +91,7 @@ class Main extends React.Component {
         open={this.state.open}
         docked={this.state.sidebarDocked}
         onSetOpen={this.onSetOpen}
+        touch
       >
         <ToggleButton onClick={this.menuButtonClick}>
           <Bar className={this.state.open ? 'change' : ''} />
@@ -96,4 +104,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default Menu;
