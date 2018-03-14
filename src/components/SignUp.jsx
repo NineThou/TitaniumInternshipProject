@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { NavLink } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 // colors
 import { grey } from '../styles/colors';
@@ -60,7 +61,9 @@ const formSize = css`
 const SignUp = () => (
   <MainWrap>
     <SignUpWrap className={colors}>
-      <Title>Sign Up</Title>
+      <Title>
+        <FormattedMessage id="signuppage.signup" />
+      </Title>
       <ContainerWrap>
         <Form size="large" widths="equal">
           <Form.Field className={formSize}>
@@ -73,8 +76,12 @@ const SignUp = () => (
             <input placeholder="Repeat password" type="password" id="password" />
           </Form.Field>
           <span className={formSize}>
-            <Button type="submit">Submit</Button>
-            <NavLink className={Link} to="/login">Already have an account?</NavLink>
+            <Button type="submit">
+              <FormattedMessage id="signuppage.submit" />
+            </Button>
+            <NavLink className={Link} to="/login">
+              <FormattedMessage id="signuppage.account" />
+            </NavLink>
           </span>
         </Form>
       </ContainerWrap>
