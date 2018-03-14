@@ -4,6 +4,7 @@ import { Message, Button, Image } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 // json
 import postSamples from '../../posts.json';
@@ -40,7 +41,7 @@ const PostInfo = ({ match }) => {
         </p>
         <Image src="https://picsum.photos/1400/200/?random" />
         <Button>
-          Delete
+          <FormattedMessage id="posts.delete" />
         </Button>
       </Message>
     </InfoWrap>

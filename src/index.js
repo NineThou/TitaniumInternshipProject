@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import messages from './utils/messages';
 import flattenMessages from './utils/flatten';
 // routes
-import Router from './constants/routes';
+import router from './constants/routes';
 
 // css
 import './styles/App.css';
@@ -24,7 +24,7 @@ const locale = 'en-US';
 
 ReactDOM.render(
   <IntlProvider locale={locale} messages={flattenMessages(messages[locale])}>
-    <Router />
+    {router}
   </IntlProvider>
   , global.document.getElementById('root'));
 registerServiceWorker();

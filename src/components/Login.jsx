@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
+import { FormattedMessage } from 'react-intl';
 
 // colors
 import { grey, purple } from '../styles/colors';
@@ -63,25 +64,31 @@ const colors = css`
 
 const Login = () => (
   <MainWrap>
-    <Title>Login Page</Title>
+    <Title>
+      <FormattedMessage id="loginpage.login" />
+    </Title>
     <LoginWrap className={`formWrap ${colors}`}>
       <ContainerWrap>
         <Form size="large" width="equal">
           <Form.Field className={formSize}>
             <label htmlFor="email" className={white}>
-              E-mail
+              <FormattedMessage id="loginpage.email" />
               <input placeholder="Email" id="email" type="email" />
             </label>
           </Form.Field>
           <Form.Field className={formSize}>
             <label htmlFor="password" className={white}>
-            Password
+              <FormattedMessage id="loginpage.password" />
               <input placeholder="Password" type="password" />
             </label>
           </Form.Field>
           <span>
-            <Button type="submit">Submit</Button>
-            <NavLink className={LinkWrap} to="/signup">Don&apos;t have an account?</NavLink>
+            <Button type="submit">
+              <FormattedMessage id="loginpage.submit" />
+            </Button>
+            <NavLink className={LinkWrap} to="/signup">
+              <FormattedMessage id="loginpage.account" />
+            </NavLink>
           </span>
         </Form>
       </ContainerWrap>

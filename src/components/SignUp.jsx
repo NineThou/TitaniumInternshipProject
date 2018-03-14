@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { NavLink } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 // colors
 import { grey, purple } from '../styles/colors';
@@ -58,31 +59,37 @@ const white = css`
 
 const SignUp = () => (
   <MainWrap>
-    <Title>Sign Up</Title>
+    <Title>
+      <FormattedMessage id="signuppage.signup" />
+    </Title>
     <SignUpWrap className={colors}>
       <ContainerWrap>
         <Form size="large" widths="equal">
           <Form.Field>
             <label htmlFor="email" className={white}>
-            E-mail
+              <FormattedMessage id="signuppage.signup" />
               <input placeholder="E-mail" id="email" type="email" />
             </label>
           </Form.Field>
           <Form.Field>
             <label htmlFor="password" className={white}>
-            Password
+              <FormattedMessage id="signuppage.password" />
               <input placeholder="Password" type="password" />
             </label>
           </Form.Field>
           <Form.Field>
             <label htmlFor="password" className={white}>
-            Repeat password
+              <FormattedMessage id="signuppage.reppassword" />
               <input placeholder="Repeat password" type="password" id="password" />
             </label>
           </Form.Field>
           <span>
-            <Button type="submit">Submit</Button>
-            <NavLink className={Link} to="/login">Already have an account?</NavLink>
+            <Button type="submit">
+              <FormattedMessage id="signuppage.submit" />
+            </Button>
+            <NavLink className={Link} to="/login">
+              <FormattedMessage id="signuppage.account" />
+            </NavLink>
           </span>
         </Form>
       </ContainerWrap>
