@@ -1,10 +1,11 @@
 import React from 'react';
-import styled, {css} from 'react-emotion';
+import styled from 'react-emotion';
 import { black } from '../../styles/colors';
 
 
 // clock
 import Clock from './Clock';
+import router from '../../constants/routes';
 
 const Head = styled('div')` 
   z-index: 999;
@@ -26,6 +27,7 @@ const Head = styled('div')`
   }
   margin: 0;
 `;
+
 
 const ClockArea = styled('div')`
   grid-area: clock;
@@ -54,3 +56,4 @@ const Header = () => (
 );
 
 export default Header;
+
