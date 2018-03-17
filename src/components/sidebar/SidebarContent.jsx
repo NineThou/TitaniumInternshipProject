@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
 import LanguageChange from '../language';
 import { black, grey, blue } from '../../styles/colors';
+import { login, logout, isLoggedIn } from '../../utils/AuthService';
 
 const navLinkStyle = css`
   padding: 1em;
@@ -51,30 +52,16 @@ const SidebarContent = () => (
     >
       <Icon name="home" size="large" />
     </NavLink>
-    <NavLink
-      className={`${inactive} ${navLinkStyle}`}
-      to="/login"
-      activeClassName={activeNav}
-    >
-      <i className="user outline icon" />
-      <FormattedMessage id="sidebar.login" />
-    </NavLink>
-    <NavLink
-      className={`${inactive} ${navLinkStyle}`}
-      to="/signup"
-      activeClassName={activeNav}
-    >
-      <i className="clipboard outline icon" />
-      <FormattedMessage id="sidebar.signup" />
-    </NavLink>
-    <NavLink
-      className={`${inactive} ${navLinkStyle}`}
-      to="/users"
-      activeClassName={activeNav}
-    >
-      <i className="address book outline icon" />
-      <FormattedMessage id="sidebar.users" />
-    </NavLink>
+    {(isLoggedIn()) ?
+      (<NavLink to="/" className={`${inactive} ${navLinkStyle}`} onClick={() => logout()}>
+        <i className="reply outline icon" />
+           Log out
+      </NavLink>) //eslint-disable-line
+      : (<NavLink to="/" className={`${inactive} ${navLinkStyle}`} onClick={() => login()}>
+        <i className="user outline icon" />
+        Log In
+      </NavLink>) //eslint-disable-line
+    }
     <NavLink
       className={`${inactive} ${navLinkStyle}`}
       to="/events"
@@ -91,6 +78,16 @@ const SidebarContent = () => (
       <i className="archive icon" />
       <FormattedMessage id="sidebar.posts" />
     </NavLink>
+    {
+      (isLoggedIn()) ? <NavLink
+        className={`${inactive} ${navLinkStyle}`}
+        to="/users"
+        activeClassName={activeNav}
+      >
+        <i className="address book outline icon" />
+        <FormattedMessage id="sidebar.users" />
+      </NavLink> : null //eslint-disable-line
+    }
     <LanguageChange />
   </CustomSidebar>
 );

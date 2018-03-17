@@ -19,7 +19,7 @@ export default {
       email: 'E-mail',
       password: 'Password',
       submit: 'Submit',
-      account: 'Don&apos;t have an account?',
+      account: 'Need an account?',
     },
     signuppage: {
       signup: 'Sign Up',

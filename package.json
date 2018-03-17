@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "auth0-js": "^9.3.3",
+    "axios": "^0.18.0",
     "emotion": "^9.0.2",
     "eslint": "^4.18.2",
+    "history": "^4.7.2",
+    "jwt-decode": "^2.2.0",
     "namor": "^1.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
@@ -23,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jldom",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.{js,jsx} --quiet --fix"
   },

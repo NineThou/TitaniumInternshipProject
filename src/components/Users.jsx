@@ -1,12 +1,12 @@
 // modules
-import React from 'react';
+import React, { Component } from 'react';
 import ReactTable from 'react-table';
 
 // css
 import 'react-table/react-table.css';
 
-// json
-import users from '../users.json';
+// api
+import getUsersData from '../utils/users-api';
 
 const columns = [
   {
@@ -48,24 +48,44 @@ const columns = [
   },
 ];
 
-const Users = () => (
-  <ReactTable
-    data={users}
-    columns={columns}
-    defaultPageSize={10}
-    showPageSizeOptions={false}
-    className="-striped -highlight"
-    SubComponent={({ original }) => (
-      <div style={{ padding: '10px' }}>
-        {
-          Object.keys(original)
-          .filter(key => key === 'role' || key === 'status')
-          .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
-        }
-      </div>
-    )}
-    filterable
-  />
-);
+/* eslint-disable*/
+class Users extends Component {
+  constructor() {
+    super();
+    this.state = {
+      users: [],
+    };
+  }
+  componentDidMount() {
+    this.getUsers();
+  }
+  getUsers() {
+    getUsersData().then((users) => {
+      this.setState({ users });
+    });
+  }
+  render() {
+    const { users } = this.state;
+    return (
+      <ReactTable
+        data={users}
+        columns={columns}
+        defaultPageSize={10}
+        showPageSizeOptions={false}
+        className="-striped -highlight"
+        SubComponent={({original}) => (
+          <div style={{padding: '10px'}}>
+            {
+              Object.keys(original)
+                .filter(key => key === 'role' || key === 'status')
+                .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
+            }
+          </div>
+        )}
+        filterable
+      />
+    );
+  }
+}
 
 export default Users;

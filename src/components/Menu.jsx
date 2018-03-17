@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Sidebar from 'react-sidebar';
 import styled from 'react-emotion';
 import PropTypes from 'prop-types';
@@ -47,7 +47,7 @@ const ToggleButton = styled('button')`
 `;
 
 
-class Menu extends React.Component {
+class Menu extends Component {
   static propTypes = {
     children: PropTypes.arrayOf(PropTypes.element),
     open: PropTypes.bool,
