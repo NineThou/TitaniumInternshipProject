@@ -31,6 +31,17 @@ export function logout() {
   window.location.href = '/';
 }
 
+export function userInfo () {
+  auth.parseHash({ hash: window.location.hash }, (err, authResult) => {
+    if (err) {
+      return console.error(err);
+    }
+    auth.client.userInfo(authResult.accessToken, (err, user) => {
+      return console.log(err);
+    });
+  });
+}
+
 export function requireAuth(nextState, replace) {
   if (!isLoggedIn()) {
     replace({pathname: '/'});
