@@ -33,34 +33,63 @@ const btn = css`
   margin-top: 5px !important;
 `;
 
-const PostInfo = ({ match }) => {
-  const data = postSamples[match.params.postId - 1];
-  const {
-    title,
-    text,
-  } = data;
-  return (
-    <InfoWrap>
-      <Message className={colors}>
-        <Message.Header>
-          {title}
-        </Message.Header>
-        <p>
-          {text}
-        </p>
-        <Image src="https://picsum.photos/1400/200/?random" />
-        <Button className={btn}>
-          <FormattedMessage id="posts.delete" />
-        </Button>
-      </Message>
-    </InfoWrap>
-  );
-};
+class PostInfo extends React.Component {
+  state = {
+    likes: 0,
+    disabled: false,
+  }
+
+  render() {
+    const handleLikes = (e) => {
+      e.preventDefault(e);
+      this.setState({ likes: this.state.likes + 1, disabled: true });
+    };
+
+    const data = postSamples[this.props.match.params.postId - 1];
+    const {
+      title,
+      text,
+      likes,
+    } = data;
+    return (
+      <InfoWrap>
+        <Message className={colors}>
+          <Message.Header>
+            {title}
+          </Message.Header>
+          <p>
+            {text}
+          </p>
+          <Image src="https://picsum.photos/1400/200/?random" />
+          <span>
+            <Button className={btn}>
+              <FormattedMessage id="posts.delete" />
+            </Button>
+            <Button
+              className="btn"
+              disabled={this.state.disabled}
+              onClick={e => handleLikes(e)}
+              color="red"
+              content="Like"
+              icon="heart"
+              label={{
+                basic: true,
+                color: 'red',
+                pointing: 'left',
+                content: this.state.likes + likes,
+              }}
+            />
+          </span>
+        </Message>
+      </InfoWrap>
+    );
+  }
+}
 
 PostInfo.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      eventId: PropTypes.string,
+      postId: PropTypes.string,
     }),
   }).isRequired,
 };

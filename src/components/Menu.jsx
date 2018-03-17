@@ -94,9 +94,9 @@ class Menu extends Component {
         touch
       >
         <ToggleButton onClick={this.menuButtonClick}>
-          <Bar className={this.state.open ? 'change' : ''} />
-          <Bar className={this.state.open ? 'change' : ''} />
-          <Bar className={this.state.open ? 'change' : ''} />
+          <Bar className={this.state.open && 'change'} />
+          <Bar className={this.state.open && 'change'} />
+          <Bar className={this.state.open && 'change'} />
         </ToggleButton>
         {children}
       </Sidebar>
