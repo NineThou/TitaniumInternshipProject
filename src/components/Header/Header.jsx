@@ -1,7 +1,10 @@
+// modules
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
 import { Icon } from 'semantic-ui-react';
+
+// colors
 import { black } from '../../styles/colors';
 
 

@@ -3,6 +3,7 @@ import React from 'react';
 // router dependencies
 import { BrowserRouter, Route } from 'react-router-dom';
 
+
 // components
 import Home from '../components/Home';
 import Posts from '../components/posts/Posts';
@@ -14,6 +15,10 @@ import Events from '../components/Events/Events';
 import Menu from '../components/Menu';
 import Header from '../components/Header/Header';
 import PostInfo from '../components/posts/PostInfo';
+import Callback from '../components/Callback';
+
+// authentication
+import { requireAuth } from '../utils/AuthService';
 
 /* eslint-disable react/jsx-filename-extension */
 const router = (
@@ -28,7 +33,8 @@ const router = (
         <Route path="/eventInfo/:eventId" component={EventInfo} />
         <Route path="/posts/:postId" component={PostInfo} />
         <Route exact path="/posts" component={Posts} />
-        <Route path="/users" component={Users} />
+        <Route path="/users" component={Users} onEnter={requireAuth} />
+        <Route path="/callback" component={Callback} />
       </Menu>
     </div>
   </BrowserRouter>
