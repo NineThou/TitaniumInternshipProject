@@ -37,7 +37,7 @@ class PostInfo extends React.Component {
   state = {
     likes: 0,
     disabled: false,
-  }
+  };
 
   render() {
     const handleLikes = (e) => {

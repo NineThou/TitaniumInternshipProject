@@ -21,7 +21,7 @@ const authCheck = jwt({
     jwksUri: "https://titaniumsoft.eu.auth0.com/.well-known/jwks.json"
   }),
   // This is the identifier we set when we created the API
-  audience: 'https://foodblog.com',
+  audience: 'https://titaniumsoft.eu.auth0.com/api/v2/',
   issuer: 'https://titaniumsoft.eu.auth0.com',
   algorithms: ['RS256']
 });

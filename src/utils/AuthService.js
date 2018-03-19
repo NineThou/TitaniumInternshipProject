@@ -33,11 +33,11 @@ export function logout() {
 
 export function userInfo () {
   auth.parseHash({ hash: window.location.hash }, (err, authResult) => {
-    if (err) {
-      return console.error(err);
-    }
-    auth.client.userInfo(authResult.accessToken, (err, user) => {
-      return console.log(err);
+    if (err) return console.error(`parseHash error: ${error}`);
+    console.log(`authResult: ${authResult}`);
+    auth.client.userInfo(authResult.accessToken, function (err, user) {
+      if(err) return console.log(`Info parsing error: ${JSON.stringify(err)}`);
+      return console.log(`User information: ${user}`);
     });
   });
 }
