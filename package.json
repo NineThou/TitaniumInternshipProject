@@ -24,6 +24,8 @@
     "react-table": "^6.8.0",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-saga": "^0.16.0",
     "semantic-ui-css": "^2.3.0",
     "semantic-ui-react": "^0.78.3"
   },

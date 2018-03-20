@@ -1,19 +1,19 @@
-const eventsInfo = (state = { events: [], loading: false, error: false }, action) => {
+const usersInfo = (state = { users: [], loading: false, error: false }, action) => {
   switch (action.type) {
-    case 'API_GET_EVENTS_REQUEST':
+    case 'API_GET_USERS_REQUEST':
       return {
         ...state,
         loading: true,
         error: false,
       };
-    case 'API_GET_EVENTS_SUCCESS':
+    case 'API_GET_USERS_SUCCESS':
       return {
         ...state,
-        events: action.payload,
+        users: action.payload,
         loading: false,
         error: false,
       };
-    case 'API_GET_EVENTS_ERROR':
+    case 'API_GET_USERS_ERROR':
       return {
         ...state,
         loading: false,
@@ -24,4 +24,4 @@ const eventsInfo = (state = { events: [], loading: false, error: false }, action
   }
 };
 
-export default eventsInfo;
+export default usersInfo;

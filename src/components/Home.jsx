@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'react-emotion';
-import background from '../images/home.jpg';
+import background from '../utils/images/home.jpg';
 
 import { black, translucent } from '../styles/colors';
 

@@ -7,6 +7,9 @@ const jwks = require('jwks-rsa');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const users = require('../src/users.json');
+const events = require('../src/events.json');
+const posts = require('../src/posts.json');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +31,14 @@ const authCheck = jwt({
 
 app.get('/api/users', (req,res) => {
   res.json(users);
+});
+
+app.get('/api/events', (req,res) => {
+  res.json(events);
+});
+
+app.get('/api/posts', (req,res) => {
+  res.json(posts);
 });
 
 app.listen(7777);

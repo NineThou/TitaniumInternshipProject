@@ -27,3 +27,4 @@ export const addEvent = (title, previewInfo, moreInfo, tags, img) => ({
   tags,
   img,
 });
+

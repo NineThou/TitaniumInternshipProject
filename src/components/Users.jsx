@@ -1,12 +1,14 @@
 // modules
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // css
 import 'react-table/react-table.css';
 
-// api
-import getUsersData from '../utils/users-api';
+// action creators
+import { getUsersRequest } from '../redux-controllers/actions/users-api-actions';
 
 const columns = [
   {
@@ -50,25 +52,13 @@ const columns = [
 
 /* eslint-disable*/
 class Users extends Component {
-  constructor() {
-    super();
-    this.state = {
-      users: [],
-    };
-  }
   componentDidMount() {
-    this.getUsers();
-  }
-  getUsers() {
-    getUsersData().then((users) => {
-      this.setState({ users });
-    });
+    this.props.getUsersData();
   }
   render() {
-    const { users } = this.state;
     return (
       <ReactTable
-        data={users}
+        data={this.props.usersInfo}
         columns={columns}
         defaultPageSize={10}
         showPageSizeOptions={false}
@@ -83,9 +73,19 @@ class Users extends Component {
           </div>
         )}
         filterable
+        loading={this.props.loading}
       />
     );
   }
 }
 
-export default Users;
+const mapStateToProps = state => ({
+  usersInfo: state.usersInfo && state.usersInfo.users,
+  loading: state.usersInfo.loading,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getUsersData: bindActionCreators(getUsersRequest, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);

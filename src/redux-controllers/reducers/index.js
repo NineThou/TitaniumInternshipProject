@@ -3,9 +3,15 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 // reducers
-import posts from './posts';
-import events from './events';
+import postsInfo from './posts';
+import eventsInfo from './events';
+import usersInfo from './users';
 
-const rootReducer = combineReducers({ posts, events, routing: routerReducer });
+const rootReducer = combineReducers({
+  postsInfo,
+  eventsInfo,
+  usersInfo,
+  routing: routerReducer,
+});
 
 export default rootReducer;
