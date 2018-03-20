@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../redux-controllers/actions/actionCreators';
 
 // component
-import Menu from './Menu';
+import Header from './Header/Header';
 
 const mapStateToProps = state => ({
   posts: state.posts,
@@ -17,6 +17,6 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-const App = connect(mapStateToProps, mapDispatchToProps)(Menu);
+const App = connect(mapStateToProps, mapDispatchToProps)(Header);
 
 export default App;

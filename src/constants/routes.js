@@ -14,10 +14,10 @@ import Users from '../components/Users';
 import EventInfo from '../components/Events/EventInfo';
 import Login from '../components/Login';
 import Events from '../components/Events/Events';
-import Header from '../components/Header/Header';
 import PostInfo from '../components/posts/PostInfo';
 import Callback from '../components/Callback';
 import App from '../components/App';
+import Menu from '../components/Menu';
 
 // authentication
 import { requireAuth } from '../utils/AuthService';
@@ -27,8 +27,8 @@ const router = (
   <Provider store={store}>
     <BrowserRouter>
       <div>
-        <App>
-          <Header />
+        <Menu>
+          <App />
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
@@ -38,7 +38,7 @@ const router = (
           <Route exact path="/posts" component={Posts} />
           <Route path="/users" component={Users} onEnter={requireAuth} />
           <Route path="/callback" component={Callback} />
-        </App>
+        </Menu>
       </div>
     </BrowserRouter>
   </Provider>
