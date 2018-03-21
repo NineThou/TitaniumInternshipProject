@@ -5,6 +5,7 @@ import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { compose, withState, withHandlers, setPropTypes } from 'recompose';
 
 // json
 import postSamples from '../../posts.json';
@@ -33,11 +34,12 @@ const btn = css`
   margin-top: 5px !important;
 `;
 
-const PostInfo = ({ match }) => {
-  const data = postSamples[match.params.postId - 1];
+const PostInfo = (props) => {
+  const data = postSamples[props.match.params.postId - 1];// eslint-disable-line
   const {
     title,
     text,
+    likes,
   } = data;
   return (
     <InfoWrap>
@@ -49,21 +51,50 @@ const PostInfo = ({ match }) => {
           {text}
         </p>
         <Image src="https://picsum.photos/1400/200/?random" />
-        <Button className={btn}>
-          <FormattedMessage id="posts.delete" />
-        </Button>
+        <span>
+          <Button className={btn}>
+            <FormattedMessage id="posts.delete" />
+          </Button>
+          <Button
+            className="btn"
+            disabled={props.button}// eslint-disable-line
+            onClick={e => props.handleLikes(e)}// eslint-disable-line
+            color="red"
+            content="Like"
+            icon="heart"
+            label={{
+              basic: true,
+              color: 'red',
+              pointing: 'left',
+              content: props.likes + likes,// eslint-disable-line
+            }}
+          />
+        </span>
       </Message>
     </InfoWrap>
   );
 };
 
-PostInfo.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      eventId: PropTypes.string,
-    }),
-  }).isRequired,
-};
-
-export default withRouter(PostInfo);
+export default compose(
+  withRouter,
+  withState('likes', 'increment', 0),
+  withState('button', 'isDisable', false),
+  withHandlers({
+    handleLikes: ({ increment, isDisable }) => (e) => {
+      e.preventDefault(e);
+      increment(n => n + 1);
+      isDisable(bool => !bool);
+    },
+  }),
+  setPropTypes({
+    button: PropTypes.bool.isRequired,
+    likes: PropTypes.number.isRequired,
+    handleLikes: PropTypes.func.isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        postId: PropTypes.string,
+      }),
+    }).isRequired,
+  }),
+)(PostInfo);
 

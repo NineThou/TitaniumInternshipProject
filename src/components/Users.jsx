@@ -1,12 +1,16 @@
 // modules
 import React from 'react';
 import ReactTable from 'react-table';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { compose, lifecycle, setPropTypes } from 'recompose';
+import PropTypes from 'prop-types';
 
 // css
 import 'react-table/react-table.css';
 
-// json
-import users from '../users.json';
+// action creators
+import { getUsersRequest } from '../actions/users-api';
 
 const columns = [
   {
@@ -48,9 +52,9 @@ const columns = [
   },
 ];
 
-const Users = () => (
+const Users = ({ usersInfo, loading }) => (// eslint-disable-line
   <ReactTable
-    data={users}
+    data={usersInfo}
     columns={columns}
     defaultPageSize={10}
     showPageSizeOptions={false}
@@ -59,13 +63,36 @@ const Users = () => (
       <div style={{ padding: '10px' }}>
         {
           Object.keys(original)
-          .filter(key => key === 'role' || key === 'status')
-          .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
+            .filter(key => key === 'role' || key === 'status')
+            .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
         }
       </div>
     )}
     filterable
+    loading={loading}
   />
 );
 
-export default Users;
+
+const mapStateToProps = state => ({
+  usersInfo: state.usersInfo && state.usersInfo.users,
+  loading: state.usersInfo.loading,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getUsersData: bindActionCreators(getUsersRequest, dispatch),
+});
+
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  lifecycle({
+    componentDidMount() {
+      this.props.getUsersData();
+    },
+  }),
+  setPropTypes({
+    usersInfo: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+  }),
+)(Users);
