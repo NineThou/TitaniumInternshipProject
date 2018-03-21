@@ -1,5 +1,5 @@
 // modules
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -28,12 +28,12 @@ import EventsItem from './EventsItem';
 
 
 // TODO fix compose
-const Events = () => {
-  console.log(this.props);
+const Events = ({ eventsInfo }) => {
+  console.log(eventsInfo);
   return (
     <Container>
       <List>
-        {/*{this.props.eventsInfo.map(event => <EventsItem key={event.id} details={event} />)}*/}
+        {eventsInfo.map(event => <EventsItem key={event.id} details={event} />)}
       </List>
     </Container>
   );
