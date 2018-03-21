@@ -12,7 +12,7 @@ import EventInfo from '../components/events/EventInfo';
 import Login from '../components/Login';
 import Events from '../components/events/Events';
 import PostInfo from '../components/posts/PostInfo';
-import Callback from '../components/Callback';
+import Callback from '../components/Authentication';
 import Menu from '../components/Menu';
 import Header from '../components/header/Header';
 

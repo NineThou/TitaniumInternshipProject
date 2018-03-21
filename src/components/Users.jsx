@@ -1,14 +1,16 @@
 // modules
-import React, { Component } from 'react';
+import React from 'react';
 import ReactTable from 'react-table';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { compose, lifecycle, setPropTypes } from 'recompose';
+import PropTypes from 'prop-types';
 
 // css
 import 'react-table/react-table.css';
 
 // action creators
-import { getUsersRequest } from '../redux-controllers/actions/users-api-actions';
+import { getUsersRequest } from '../actions/users-api';
 
 const columns = [
   {
@@ -50,34 +52,27 @@ const columns = [
   },
 ];
 
-/* eslint-disable*/
-class Users extends Component {
-  componentDidMount() {
-    this.props.getUsersData();
-  }
-  render() {
-    return (
-      <ReactTable
-        data={this.props.usersInfo}
-        columns={columns}
-        defaultPageSize={10}
-        showPageSizeOptions={false}
-        className="-striped -highlight"
-        SubComponent={({original}) => (
-          <div style={{padding: '10px'}}>
-            {
-              Object.keys(original)
-                .filter(key => key === 'role' || key === 'status')
-                .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
-            }
-          </div>
-        )}
-        filterable
-        loading={this.props.loading}
-      />
-    );
-  }
-}
+const Users = ({ usersInfo, loading }) => (// eslint-disable-line
+  <ReactTable
+    data={usersInfo}
+    columns={columns}
+    defaultPageSize={10}
+    showPageSizeOptions={false}
+    className="-striped -highlight"
+    SubComponent={({ original }) => (
+      <div style={{ padding: '10px' }}>
+        {
+          Object.keys(original)
+            .filter(key => key === 'role' || key === 'status')
+            .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
+        }
+      </div>
+    )}
+    filterable
+    loading={loading}
+  />
+);
+
 
 const mapStateToProps = state => ({
   usersInfo: state.usersInfo && state.usersInfo.users,
@@ -88,4 +83,16 @@ const mapDispatchToProps = dispatch => ({
   getUsersData: bindActionCreators(getUsersRequest, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  lifecycle({
+    componentDidMount() {
+      this.props.getUsersData();
+    },
+  }),
+  setPropTypes({
+    usersInfo: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+  }),
+)(Users);

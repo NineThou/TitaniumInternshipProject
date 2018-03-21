@@ -1,29 +1,23 @@
 // modules
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { compose, lifecycle, setPropTypes } from 'recompose';
+import PropTypes from 'prop-types';
 
-import { getPostsRequest } from '../../redux-controllers/actions/posts-api-actions';
+import { getPostsRequest } from '../../actions/posts-api';
 
 // components
 import SinglePost from './SinglePost';
 
-class Posts extends Component {
-  componentDidMount() {
-    this.props.getPostsData();
-  }
-  render() {
-    const { postsInfo } = this.props;
-    return (
-      <Container>
-        <List>
-          {postsInfo.map(event => <SinglePost key={event.id} details={event} />)}
-        </List>
-      </Container>
-    );
-  }
-}
+const Posts = ({ postsInfo }) => (// eslint-disable-line
+  <Container>
+    <List>
+      {postsInfo.map(event => <SinglePost key={event.id} details={event} />)}
+    </List>
+  </Container>
+);
 
 const mapStateToProps = state => ({
   postsInfo: state.postsInfo.posts,
@@ -33,4 +27,14 @@ const mapDispatchToProps = dispatch => ({
   getPostsData: bindActionCreators(getPostsRequest, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  lifecycle({
+    componentDidMount() {
+      this.props.getPostsData();
+    },
+  }),
+  setPropTypes({
+    postsInfo: PropTypes.array.isRequired,
+  }),
+)(Posts);

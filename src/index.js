@@ -13,6 +13,7 @@ import { addLocaleData, IntlProvider } from 'react-intl';
 import 'semantic-ui-css/semantic.min.css';
 import messages from './utils/messages';
 import flattenMessages from './utils/flatten';
+
 // routes
 import router from './constants/routes';
 
@@ -22,7 +23,7 @@ import './styles/App.css';
 // service worker
 import registerServiceWorker from './registerServiceWorker';
 
-import rootReducer from './redux-controllers/reducers';
+import rootReducer from './reducers';
 import rootSaga from './sagas';
 
 /* eslint-disable react/jsx-filename-extension */

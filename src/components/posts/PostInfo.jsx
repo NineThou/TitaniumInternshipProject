@@ -5,6 +5,7 @@ import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { compose, withState, withHandlers, setPropTypes } from 'recompose';
 
 // json
 import postSamples from '../../posts.json';
@@ -33,66 +34,67 @@ const btn = css`
   margin-top: 5px !important;
 `;
 
-class PostInfo extends React.Component {
-  state = {
-    likes: 0,
-    disabled: false,
-  };
-
-  render() {
-    const handleLikes = (e) => {
-      e.preventDefault(e);
-      this.setState({ likes: this.state.likes + 1, disabled: true });
-    };
-
-    const data = postSamples[this.props.match.params.postId - 1];
-    const {
-      title,
-      text,
-      likes,
-    } = data;
-    return (
-      <InfoWrap>
-        <Message className={colors}>
-          <Message.Header>
-            {title}
-          </Message.Header>
-          <p>
-            {text}
-          </p>
-          <Image src="https://picsum.photos/1400/200/?random" />
-          <span>
-            <Button className={btn}>
-              <FormattedMessage id="posts.delete" />
-            </Button>
-            <Button
-              className="btn"
-              disabled={this.state.disabled}
-              onClick={e => handleLikes(e)}
-              color="red"
-              content="Like"
-              icon="heart"
-              label={{
-                basic: true,
-                color: 'red',
-                pointing: 'left',
-                content: this.state.likes + likes,
-              }}
-            />
-          </span>
-        </Message>
-      </InfoWrap>
-    );
-  }
-}
-
-PostInfo.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      postId: PropTypes.string,
-    }),
-  }).isRequired,
+const PostInfo = (props) => {
+  const data = postSamples[props.match.params.postId - 1];// eslint-disable-line
+  const {
+    title,
+    text,
+    likes,
+  } = data;
+  return (
+    <InfoWrap>
+      <Message className={colors}>
+        <Message.Header>
+          {title}
+        </Message.Header>
+        <p>
+          {text}
+        </p>
+        <Image src="https://picsum.photos/1400/200/?random" />
+        <span>
+          <Button className={btn}>
+            <FormattedMessage id="posts.delete" />
+          </Button>
+          <Button
+            className="btn"
+            disabled={props.button}// eslint-disable-line
+            onClick={e => props.handleLikes(e)}// eslint-disable-line
+            color="red"
+            content="Like"
+            icon="heart"
+            label={{
+              basic: true,
+              color: 'red',
+              pointing: 'left',
+              content: props.likes + likes,// eslint-disable-line
+            }}
+          />
+        </span>
+      </Message>
+    </InfoWrap>
+  );
 };
 
-export default withRouter(PostInfo);
+export default compose(
+  withRouter,
+  withState('likes', 'increment', 0),
+  withState('button', 'isDisable', false),
+  withHandlers({
+    handleLikes: ({ increment, isDisable }) => (e) => {
+      e.preventDefault(e);
+      increment(n => n + 1);
+      isDisable(bool => !bool);
+    },
+  }),
+  setPropTypes({
+    button: PropTypes.bool.isRequired,
+    likes: PropTypes.number.isRequired,
+    handleLikes: PropTypes.func.isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        postId: PropTypes.string,
+      }),
+    }).isRequired,
+  }),
+)(PostInfo);
 

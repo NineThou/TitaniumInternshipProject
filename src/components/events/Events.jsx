@@ -3,23 +3,21 @@ import React from 'react';
 import { Container, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { compose, lifecycle } from 'recompose';
+import { compose, lifecycle, setPropTypes } from 'recompose';
+import PropTypes from 'prop-types';
 
-import { getEventsRequest } from '../../redux-controllers/actions/events-api-actions';
+import { getEventsRequest } from '../../actions/events-api';
 
 // components
 import EventsItem from './EventsItem';
 
-const Events = ({ eventsInfo }) => {
-  console.log(eventsInfo);
-  return (
-    <Container>
-      <List>
-        {eventsInfo.map(event => <EventsItem key={event.id} details={event} />)}
-      </List>
-    </Container>
-  );
-};
+const Events = ({ eventsInfo }) => (// eslint-disable-line
+  <Container>
+    <List>
+      {eventsInfo.map(event => <EventsItem key={event.id} details={event} />)}
+    </List>
+  </Container>
+);
 
 const mapStateToProps = state => ({
   eventsInfo: state.eventsInfo && state.eventsInfo.events,
@@ -35,5 +33,8 @@ export default compose(
     componentDidMount() {
       this.props.getEventsData();
     },
+  }),
+  setPropTypes({
+    eventsInfo: PropTypes.array.isRequired,
   }),
 )(Events);
