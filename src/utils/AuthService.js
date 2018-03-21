@@ -8,7 +8,7 @@ const ACCESS_TOKEN_KEY = 'access_token';
 const CLIENT_ID = 'tKcQVHZUBgG4ho6ZYoqDYSIreG0hC6x5';
 const CLIENT_DOMAIN = 'titaniumsoft.eu.auth0.com';
 const REDIRECT = 'http://localhost:3000/callback';
-const SCOPE = 'YOUR_SCOPE';
+const SCOPE = 'openid profile cme:user cme:admin';
 const AUDIENCE = 'https://titaniumsoft.eu.auth0.com/api/v2/';
 
 const auth = new auth0.WebAuth({
@@ -28,6 +28,7 @@ export function login() {
 export function logout() {
   clearIdToken();
   clearAccessToken();
+  localStorage.removeItem('userInfo');
   window.location.href = '/';
 }
 
@@ -36,8 +37,9 @@ export function userInfo () {
     if (err) return console.error(`parseHash error: ${error}`);
     console.log(`authResult: ${authResult}`);
     auth.client.userInfo(authResult.accessToken, function (err, user) {
-      if(err) return console.log(`Info parsing error: ${JSON.stringify(err)}`);
-      return console.log(`User information: ${user}`);
+      if(err) return console.error(`Info parsing error: ${JSON.stringify(err)}`);
+      localStorage.setItem('userInfo', JSON.stringify(user));
+      return console.info(`User information: ${JSON.stringify(user)}`);
     });
   });
 }

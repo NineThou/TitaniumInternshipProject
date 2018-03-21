@@ -1,16 +1,19 @@
-import { Component } from 'react';
+import { compose, lifecycle } from 'recompose';
 import { setIdToken, setAccessToken, userInfo } from '../utils/AuthService';
 
-class Callback extends Component {
-  componentDidMount() {
-    setAccessToken();
-    setIdToken();
-    userInfo();
-    window.location.href = '/';
-  }
-  render() {
-    return null;
-  }
-}
 
-export default Callback;
+const Authentication = () => {
+  return null;
+};
+
+export default compose(
+  lifecycle({
+    componentDidMount() {
+      setAccessToken();
+      setIdToken();
+      userInfo();
+      window.location.href = '/';
+    },
+  }),
+)(Authentication);
+

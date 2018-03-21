@@ -3,10 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
 import { Icon } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { compose, withState } from 'recompose';
 
 // colors
 import { black } from '../../styles/colors';
-
 
 // clock
 import Clock from './Clock';
@@ -67,10 +68,10 @@ const iconpos = css`
   color: white;
 `;
 
-const Header = () => (
+const Header = ({ user }) =>  (
   <Head>
     <Name>
-      Hi, John Smith
+      Hi, {user && user.nickname ? `${user.nickname}!` : 'anonymous!'}
     </Name>
     <HomeLink>
       <Link to="/">
@@ -83,5 +84,15 @@ const Header = () => (
   </Head>
 );
 
-export default Header;
+Header.defaultProps = {
+  user: PropTypes.object,
+};
+
+Header.propTypes = {
+  user: PropTypes.shape({
+    nickname: PropTypes.string.isRequired,
+  }),
+};
+
+export default compose(withState('user', 'getUserInfo', JSON.parse(localStorage.getItem('userInfo'))))(Header);
 

@@ -5,7 +5,6 @@ import watchEventsData from './events';
 import watchPostsData from './posts';
 
 
-
 export default function* rootSaga() {
   yield all([
     fork(watchUsersData),
