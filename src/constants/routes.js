@@ -15,6 +15,7 @@ import PostInfo from '../components/posts/PostInfo';
 import Callback from '../components/Authentication';
 import Menu from '../components/Menu';
 import Header from '../components/header/Header';
+import Footer from '../components/Footer';
 
 // authentication
 import { requireAuth } from '../utils/AuthService';
@@ -34,6 +35,7 @@ const router = (
         <Route exact path="/posts" component={Posts} />
         <Route path="/users" component={Users} onEnter={requireAuth} />
         <Route path="/callback" component={Callback} />
+        <Footer />
       </Menu>
     </div>
   </BrowserRouter>

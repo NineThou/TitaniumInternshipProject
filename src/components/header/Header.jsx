@@ -12,7 +12,7 @@ import { black } from '../../styles/colors';
 import Clock from './Clock';
 
 const Head = styled('div')` 
-  z-index: 999;
+  z-index: 800;
   position: relative;
   background-color: ${black};
   height: 70px;
