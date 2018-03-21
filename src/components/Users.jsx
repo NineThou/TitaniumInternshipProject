@@ -3,7 +3,7 @@ import React from 'react';
 import ReactTable from 'react-table';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { compose, lifecycle, setPropTypes } from 'recompose';
+import { compose, lifecycle } from 'recompose';
 import PropTypes from 'prop-types';
 
 // css
@@ -52,7 +52,7 @@ const columns = [
   },
 ];
 
-const Users = ({ usersInfo, loading }) => (// eslint-disable-line
+const Users = ({ usersInfo, loading }) => (
   <ReactTable
     data={usersInfo}
     columns={columns}
@@ -83,6 +83,10 @@ const mapDispatchToProps = dispatch => ({
   getUsersData: bindActionCreators(getUsersRequest, dispatch),
 });
 
+Users.propTypes = {
+  usersInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
@@ -90,9 +94,5 @@ export default compose(
     componentDidMount() {
       this.props.getUsersData();
     },
-  }),
-  setPropTypes({
-    usersInfo: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
   }),
 )(Users);

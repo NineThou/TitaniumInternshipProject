@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { compose, lifecycle, setPropTypes } from 'recompose';
+import { compose, lifecycle } from 'recompose';
 import PropTypes from 'prop-types';
 
 import { getPostsRequest } from '../../actions/posts-api';
@@ -11,7 +11,7 @@ import { getPostsRequest } from '../../actions/posts-api';
 // components
 import SinglePost from './SinglePost';
 
-const Posts = ({ postsInfo }) => (// eslint-disable-line
+const Posts = ({ postsInfo }) => (
   <Container>
     <List>
       {postsInfo.map(event => <SinglePost key={event.id} details={event} />)}
@@ -27,14 +27,15 @@ const mapDispatchToProps = dispatch => ({
   getPostsData: bindActionCreators(getPostsRequest, dispatch),
 });
 
+Posts.propTypes = {
+  postsInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentDidMount() {
       this.props.getPostsData();
     },
-  }),
-  setPropTypes({
-    postsInfo: PropTypes.array.isRequired,
   }),
 )(Posts);
