@@ -10,24 +10,6 @@ import { getEventsRequest } from '../../redux-controllers/actions/events-api-act
 // components
 import EventsItem from './EventsItem';
 
-// class Events extends Component {
-//   componentDidMount() {
-//     this.props.getEventsData();
-//   }
-//   render() {
-//     const { eventsInfo } = this.props;
-//     return (
-//       <Container>
-//         <List>
-//           {eventsInfo.map(event => <EventsItem key={event.id} details={event} />)}
-//         </List>
-//       </Container>
-//     );
-//   }
-// }
-
-
-// TODO fix compose
 const Events = ({ eventsInfo }) => {
   console.log(eventsInfo);
   return (
