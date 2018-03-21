@@ -75,7 +75,7 @@ const EventInfo = ({ match }) => {
         </p>
         <List>
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          {tags.map(tag => <a href="#" key={tag}><List.Content>#{tag}</List.Content></a>)}
+          {tags.map(tag => <a key={tag}><List.Content>#{tag}</List.Content></a>)}
         </List>
       </ContentWrap>
     </InfoWrap>

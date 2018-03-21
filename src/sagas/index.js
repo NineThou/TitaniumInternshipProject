@@ -1,8 +1,8 @@
 import { fork, all } from 'redux-saga/effects';
 
-import watchUsersData from './usersSaga';
-import watchEventsData from './eventsSaga';
-import watchPostsData from './postsSaga';
+import watchUsersData from './users';
+import watchEventsData from './events';
+import watchPostsData from './posts';
 
 
 
