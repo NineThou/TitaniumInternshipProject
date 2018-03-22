@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { compose, lifecycle, withHandlers, withState } from 'recompose';
+import PropTypes from 'prop-types';
 
 const ClockContent = styled('h2')`
   margin-right: 10px;
@@ -20,12 +21,18 @@ const getMonth = () => {
   return today.toLocaleDateString('en-US', { month: 'long' });
 };
 
-const Clock = props => (
+const Clock = ({ date }) => (
   <div>
-    <ClockContent>{`${props.date.toLocaleTimeString()}, ${getMonth()}, ${props.date.getFullYear()}`}.</ClockContent>
+    <ClockContent>{`${date.toLocaleTimeString()}, ${getMonth()}, ${date.getFullYear()}`}.</ClockContent>
   </div>
 );
 
+Clock.propTypes = {
+  date: PropTypes.shape({
+    toLocaleTimeString: PropTypes.func.isRequired,
+    getFullYear: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default compose(
   withState('date', 'tick', new Date()),
