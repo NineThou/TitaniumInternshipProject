@@ -95,7 +95,7 @@ Header.propTypes = {
   }),
 };
 
-const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : 0;
+const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
 
 export default compose(withState('user', 'getUserInfo', user))(Header);
 
