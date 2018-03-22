@@ -32,18 +32,6 @@ export function logout() {
   window.location.href = '/';
 }
 
-export function userInfo () {
-  auth.parseHash({ hash: window.location.hash }, (err, authResult) => {
-    if (err) return console.error(`parseHash error: ${error}`);
-    console.log(`authResult: ${authResult}`);
-    auth.client.userInfo(authResult.accessToken, function (err, user) {
-      if(err) return console.error(`Info parsing error: ${JSON.stringify(err)}`);
-      localStorage.setItem('userInfo', JSON.stringify(user));
-      return console.info(`User information: ${JSON.stringify(user)}`);
-    });
-  });
-}
-
 export function requireAuth(nextState, replace) {
   if (!isLoggedIn()) {
     replace({pathname: '/'});

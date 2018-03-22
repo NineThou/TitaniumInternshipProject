@@ -11,6 +11,11 @@ import eventSamples from '../../events.json';
 // colors
 import { grey } from '../../styles/colors';
 
+const Wrapper = styled('div')`
+    width: 100;
+    min-height: calc(100vh - 300px);
+`;
+
 const InfoWrap = styled('div')`
   display: flex;
   position: relative;
@@ -20,6 +25,7 @@ const InfoWrap = styled('div')`
   color: white;
   background-color: ${grey};
   margin: 0 auto !important;
+  margin-bottom: 60px !important;
   width: 80%;
   -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
@@ -61,24 +67,26 @@ const EventInfo = ({ match }) => {
     tags,
   } = data;
   return (
-    <InfoWrap>
-      <Image className={imgpos} src="https://picsum.photos/1000/?random" />
-      <ContentWrap className={colors}>
-        <h1>
-          {title}
-        </h1>
-        <p>
-          {body}
-        </p>
-        <p>
-          {more}
-        </p>
-        <List>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          {tags.map(tag => <a key={tag}><List.Content>#{tag}</List.Content></a>)}
-        </List>
-      </ContentWrap>
-    </InfoWrap>
+    <Wrapper>
+      <InfoWrap>
+        <Image className={imgpos} src="https://picsum.photos/1000/?random" />
+        <ContentWrap className={colors}>
+          <h1>
+            {title}
+          </h1>
+          <p>
+            {body}
+          </p>
+          <p>
+            {more}
+          </p>
+          <List>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            {tags.map(tag => <a key={tag}><List.Content>#{tag}</List.Content></a>)}
+          </List>
+        </ContentWrap>
+      </InfoWrap>
+    </Wrapper>
   );
 };
 

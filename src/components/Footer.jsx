@@ -11,7 +11,9 @@ import { black, grey } from '../styles/colors';
 
 const Wrap = styled('div')`
   position: relative;
-  z-index: 999;
+  overflow: hidden;
+  left: 0;
+  bottom: 0;
   background-color: ${black};
   color: ${grey};
   display: grid;
@@ -24,6 +26,10 @@ const Wrap = styled('div')`
   -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+  @media(max-width: 556px) {
+    grid-template-areas: "logo donut text" 
+                          "social donut text";
+  }
 `;
 
 const logo = css`
@@ -32,17 +38,25 @@ const logo = css`
   margin: 0 auto;
   font-size: 50px;
   padding-top: 15px;
+  padding-left: 15px;
 `;
 
 const contactUs = css`
   grid-area: contactUs;
   margin: 0 auto;
+  @media(max-width: 556px) {
+    display: none;
+  }
 `;
 
 const social = css`
+  padding-left: 15px;
   grid-area: social;
   margin: 0 auto;
   padding-top: 50px;
+  @media(max-width: 556px) {
+    padding-top: 0;
+  }
 `;
 
 const text = css`
@@ -51,6 +65,11 @@ const text = css`
   grid-area: text;
   line-height: 1px;
   margin: 0 auto;
+  @media(max-width: 556px) {
+    margin-top: 20px;
+    margin-left: 15px;
+    font-size: 10px;
+  }
 `;
 
 const anchorColor = css`
@@ -92,7 +111,7 @@ const Footer = () => (
       <h2 className={contactUs}>Contact Us</h2>
     </div>
     <div className={text}>
-      <h3>Chisinau, Moldova</h3>
+      <h4>Chisinau, Moldova</h4>
       <p>Spartacus 11/1</p>
       <p>Email: info@titanium-soft.com</p>
       <p>Tel.: +373 60095959</p>

@@ -13,6 +13,11 @@ import postSamples from '../../posts.json';
 // colors
 import { grey } from '../../styles/colors';
 
+const Wrapper = styled('div')`
+    width: 100;
+    min-height: calc(100vh - 270px);
+`;
+
 const InfoWrap = styled('div')`
   display: flex;
   color: white;
@@ -42,36 +47,38 @@ const PostInfo = (props) => {
     likes,
   } = data;
   return (
-    <InfoWrap>
-      <Message className={colors}>
-        <Message.Header>
-          {title}
-        </Message.Header>
-        <p>
-          {text}
-        </p>
-        <Image src="https://picsum.photos/1400/200/?random" />
-        <span>
-          <Button className={btn}>
-            <FormattedMessage id="posts.delete" />
-          </Button>
-          <Button
-            className="btn"
-            disabled={props.button}
-            onClick={e => props.handleLikes(e)}
-            color="red"
-            content="Like"
-            icon="heart"
-            label={{
-              basic: true,
-              color: 'red',
-              pointing: 'left',
-              content: props.likes + likes,
-            }}
-          />
-        </span>
-      </Message>
-    </InfoWrap>
+    <Wrapper>
+      <InfoWrap>
+        <Message className={colors}>
+          <Message.Header>
+            {title}
+          </Message.Header>
+          <p>
+            {text}
+          </p>
+          <Image src="https://picsum.photos/1400/200/?random" />
+          <span>
+            <Button className={btn}>
+              <FormattedMessage id="posts.delete" />
+            </Button>
+            <Button
+              className="btn"
+              disabled={props.button}
+              onClick={e => props.handleLikes(e)}
+              color="red"
+              content="Like"
+              icon="heart"
+              label={{
+                basic: true,
+                color: 'red',
+                pointing: 'left',
+                content: props.likes + likes,
+              }}
+            />
+          </span>
+        </Message>
+      </InfoWrap>
+    </Wrapper>
   );
 };
 

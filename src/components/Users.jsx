@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, lifecycle } from 'recompose';
 import PropTypes from 'prop-types';
+import styled from 'react-emotion';
 
 // css
 import 'react-table/react-table.css';
@@ -52,25 +53,31 @@ const columns = [
   },
 ];
 
+const TableWrap = styled('div')`
+  margin-bottom: 19px;
+`;
+
 const Users = ({ usersInfo, loading }) => (
-  <ReactTable
-    data={usersInfo}
-    columns={columns}
-    defaultPageSize={10}
-    showPageSizeOptions={false}
-    className="-striped -highlight"
-    SubComponent={({ original }) => (
-      <div style={{ padding: '10px' }}>
-        {
-          Object.keys(original)
-            .filter(key => key === 'role' || key === 'status')
-            .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
-        }
-      </div>
-    )}
-    filterable
-    loading={loading}
-  />
+  <TableWrap>
+    <ReactTable
+      data={usersInfo}
+      columns={columns}
+      defaultPageSize={19}
+      showPageSizeOptions={false}
+      className="-striped -highlight"
+      SubComponent={({ original }) => (
+        <div style={{ padding: '10px' }}>
+          {
+            Object.keys(original)
+              .filter(key => key === 'role' || key === 'status')
+              .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
+          }
+        </div>
+      )}
+      filterable
+      loading={loading}
+    />
+  </TableWrap>
 );
 
 

@@ -1,5 +1,5 @@
 import { compose, lifecycle } from 'recompose';
-import { setIdToken, setAccessToken, userInfo } from '../utils/AuthService';
+import { setIdToken, setAccessToken } from '../utils/AuthService';
 
 
 const Authentication = () => {
@@ -11,7 +11,6 @@ export default compose(
     componentDidMount() {
       setAccessToken();
       setIdToken();
-      userInfo();
       window.location.href = '/';
     },
   }),

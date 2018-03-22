@@ -5,6 +5,7 @@ import styled, { css } from 'react-emotion';
 import { Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { compose, withState } from 'recompose';
+import decode from 'jwt-decode';
 
 // colors
 import { black } from '../../styles/colors';
@@ -68,7 +69,7 @@ const iconpos = css`
   color: white;
 `;
 
-const Header = ({ user }) =>  (
+const Header = ({ user }) => (
   <Head>
     <Name>
       Hi, {user && user.nickname ? `${user.nickname}!` : 'anonymous!'}
@@ -94,5 +95,7 @@ Header.propTypes = {
   }),
 };
 
-export default compose(withState('user', 'getUserInfo', JSON.parse(localStorage.getItem('userInfo'))))(Header);
+const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : 0;
+
+export default compose(withState('user', 'getUserInfo', user))(Header);
 
