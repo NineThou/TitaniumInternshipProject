@@ -90,9 +90,10 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
-  user: PropTypes.shape({
-    nickname: PropTypes.string.isRequired,
-  }),
+  user: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
 };
 
 const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
