@@ -1,15 +1,19 @@
 // modules
 import React from 'react';
-import { List, Image } from 'semantic-ui-react';
+import { List } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-
-// json
-import eventSamples from '../../events.json';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { compose, lifecycle } from 'recompose';
 
 // colors
 import { grey } from '../../styles/colors';
+
+// action
+import { getEventsRequest } from '../../actions/events-api';
+
 
 const Wrapper = styled('div')`
     width: 100;
@@ -45,44 +49,41 @@ const colors = css`
   background-color: ${grey} !important;
 `;
 
-const imgpos = css` 
-  width: 100%;
-  max-height: 600px;
-  @media (max-width: 1150px) {
-    max-height: 1000px;
-  }
-  @media (max-width: 1050px) {
+const ImageDiv = styled('div')`
+  height: 600px;
+  min-width: 600px;
+  background-size: cover;
+  overflow: hidden;
+  @media (max-width: 1613px) {
     max-height: 100%;
     width: 100%;
   }
-  
+  @media (max-width: 952px) {
+    min-width: 270px;
+  }
 `;
 
-const EventInfo = ({ match }) => {
-  const data = eventSamples[match.params.eventId - 1];
-  const {
-    title,
-    more,
-    body,
-    tags,
-  } = data;
+const EventInfo = ({ match, eventsInfo }) => {
+  const data = eventsInfo[match.params.eventId - 1];
   return (
     <Wrapper>
       <InfoWrap>
-        <Image className={imgpos} src="https://picsum.photos/1000/?random" />
+        {console.log(data && data.image)}
+        <ImageDiv style={{ backgroundImage: `url(${data && data.image})` }} />
         <ContentWrap className={colors}>
           <h1>
-            {title}
+            {data && data.title}
           </h1>
           <p>
-            {body}
+            {data && data.body}
           </p>
           <p>
-            {more}
+            {data && data.more}
           </p>
           <List>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            {tags.map(tag => <a key={tag}><List.Content>#{tag}</List.Content></a>)}
+            {data && data.tags
+              .filter(tag => tag !== '')
+              .map(tag => <a key={tag}><List.Content>#{tag}</List.Content></a>)} {/*eslint-disable-line*/}
           </List>
         </ContentWrap>
       </InfoWrap>
@@ -96,7 +97,29 @@ EventInfo.propTypes = {
       eventId: PropTypes.string,
     }),
   }).isRequired,
+  eventsInfo: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    more: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+  })).isRequired,
 };
 
-export default withRouter(EventInfo);
+const mapStateToProps = state => ({
+  eventsInfo: state.eventsInfo && state.eventsInfo.events,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getEventsData: bindActionCreators(getEventsRequest, dispatch),
+});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+  lifecycle({
+    componentDidMount() {
+      this.props.getEventsData();
+    },
+  }),
+)(EventInfo);
 

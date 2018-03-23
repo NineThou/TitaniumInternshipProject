@@ -14,7 +14,7 @@ import SinglePost from './SinglePost';
 const Posts = ({ postsInfo }) => (
   <Container>
     <List>
-      {postsInfo.map(event => <SinglePost key={event.id} details={event} />)}
+      {postsInfo.map(post => <SinglePost key={post.id} details={post} />)}
     </List>
   </Container>
 );

@@ -1,6 +1,6 @@
 // modules
 import React from 'react';
-import { Item, List, Button, Image } from 'semantic-ui-react';
+import { Item, List, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,6 @@ const PostWrap = styled('div')`
     display: flex;
     flex-direction: column;
   }
-  
 `;
 
 const ContentWrap = styled('div')`
@@ -32,27 +31,29 @@ const ContentWrap = styled('div')`
   }
 `;
 
-const imgpos = css`
-  margin: auto 0;
-  margin-right: 50px;
-  @media (max-width: 992px) {
-    max-width: 600px;
-    margin-right: 0;
-  }
-`;
-
 const colors = css`
   color: white !important;
   background-color: ${grey} !important;
 `;
 
+const ImageDiv = styled('div')`
+  height: 400px;
+  min-width: 400px;
+  background-size: cover;
+  margin-right: 30px;
+  @media(max-width: 800px){
+    margin-right: 0;
+    min-width: 270px;
+  }
+`;
+
 const SinglePost = ({ details }) => (
   <PostWrap className={colors}>
-    <Image className={imgpos} src="https://picsum.photos/400/?random" />
+    <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
     <ContentWrap>
       <Item.Content verticalAlign="middle">
         <Item.Header as="h2">{details.title}</Item.Header>
-        <Item.Description>{details.text.slice(0, 250)}</Item.Description>
+        <Item.Description>{details.text}</Item.Description>
         <Link to={`/posts/${details.id}`}>
           <List.Content>
             <Button floated="left">

@@ -28,9 +28,6 @@ const Anchor = styled('a')`
   }
 `;
 
-const imgpos = css` 
-  width: 100%;
-`;
 
 const listpadding = css`
   padding-top: 10px !important;
@@ -38,9 +35,15 @@ const listpadding = css`
   padding-right: 10px !important;
 `;
 
+const ImageDiv = styled('div')`
+  height: 200px;
+  min-width: 400px;
+  background-size: cover;
+`;
+
 const EventsItem = ({ details }) => (
   <EventWrap>
-    <Image className={imgpos} src="https://picsum.photos/900/200/?random" />
+    <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
     <List.Item className={listpadding}>
       <List.Content>{details.title}</List.Content>
       <List.Content>{details.body}</List.Content>

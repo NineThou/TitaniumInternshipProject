@@ -5,7 +5,7 @@ export default {
     },
     posts: {
       delete: 'Delete',
-      readmore: 'Read More',
+      readmore: 'How to cook',
     },
     sidebar: {
       login: 'Login',
@@ -45,7 +45,7 @@ export default {
     },
     posts: {
       delete: 'Удалить',
-      readmore: 'Читать',
+      readmore: 'Как готовить',
     },
     sidebar: {
       login: 'Логин',

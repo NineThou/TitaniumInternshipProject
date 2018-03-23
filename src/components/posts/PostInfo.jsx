@@ -1,17 +1,18 @@
 // modules
 import React from 'react';
-import { Message, Button, Image } from 'semantic-ui-react';
+import { Message, Button } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { compose, withState, withHandlers } from 'recompose';
+import { compose, withState, withHandlers, lifecycle } from 'recompose';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-// json
-import postSamples from '../../posts.json';
 
 // colors
 import { grey } from '../../styles/colors';
+import { getPostsRequest } from '../../actions/posts-api';
 
 const Wrapper = styled('div')`
     width: 100;
@@ -39,32 +40,32 @@ const btn = css`
   margin-top: 5px !important;
 `;
 
-const PostInfo = (props) => {
-  const data = postSamples[props.match.params.postId - 1];
-  const {
-    title,
-    text,
-    likes,
-  } = data;
+const ImageDiv = styled('div')`
+  height: 400px;
+  background-size: cover;
+`;
+
+const PostInfo = ({ postsInfo, match, button, handleLikes, likesState }) => {
+  const data = postsInfo[match.params.postId - 1];
   return (
     <Wrapper>
       <InfoWrap>
         <Message className={colors}>
           <Message.Header>
-            {title}
+            {data && data.title}
           </Message.Header>
           <p>
-            {text}
+            {data && data.more}
           </p>
-          <Image src="https://picsum.photos/1400/200/?random" />
+          <ImageDiv style={{ backgroundImage: `url(${data && data.image})` }} />
           <span>
             <Button className={btn}>
               <FormattedMessage id="posts.delete" />
             </Button>
             <Button
               className="btn"
-              disabled={props.button}
-              onClick={e => props.handleLikes(e)}
+              disabled={button}
+              onClick={e => handleLikes(e)}
               color="red"
               content="Like"
               icon="heart"
@@ -72,7 +73,7 @@ const PostInfo = (props) => {
                 basic: true,
                 color: 'red',
                 pointing: 'left',
-                content: props.likes + likes,
+                content: data && data.likes + likesState,
               }}
             />
           </span>
@@ -84,18 +85,40 @@ const PostInfo = (props) => {
 
 PostInfo.propTypes = {
   button: PropTypes.bool.isRequired,
-  likes: PropTypes.number.isRequired,
+  likesState: PropTypes.number.isRequired,
   handleLikes: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       postId: PropTypes.string,
     }),
   }).isRequired,
+  postsInfo: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    likes: PropTypes.number,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    image: PropTypes.string,
+  })).isRequired,
 };
 
+const mapStateToProps = state => ({
+  postsInfo: state.postsInfo && state.postsInfo.posts,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getPostsData: bindActionCreators(getPostsRequest, dispatch),
+});
+
+
 export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  lifecycle({
+    componentDidMount() {
+      this.props.getPostsData();
+    },
+  }),
   withRouter,
-  withState('likes', 'increment', 0),
+  withState('likesState', 'increment', 0),
   withState('button', 'isDisable', false),
   withHandlers({
     handleLikes: ({ increment, isDisable }) => (e) => {
@@ -105,4 +128,3 @@ export default compose(
     },
   }),
 )(PostInfo);
-
