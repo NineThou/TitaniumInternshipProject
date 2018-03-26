@@ -45,7 +45,9 @@ const ImageDiv = styled('div')`
   background-size: cover;
 `;
 
-const PostInfo = ({ postsInfo, match, button, handleLikes, likesState }) => {
+const PostInfo = ({
+  postsInfo, match, button, handleLikes, likesState,
+}) => {
   const data = postsInfo[match.params.postId - 1];
   return (
     <Wrapper>

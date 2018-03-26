@@ -3,11 +3,11 @@ import React from 'react';
 import { Container, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { compose, lifecycle, withHandlers } from 'recompose';
+import { compose, lifecycle } from 'recompose';
 import PropTypes from 'prop-types';
 
 import { getPostsRequest } from '../../actions/posts-api';
-import { writePostData } from '../../api/api';
+
 
 // components
 import SinglePost from './SinglePost';
@@ -26,20 +26,23 @@ import PostForm from './PostForm';
 //   postsDatabase.push().set(postData);
 // };
 
-const Posts = ({ postsInfo, postSubmit }) => {
-  return (
-    <Container>
-      <List>
-        {
-          Object
-          .keys(postsInfo)
-          .map(post => <SinglePost key={postsInfo[post].id} details={postsInfo[post]} />)
-        }
-      </List>
-      <PostForm postSubmit={postSubmit} />
-    </Container>
-  );
-};
+const Posts = ({ postsInfo }) => (
+  <Container>
+    <List>
+      {
+        Object
+        .keys(postsInfo)
+        .map(post => (
+          <SinglePost
+            key={postsInfo[post].id}
+            details={postsInfo[post]}
+            id={postsInfo.length + 1}
+          />))
+      }
+    </List>
+    <PostForm id={Object.keys(postsInfo).length + 1} />
+  </Container>
+);
 
 
 const mapStateToProps = state => ({
@@ -59,11 +62,6 @@ export default compose(
   lifecycle({
     componentDidMount() {
       this.props.getPostsData();
-    },
-  }),
-  withHandlers({
-    postSubmit: ({ postsInfo }) => (e) => {
-      writePostData(e, postsInfo.length + 1);
     },
   }),
 )(Posts);

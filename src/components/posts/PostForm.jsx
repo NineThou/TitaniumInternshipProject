@@ -1,50 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+import { setPostsRequest } from '../../actions/posts-api';
+import RenderField from '../../utils/RenderField';
+import { required, minLength15, minLength4 } from '../../utils/validation';
 
-const required = value => (
-  value ? undefined : 'Required'
-);
-const minLength = min => value => (
-  value && value.trim().length < min ? `Must be ${min} characters atleast` : undefined
-);
-const minLength4 = minLength(4);
-const minLength15 = minLength(15);
-
-const renderField = ({ input, label, type, meta: {touched, error, warning } }) => (
-  <div>
-    <label htmlFor="title">
-      {label}
-      <input {...input} placeholder={label} type={type} />
-      {touched && ((error && <span>{error}</span>))}
-    </label>
-  </div>
-);
 
 const PostForm = (props) => {
   const { handleSubmit } = props;
   return (
-    <form onSubmit={handleSubmit((e) => {
-      console.log(e)
-      props.postSubmit(e);
-    })}
-    >
+    <form onSubmit={handleSubmit}>
       <div>
-        <Field name="title" component={renderField} type="text" label="Title" validate={[required, minLength4]} />
+        <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
       </div>
       <div>
-        <Field name="text" component={renderField} type="textarea" label="Description" validate={[required, minLength15]} />
+        <Field name="text" component={RenderField} type="textarea" label="Description" validate={[required, minLength15]} />
       </div>
       <div>
-        <Field name="more" component={renderField} type="textarea" label="How to cook" validate={[required, minLength15]} />
+        <Field name="more" component={RenderField} type="textarea" label="How to cook" validate={[required, minLength15]} />
       </div>
       <div>
-        <Field name="image" component={renderField} type="text" label="Image" validate={required} />
+        <Field name="image" component={RenderField} type="text" label="Image" validate={required} />
       </div>
       <button type="submit">Submit</button>
     </form>
   );
 };
 
+PostForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
+
 export default reduxForm({
+  onSubmit: (values, dispatch, { id }) => {
+    const data = { ...values, id, likes: 0 };
+    dispatch(setPostsRequest(data));
+  },
   form: 'PostForm',
 })(PostForm);
+
