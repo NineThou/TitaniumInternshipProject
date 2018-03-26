@@ -94,13 +94,15 @@ PostInfo.propTypes = {
       postId: PropTypes.string,
     }),
   }).isRequired,
-  postsInfo: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    likes: PropTypes.number,
-    title: PropTypes.string,
-    text: PropTypes.string,
-    image: PropTypes.string,
-  })).isRequired,
+  postsInfo: PropTypes.shape({
+    posts: PropTypes.shape({
+      id: PropTypes.number,
+      likes: PropTypes.number,
+      title: PropTypes.string,
+      text: PropTypes.string,
+      image: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -20,7 +20,7 @@ const RenderField = ({
 );
 
 RenderField.propTypes = {
-  input: PropTypes.string.isRequired,
+  input: PropTypes.objectOf(PropTypes.any).isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   meta: PropTypes.shape({
