@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+import decode from 'jwt-decode';
 import { setPostsRequest } from '../../actions/posts-api';
 import RenderField from '../../utils/RenderField';
 import { required, minLength15, minLength4 } from '../../utils/validation';
@@ -33,9 +34,12 @@ PostForm.propTypes = {
 
 export default reduxForm({
   onSubmit: (values, dispatch, { id }) => {
-    const data = { ...values, id, likes: 0 };
+    let date = new Date();
+    let time = date.toLocaleTimeString();
+    let month = date.toLocaleDateString('en-US')
+    const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
+    const data = { ...values, id, likes: 0, user: user.nickname, date: `${time} ${month}` };
     dispatch(setPostsRequest(data));
   },
   form: 'PostForm',
 })(PostForm);
-

@@ -21,9 +21,10 @@ export default function* watchPostsData() {
 }
 
 
-function* addPostData() {
+function* addPostData({ data }) {
   try {
-    const newPost = yield call(reduxSagaFirebase.database.read, `/node/posts`);
+    yield call(reduxSagaFirebase.database.create, `/node/posts`, data);
+    const newPost = yield call(reduxSagaFirebase.database.read, `/node/posts/`);
     yield put(postsApiActions.setPostsSuccess(newPost));
     yield put(getPostsData());
   } catch (error) {

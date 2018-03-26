@@ -48,7 +48,7 @@ const ImageDiv = styled('div')`
 const PostInfo = ({
   postsInfo, match, button, handleLikes, likesState,
 }) => {
-  const data = postsInfo[match.params.postId - 1];
+  const data = postsInfo[match.params.postId];
   return (
     <Wrapper>
       <InfoWrap>

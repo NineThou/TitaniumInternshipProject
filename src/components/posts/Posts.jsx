@@ -6,25 +6,15 @@ import { bindActionCreators } from 'redux';
 import { compose, lifecycle } from 'recompose';
 import PropTypes from 'prop-types';
 
+// action
 import { getPostsRequest } from '../../actions/posts-api';
-
 
 // components
 import SinglePost from './SinglePost';
 import PostForm from './PostForm';
 
-// const config = {
-//   apiKey: 'AIzaSyAYhQNgycDJ_-Oru2EaAUc_j9oVFKk2ArI',
-//   authDomain: 'foodblog-4859b.firebaseapp.com',
-//   databaseURL: 'https://foodblog-4859b.firebaseio.com',
-// };
-//
-// const app = firebase.initializeApp(config);
-// const postsDatabase = app.database().ref('node').child('posts');
-// const writePostData = (e, id, likes = 0) => {
-//   const postData = { ...e, likes, id };
-//   postsDatabase.push().set(postData);
-// };
+// utils
+import { isLoggedIn } from '../../utils/AuthService';
 
 const Posts = ({ postsInfo }) => (
   <Container>
@@ -36,11 +26,11 @@ const Posts = ({ postsInfo }) => (
           <SinglePost
             key={postsInfo[post].id}
             details={postsInfo[post]}
-            id={postsInfo.length + 1}
+            id={post}
           />))
       }
     </List>
-    <PostForm id={Object.keys(postsInfo).length + 1} />
+    {isLoggedIn() ? <PostForm id={Object.keys(postsInfo).length + 1} /> : null}
   </Container>
 );
 
