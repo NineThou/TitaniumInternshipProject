@@ -5,7 +5,7 @@ const required = value => (
   value ? undefined : 'Required'
 );
 const minLength = min => value => (
-  value && value.length < min ? `Must be ${min} characters atleast` : undefined
+  value && value.trim().length < min ? `Must be ${min} characters atleast` : undefined
 );
 const minLength4 = minLength(4);
 const minLength15 = minLength(15);
@@ -23,7 +23,11 @@ const renderField = ({ input, label, type, meta: {touched, error, warning } }) =
 const PostForm = (props) => {
   const { handleSubmit } = props;
   return (
-    <form onSubmit={handleSubmit(e => props.postSubmit(e))}>
+    <form onSubmit={handleSubmit((e) => {
+      console.log(e)
+      props.postSubmit(e);
+    })}
+    >
       <div>
         <Field name="title" component={renderField} type="text" label="Title" validate={[required, minLength4]} />
       </div>

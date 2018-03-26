@@ -28,6 +28,7 @@ const app = firebase.initializeApp(config);
 const postsDatabase = app.database().ref('node').child('posts');
 export const writePostData = (e, id, likes = 0) => {
   const postData = { ...e, likes, id };
+  console.log(postData);
   postsDatabase.push().set(postData);
 };
 
