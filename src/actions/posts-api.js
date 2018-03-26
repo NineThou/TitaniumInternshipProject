@@ -26,3 +26,4 @@ export const setPostsError = error => ({
   type: 'API_SET_POSTS_ERROR',
   error,
 });
+

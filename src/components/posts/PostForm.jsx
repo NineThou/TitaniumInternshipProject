@@ -2,37 +2,47 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { setPostsRequest } from '../../actions/posts-api';
 
-const PostForm = ({ handleSubmit }) => {
+const required = value => (
+  value ? undefined : 'Required'
+);
+const minLength = min => value => (
+  value && value.length < min ? `Must be ${min} characters atleast` : undefined
+);
+const minLength4 = minLength(4);
+const minLength15 = minLength(15);
+
+const renderField = ({ input, label, type, meta: {touched, error, warning } }) => (
+  <div>
+    <label htmlFor="title">
+      {label}
+      <input {...input} placeholder={label} type={type} />
+      {touched && ((error && <span>{error}</span>))}
+    </label>
+  </div>
+);
+
+const PostForm = (props) => {
+  const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="title">
-          Title
-          <Field name="title" component="input" type="text" />
-        </label>
+        <Field name="title" component={renderField} type="text" label="Title" validate={[required, minLength4]} />
       </div>
       <div>
-        <label htmlFor="text">
-          Deription
-          <Field name="text" component="textarea" />
-        </label>
+        <Field name="text" component={renderField} type="textarea" label="Description" validate={[required, minLength15]} />
       </div>
       <div>
-        <label htmlFor="more">How to cook info:
-          <Field name="more" component="textarea" />
-        </label>
+        <Field name="more" component={renderField} type="textarea" label="How to cook" validate={[required, minLength15]} />
       </div>
       <div>
-        <label htmlFor="image">Paste image src here:
-          <Field name="image" component="input" type="text" />
-        </label>
+        <Field name="image" component={renderField} type="text" label="Image" validate={required} />
       </div>
       <button type="submit">Submit</button>
     </form>
   );
 };
 
-const MyPostForm = reduxForm({
+export default reduxForm({
   onSubmit: (values, dispatch, { id }) => {
     const data = { ...values, id, likes: 0 };
     console.log(data);
@@ -41,4 +51,3 @@ const MyPostForm = reduxForm({
   form: 'PostForm',
 })(PostForm);
 
-export default MyPostForm;
