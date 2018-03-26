@@ -1,12 +1,12 @@
 // saga dependencies
-import { call, put, takeLatest, get, post } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 // action
 import * as postsApiActions from '../actions/posts-api';
 
 // axios request
 import { getPostsData } from '../api/api';
-import { writePostData } from '../api/api';
+// import { writePostData } from '../api/api';
 
 function* getPosts() {
   try {

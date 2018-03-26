@@ -64,6 +64,7 @@ export default compose(
   withHandlers({
     postSubmit: ({ postsInfo }) => (e) => {
       writePostData(e, postsInfo.length + 1);
+      console.log(postsInfo)
     },
   }),
 )(Posts);
