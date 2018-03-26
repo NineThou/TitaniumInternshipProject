@@ -1,5 +1,7 @@
 import axios from 'axios';
 import firebase from 'firebase';
+import ReduxSagaFirebase from 'redux-saga-firebase';
+
 
 const BASE_URL = 'https://foodblog-4859b.firebaseio.com/node';
 const DATABASE_SECRET = 'LioBOBggnzDQZntQWi7XRsuYKXEMRC8YIQpU1UMl';
@@ -25,9 +27,10 @@ const config = {
   databaseURL: 'https://foodblog-4859b.firebaseio.com',
 };
 const app = firebase.initializeApp(config);
-const postsDatabase = app.database().ref('node').child('posts');
-export const writePostData = (e, id, likes = 0) => {
-  const postData = { ...e, likes, id };
-  postsDatabase.push().set(postData);
-};
+export const reduxSagaFirebase = new ReduxSagaFirebase(app);
+
+// export const writePostData = (e, id, likes = 0) => {
+//   const postData = { ...e, id, likes };
+//   postsDatabase.push().set(postData);
+// };
 

@@ -19,9 +19,29 @@ const postsInfo = (state = { posts: [], loading: false, error: false }, action) 
         loading: false,
         error: true,
       };
+    case 'API_SET_POSTS_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case 'API_SET_POSTS_SUCCESS':
+      return {
+        ...state,
+        posts: action.payload,
+        loading: false,
+        error: false,
+      };
+    case 'API_SET_POSTS_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
     default:
       return state;
   }
 };
+
 
 export default postsInfo;

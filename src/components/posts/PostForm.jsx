@@ -1,10 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { setPostsRequest } from '../../actions/posts-api';
 
-const PostForm = props => {
-  const { handleSubmit } = props;
+const PostForm = ({ handleSubmit }) => {
   return (
-    <form onSubmit={handleSubmit(e => props.postSubmit(e))}>
+    <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="title">
           Title
@@ -32,6 +32,13 @@ const PostForm = props => {
   );
 };
 
-export default reduxForm({
+const MyPostForm = reduxForm({
+  onSubmit: (values, dispatch, { id }) => {
+    const data = { ...values, id, likes: 0 };
+    console.log(data);
+    dispatch(setPostsRequest(data));
+  },
   form: 'PostForm',
 })(PostForm);
+
+export default MyPostForm;
