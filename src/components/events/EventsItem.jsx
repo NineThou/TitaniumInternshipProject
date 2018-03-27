@@ -47,7 +47,6 @@ const EventsItem = ({ details }) => (
       <List.Content>{details.title}</List.Content>
       <List.Content>{details.body}</List.Content>
       <List>
-        {console.log(details)}
         {details.tags.map(tag => <Anchor href="#" key={tag}><List.Content>#{tag}</List.Content></Anchor>)}
       </List>
       <Link to={`/eventInfo/${details.id}`}>

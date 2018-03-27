@@ -32,6 +32,12 @@ const EventForm = (props) => {
   );
 };
 
+
+EventForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
+
+
 export default reduxForm({
   onSubmit: (values, dispatch, { id }) => {
     const date = new Date();
@@ -48,7 +54,6 @@ export default reduxForm({
       date: `${time} ${month}`,
     };
     dispatch(setEventsRequest(data));
-    console.log(data);
   },
   form: 'EventForm',
 })(EventForm);

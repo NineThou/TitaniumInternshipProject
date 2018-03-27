@@ -49,7 +49,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Posts.propTypes = {
-  postsInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  postsInfo: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number,
+    likes: PropTypes.number,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    image: PropTypes.string,
+  })).isRequired,
 };
 
 export default compose(
