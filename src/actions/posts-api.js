@@ -27,3 +27,18 @@ export const setPostsError = error => ({
   error,
 });
 
+export const deletePostRequest = postKey => ({
+  type: 'API_DELETE_POST_REQUEST',
+  postKey,
+});
+
+export const deletePostSuccess = payload => ({
+  type: 'API_DELETE_POST_SUCCESS',
+  payload,
+});
+
+export const deletePostError = error => ({
+  type: 'API_DELETE_POST_ERROR',
+  error,
+});
+

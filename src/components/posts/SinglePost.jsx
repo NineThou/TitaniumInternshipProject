@@ -5,10 +5,16 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { compose, withHandlers } from 'recompose';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 // colors
 import { grey } from '../../styles/colors';
+
 // utils
 import { isLoggedIn } from '../../utils/AuthService';
+import { deletePostRequest } from '../../actions/posts-api';
 
 const PostWrap = styled('div')`
   display: flex;
@@ -59,7 +65,7 @@ const date = css`
   font-style: italic;
 `;
 
-const SinglePost = ({ details, id }) => (
+const SinglePost = ({ details, id, deletePost }) => (
   <PostWrap className={colors}>
     <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
     <ContentWrap>
@@ -75,7 +81,7 @@ const SinglePost = ({ details, id }) => (
             </Button>
           </List.Content>
         </Link>
-        {isLoggedIn() ? <Button basic inverted color="red">Delete</Button> : null}
+        {isLoggedIn() ? <Button onClick={deletePost} basic inverted color="red">Delete</Button> : null}
       </Item.Content>
     </ContentWrap>
   </PostWrap>
@@ -89,4 +95,18 @@ SinglePost.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-export default SinglePost;
+const mapDispatchToProps = dispatch => ({
+  deletePostData: bindActionCreators(deletePostRequest, dispatch),
+});
+
+export default compose(
+  connect(null, mapDispatchToProps),
+  withHandlers({
+    deletePost: ({ id, deletePostData }) => (e) => {
+      e.preventDefault(e);
+      if (confirm('You sure u want to delete?')) { // eslint-disable-line
+        deletePostData(id);
+      }
+    },
+  }),
+)(SinglePost);

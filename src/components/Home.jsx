@@ -7,7 +7,7 @@ import { black, translucent } from '../styles/colors';
 const Image = styled('div')`
   background-image: url(${background});
   background-size: cover;
-  height: 944px;
+  min-height: 100vh;
   width: 100%;
 `;
 

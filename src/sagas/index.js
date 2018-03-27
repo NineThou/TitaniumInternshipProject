@@ -2,7 +2,7 @@ import { fork, all } from 'redux-saga/effects';
 
 import watchUsersData from './users';
 import watchEventsData, { setEventData } from './events';
-import watchPostsData, { setPostData } from './posts';
+import watchPostsData, { setPostData, removePost } from './posts';
 
 
 export default function* rootSaga() {
@@ -12,5 +12,6 @@ export default function* rootSaga() {
     fork(watchPostsData),
     fork(setPostData),
     fork(setEventData),
+    fork(removePost),
   ]);
 }

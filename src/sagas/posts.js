@@ -35,3 +35,18 @@ function* addPostData({ data }) {
 export function* setPostData() {
   yield takeLatest('API_SET_POSTS_REQUEST', addPostData);
 }
+
+function* deletePost({ postKey }) {
+  try {
+    yield call(reduxSagaFirebase.database.delete, `/node/posts/${postKey}`);
+    yield put(postsApiActions.deletePostSuccess());
+    const posts = yield call(getPostsData);
+    yield put(postsApiActions.getPostsSuccess(posts));
+  } catch (error) {
+    yield put(postsApiActions.deletePostError(error));
+  }
+}
+
+export function* removePost() {
+  yield takeLatest('API_DELETE_POST_REQUEST', deletePost);
+}
