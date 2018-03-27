@@ -1,4 +1,4 @@
-const postsInfo = (state = { posts: [], loading: false, error: false }, action) => {
+const postsInfo = (state = { posts: {}, loading: false, error: false }, action) => {
   switch (action.type) {
     case 'API_GET_POSTS_REQUEST':
       return {

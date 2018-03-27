@@ -2,6 +2,7 @@ export default {
   'en-US': {
     events: {
       readmore: 'Read More',
+      delete: 'Delete',
     },
     posts: {
       delete: 'Delete',
@@ -44,6 +45,7 @@ export default {
   'ru-RU': {
     events: {
       readmore: 'Читать',
+      delete: 'Удалить',
     },
     posts: {
       delete: 'Удалить',

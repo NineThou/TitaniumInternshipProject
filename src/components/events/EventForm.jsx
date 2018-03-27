@@ -29,8 +29,12 @@ const EventForm = (props) => {
       </div>
       <button type="submit">Submit</button>
     </form>
-  )
-}
+  );
+};
+
+EventForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 export default reduxForm({
   onSubmit: (values, dispatch, { id }) => {
@@ -48,7 +52,6 @@ export default reduxForm({
       date: `${time} ${month}`,
     };
     dispatch(setEventsRequest(data));
-    console.log(data);
   },
   form: 'EventForm',
 })(EventForm);

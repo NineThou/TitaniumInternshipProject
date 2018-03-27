@@ -93,6 +93,7 @@ SinglePost.propTypes = {
     body: PropTypes.string,
   }).isRequired,
   id: PropTypes.string.isRequired,
+  deletePost: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

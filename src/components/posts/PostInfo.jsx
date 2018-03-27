@@ -64,6 +64,7 @@ const PostInfo = ({
   postsInfo, match, button, handleLikes, likesState,
 }) => {
   const data = postsInfo[match.params.postId];
+
   return (
     <Wrapper>
       <InfoWrap>
@@ -109,15 +110,13 @@ PostInfo.propTypes = {
       postId: PropTypes.string,
     }),
   }).isRequired,
-  postsInfo: PropTypes.shape({
-    posts: PropTypes.shape({
-      id: PropTypes.number,
-      likes: PropTypes.number,
-      title: PropTypes.string,
-      text: PropTypes.string,
-      image: PropTypes.string,
-    }),
-  }).isRequired,
+  postsInfo: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number,
+    likes: PropTypes.number,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    image: PropTypes.string,
+  })).isRequired,
 };
 
 const mapStateToProps = state => ({
