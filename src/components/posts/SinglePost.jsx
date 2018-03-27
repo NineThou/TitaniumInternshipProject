@@ -83,6 +83,7 @@ SinglePost.propTypes = {
     title: PropTypes.string,
     body: PropTypes.string,
   }).isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default SinglePost;

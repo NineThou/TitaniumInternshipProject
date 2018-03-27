@@ -5,7 +5,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import * as eventsApiAction from '../actions/events-api';
 
 // axios request
-import { getEventsData } from '../api/api';
+import { getEventsData, reduxSagaFirebase } from '../api/api';
 
 function* getEvents() {
   try {
@@ -20,3 +20,17 @@ export default function* watchEventsData() {
   yield takeLatest('API_GET_EVENTS_REQUEST', getEvents);
 }
 
+function* addEventData({ data }) {
+  try {
+    yield call(reduxSagaFirebase.database.create, `/node/events`, data);
+    const newPost = yield call(reduxSagaFirebase.database.read, `/node/events/`);
+    yield put(eventsApiAction.setEventsSuccess(newPost));
+    yield put(getEventsData());
+  } catch (error) {
+    yield put(eventsApiAction.setEventsError(error));
+  }
+}
+
+export function* setEventData() {
+  yield takeLatest('API_SET_EVENTS_REQUEST', addEventData);
+}

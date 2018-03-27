@@ -10,17 +10,21 @@ import { getEventsRequest } from '../../actions/events-api';
 
 // components
 import EventsItem from './EventsItem';
+import EventForm from './EventForm';
+import { isLoggedIn } from '../../utils/AuthService';
+
 
 const Events = ({ eventsInfo }) => (
   <Container>
     <List>
-      {eventsInfo.map(event => <EventsItem key={event.id} details={event} />)}
+      {Object.keys(eventsInfo).map(event => <EventsItem key={event} details={eventsInfo[event]} />)}
     </List>
+    {isLoggedIn() ? <EventForm id={Object.keys(eventsInfo).length + 1} /> : null}
   </Container>
 );
 
 const mapStateToProps = state => ({
-  eventsInfo: state.eventsInfo && state.eventsInfo.events,
+  eventsInfo: state.eventsInfo.events,
 });
 
 const mapDispatchToProps = dispatch => ({
