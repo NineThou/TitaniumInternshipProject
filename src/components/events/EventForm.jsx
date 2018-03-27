@@ -29,8 +29,8 @@ const EventForm = (props) => {
       </div>
       <button type="submit">Submit</button>
     </form>
-  )
-}
+  );
+};
 
 export default reduxForm({
   onSubmit: (values, dispatch, { id }) => {

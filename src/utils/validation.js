@@ -8,5 +8,5 @@ export const minLength4 = minLength(4);
 export const minLength15 = minLength(15);
 
 export const splitWithCommas = value => (
-  value.trim().match(/(,$)/g) ? 'Split tags with comma' : undefined 
+  value.trim().match(/(,$)/g) ? 'Split tags with comma' : undefined
 );
