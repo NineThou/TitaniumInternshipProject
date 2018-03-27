@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 // colors
 import { grey } from '../../styles/colors';
+// utils
+import { isLoggedIn } from '../../utils/AuthService';
 
 const PostWrap = styled('div')`
   display: flex;
@@ -43,7 +45,7 @@ const ImageDiv = styled('div')`
   margin-right: 30px;
   @media(max-width: 800px){
     margin-right: 0;
-    min-width: 270px;
+    min-width: 230px;
   }
 `;
 
@@ -55,17 +57,6 @@ const username = css`
 const date = css`
   padding-bottom: 30px;
   font-style: italic;
-`;
-
-const Delete = styled('button')`
-  position: absolute;
-  bottom: 100px;
-  left: 150px;
-  width: 20px;
-  height: 20px;
-  padding-bottom: 5px;
-  padding-right: 15px;
-  border-radius: 100%;
 `;
 
 const SinglePost = ({ details, id }) => (
@@ -84,7 +75,7 @@ const SinglePost = ({ details, id }) => (
             </Button>
           </List.Content>
         </Link>
-        <Delete>X</Delete>
+        {isLoggedIn() ? <Button basic inverted color="red">Delete</Button> : null}
       </Item.Content>
     </ContentWrap>
   </PostWrap>

@@ -15,7 +15,7 @@ const Wrap = styled('div')`
   left: 0;
   bottom: 0;
   background-color: ${black};
-  color: ${grey};
+  color: white;
   display: grid;
   height: 170px;
   width: 100%;
@@ -29,6 +29,12 @@ const Wrap = styled('div')`
   @media(max-width: 556px) {
     grid-template-areas: "logo donut text" 
                           "social donut text";
+  }
+  @media(max-width: 400px) {
+     text-align: center;
+     grid-template-areas: "logo text" 
+                          "social text";
+     grid-template-columns: 1fr 1fr;
   }
 `;
 
@@ -50,6 +56,7 @@ const contactUs = css`
 `;
 
 const social = css`
+  color: white;
   padding-left: 15px;
   grid-area: social;
   margin: 0 auto;
@@ -73,9 +80,9 @@ const text = css`
 `;
 
 const anchorColor = css`
-  color: ${grey};
+  color: white;
   :hover {
-    color: white;
+    color: ${grey};
   }
 `;
 
@@ -83,6 +90,9 @@ const donutStyle = css`
   grid-area: donut;
   margin: 0 auto;
   color: white;
+  @media(max-width: 400px) {
+    display: none;
+  }
 `;
 
 const donutSize = css`

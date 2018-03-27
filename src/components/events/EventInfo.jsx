@@ -16,14 +16,14 @@ import { getEventsRequest } from '../../actions/events-api';
 
 
 const Wrapper = styled('div')`
-    width: 100;
-    min-height: calc(100vh - 300px);
+    z-index: 1;
+    min-height: calc(100vh - 230px);
 `;
 
 const InfoWrap = styled('div')`
   display: flex;
   position: relative;
-  top: 30px;
+  top: 150px;
   display: flex;
   align-items: center;
   color: white;
@@ -36,8 +36,15 @@ const InfoWrap = styled('div')`
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   border: 0 !important;
   @media (max-width: 1614px) {
+    top: 120px;
     flex-direction: column;
   }
+   @media (max-width: 690px) {
+    top: 85px;
+   }
+   @media (max-width: 423px) {
+    top: 75px;
+   }
 `;
 
 const ContentWrap = styled('div')`
@@ -55,11 +62,11 @@ const ImageDiv = styled('div')`
   background-size: cover;
   overflow: hidden;
   @media (max-width: 1613px) {
-    max-height: 100%;
+    max-height: 350px;
     width: 100%;
   }
   @media (max-width: 952px) {
-    min-width: 270px;
+    min-width: 230px;
   }
 `;
 
@@ -68,7 +75,6 @@ const EventInfo = ({ match, eventsInfo }) => {
   return (
     <Wrapper>
       <InfoWrap>
-        {console.log(data && data.image)}
         <ImageDiv style={{ backgroundImage: `url(${data && data.image})` }} />
         <ContentWrap className={colors}>
           <h1>

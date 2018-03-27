@@ -23,7 +23,7 @@ const Title = styled('h1')`
     width: 250px;
   }
   @media (max-width:800px) {
-    left: 30%;
+    left: 20%;
     top: 50%;
     width: 250px;
     color: ${black};

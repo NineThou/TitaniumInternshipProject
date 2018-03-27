@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 
 const ClockContent = styled('h2')`
   margin-right: 10px;
+  @media(max-width: 1068px) {
+    font-size: 17px;
+  }
   @media (max-width: 800px) {
     display: none;
   }
