@@ -19,3 +19,4 @@ function* getEvents() {
 export default function* watchEventsData() {
   yield takeLatest('API_GET_EVENTS_REQUEST', getEvents);
 }
+

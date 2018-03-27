@@ -1,6 +1,6 @@
 // modules
 import React from 'react';
-import { List, Button, Image } from 'semantic-ui-react';
+import { List, Button } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -37,7 +37,6 @@ const listpadding = css`
 
 const ImageDiv = styled('div')`
   height: 200px;
-  min-width: 400px;
   background-size: cover;
 `;
 

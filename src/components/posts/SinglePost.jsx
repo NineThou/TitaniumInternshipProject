@@ -47,20 +47,44 @@ const ImageDiv = styled('div')`
   }
 `;
 
-const SinglePost = ({ details }) => (
+const username = css`
+  padding-top: 30px;
+  font-style: italic;
+`;
+
+const date = css`
+  padding-bottom: 30px;
+  font-style: italic;
+`;
+
+const Delete = styled('button')`
+  position: absolute;
+  bottom: 100px;
+  left: 150px;
+  width: 20px;
+  height: 20px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  border-radius: 100%;
+`;
+
+const SinglePost = ({ details, id }) => (
   <PostWrap className={colors}>
     <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
     <ContentWrap>
       <Item.Content verticalAlign="middle">
         <Item.Header as="h2">{details.title}</Item.Header>
         <Item.Description>{details.text}</Item.Description>
-        <Link to={`/posts/${details.id}`}>
+        <Item.Description className={username}>{`Added by: ${details.user}`}</Item.Description>
+        <Item.Description className={date}>{details.date}</Item.Description>
+        <Link to={`/posts/${id}`}>
           <List.Content>
             <Button floated="left">
               <FormattedMessage id="posts.readmore" />
             </Button>
           </List.Content>
         </Link>
+        <Delete>X</Delete>
       </Item.Content>
     </ContentWrap>
   </PostWrap>

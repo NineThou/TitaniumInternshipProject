@@ -5,7 +5,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import * as postsApiActions from '../actions/posts-api';
 
 // axios request
-import { getPostsData } from '../api/api';
+import { getPostsData, reduxSagaFirebase } from '../api/api';
 
 function* getPosts() {
   try {
@@ -18,4 +18,20 @@ function* getPosts() {
 
 export default function* watchPostsData() {
   yield takeLatest('API_GET_POSTS_REQUEST', getPosts);
+}
+
+
+function* addPostData({ data }) {
+  try {
+    yield call(reduxSagaFirebase.database.create, `/node/posts`, data);
+    const newPost = yield call(reduxSagaFirebase.database.read, `/node/posts/`);
+    yield put(postsApiActions.setPostsSuccess(newPost));
+    yield put(getPostsData());
+  } catch (error) {
+    yield put(postsApiActions.setPostsError(error));
+  }
+}
+
+export function* setPostData() {
+  yield takeLatest('API_SET_POSTS_REQUEST', addPostData);
 }

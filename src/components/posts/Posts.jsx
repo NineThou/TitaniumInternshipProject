@@ -6,18 +6,34 @@ import { bindActionCreators } from 'redux';
 import { compose, lifecycle } from 'recompose';
 import PropTypes from 'prop-types';
 
+// action
 import { getPostsRequest } from '../../actions/posts-api';
 
 // components
 import SinglePost from './SinglePost';
+import PostForm from './PostForm';
+
+// utils
+import { isLoggedIn } from '../../utils/AuthService';
 
 const Posts = ({ postsInfo }) => (
   <Container>
     <List>
-      {postsInfo.map(post => <SinglePost key={post.id} details={post} />)}
+      {
+        Object
+        .keys(postsInfo)
+        .map(post => (
+          <SinglePost
+            key={postsInfo[post].id}
+            details={postsInfo[post]}
+            id={post}
+          />))
+      }
     </List>
+    {isLoggedIn() ? <PostForm id={Object.keys(postsInfo).length + 1} /> : null}
   </Container>
 );
+
 
 const mapStateToProps = state => ({
   postsInfo: state.postsInfo.posts,
