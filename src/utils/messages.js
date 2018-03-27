@@ -8,6 +8,8 @@ export default {
       readmore: 'How to cook',
     },
     sidebar: {
+      in: 'Sign In',
+      out: 'Sign Out',
       login: 'Login',
       signup: 'Sign Up',
       users: 'Users',
@@ -48,6 +50,8 @@ export default {
       readmore: 'Как готовить',
     },
     sidebar: {
+      in: 'Войти',
+      out: 'Выйти',
       login: 'Логин',
       signup: 'Регистрация',
       users: 'Пользователи',
