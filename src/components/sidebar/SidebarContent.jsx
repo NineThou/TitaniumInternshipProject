@@ -55,11 +55,11 @@ const SidebarContent = () => (
     {(isLoggedIn()) ?
       (<NavLink to="/" className={`${inactive} ${navLinkStyle}`} onClick={() => logout()}>
         <i className="reply outline icon" />
-           Log out
+        <FormattedMessage id="sidebar.out" />
       </NavLink>) //eslint-disable-line
       : (<NavLink to="/" className={`${inactive} ${navLinkStyle}`} onClick={() => login()}>
         <i className="user outline icon" />
-        Log In
+        <FormattedMessage id="sidebar.in" />
       </NavLink>) //eslint-disable-line
     }
     <NavLink
