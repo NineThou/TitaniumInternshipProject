@@ -16,10 +16,12 @@ import { getPostsRequest } from '../../actions/posts-api';
 
 const Wrapper = styled('div')`
     width: 100;
-    min-height: calc(100vh - 270px);
+    min-height: calc(100vh - 200px);
 `;
 
 const InfoWrap = styled('div')`
+  position: relative;
+  top: 100px;
   display: flex;
   color: white;
   background-color: ${grey};
@@ -29,6 +31,19 @@ const InfoWrap = styled('div')`
   -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  @media (max-width: 1614px) {
+    top: 80px;
+  }
+  @media(max-width: 939px) {
+    top: 60px;
+  }
+  @media (max-width: 690px) {
+    top: 25px;
+    padding: 20px 0;
+   }
+   @media (max-width: 423px) {
+    padding-bottom: 20px; 
+   }
 `;
 
 const colors = css`

@@ -26,11 +26,7 @@ const config = {
   authDomain: 'foodblog-4859b.firebaseapp.com',
   databaseURL: 'https://foodblog-4859b.firebaseio.com',
 };
+
 const app = firebase.initializeApp(config);
 export const reduxSagaFirebase = new ReduxSagaFirebase(app);
-
-// export const writePostData = (e, id, likes = 0) => {
-//   const postData = { ...e, id, likes };
-//   postsDatabase.push().set(postData);
-// };
 

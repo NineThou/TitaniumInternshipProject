@@ -7,6 +7,7 @@ import SidebarContent from './sidebar/SidebarContent';
 const mql = global.window.matchMedia('(min-width: 800px)');
 
 const Bar = styled('div')`
+  right: 30px;
   width: 35px;
   height: 5px;
   background-color: white;
@@ -15,11 +16,11 @@ const Bar = styled('div')`
 `;
 
 const ToggleButton = styled('button')`
-  z-index: 1000; 
+  position: fixed;
+  z-index: 3; 
   background: none;
   border: none;
   outline: none;
-  position: absolute;
   top: 15px;
   right: 0;
   :hover {
