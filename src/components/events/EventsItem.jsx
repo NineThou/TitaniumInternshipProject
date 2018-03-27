@@ -37,7 +37,6 @@ const listpadding = css`
 
 const ImageDiv = styled('div')`
   height: 200px;
-  min-width: 400px;
   background-size: cover;
 `;
 

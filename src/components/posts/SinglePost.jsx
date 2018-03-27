@@ -57,6 +57,17 @@ const date = css`
   font-style: italic;
 `;
 
+const Delete = styled('button')`
+  position: absolute;
+  bottom: 100px;
+  left: 150px;
+  width: 20px;
+  height: 20px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  border-radius: 100%;
+`;
+
 const SinglePost = ({ details, id }) => (
   <PostWrap className={colors}>
     <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
@@ -73,6 +84,7 @@ const SinglePost = ({ details, id }) => (
             </Button>
           </List.Content>
         </Link>
+        <Delete>X</Delete>
       </Item.Content>
     </ContentWrap>
   </PostWrap>
