@@ -45,7 +45,7 @@ const ImageDiv = styled('div')`
   background-size: cover;
 `;
 
-const EventsItem = ({ details, deleteEvent }) => (
+const EventsItem = ({ details, id, deleteEvent }) => (
   <EventWrap>
     <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
     <List.Item className={listpadding}>
@@ -54,7 +54,7 @@ const EventsItem = ({ details, deleteEvent }) => (
       <List>
         {details.tags.map(tag => <Anchor href="#" key={tag}><List.Content>#{tag}</List.Content></Anchor>)}
       </List>
-      <Link to={`/eventInfo/${details.id}`}>
+      <Link to={`/eventInfo/${id}`}>
         <List.Content>
           <Button floated="left">
             <FormattedMessage id="events.readmore" />

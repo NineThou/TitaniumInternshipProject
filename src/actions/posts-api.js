@@ -77,19 +77,3 @@ export const removeLikeError = error => ({
   type: 'API_REMOVE_LIKE_POST_ERROR',
   error,
 });
-
-// 0 likes fix
-export const fixZeroLikeRequest = postKey => ({
-  type: 'ZERO_LIKE_REQUEST',
-  postKey,
-});
-
-export const fixZeroLikeSuccess = payload => ({
-  type: 'ZERO_LIKE_SUCCESS',
-  payload,
-});
-
-export const fixZeroLikeError = error => ({
-  type: 'ZERO_LIKE_ERROR',
-  error,
-});

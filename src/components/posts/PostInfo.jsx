@@ -13,7 +13,7 @@ import decode from 'jwt-decode';
 import { grey } from '../../styles/colors';
 
 // actions
-import { getPostsRequest, addLikeRequest, removeLikeRequest, fixZeroLikeRequest } from '../../actions/posts-api';
+import { getPostsRequest, addLikeRequest, removeLikeRequest } from '../../actions/posts-api';
 
 // helper
 import { getKeyByValue } from '../../utils/helperFunctions';
@@ -21,7 +21,6 @@ import { getKeyByValue } from '../../utils/helperFunctions';
 const Wrapper = styled('div')`
     min-height: calc(100vh - 200px);
 `;
-
 const InfoWrap = styled('div')`
   position: relative;
   top: 100px;
@@ -128,7 +127,6 @@ const mapDispatchToProps = dispatch => ({
   getPostsData: bindActionCreators(getPostsRequest, dispatch),
   addLikeToPost: bindActionCreators(addLikeRequest, dispatch),
   removeLikeFromPost: bindActionCreators(removeLikeRequest, dispatch),
-  ifZeroLikes: bindActionCreators(fixZeroLikeRequest, dispatch),
 });
 
 export default compose(
@@ -137,7 +135,7 @@ export default compose(
   withState('button', 'isLiked', false),
   withHandlers({
     // TODO fix likes
-    handleLikes: ({ match, addLikeToPost, postsInfo, removeLikeFromPost, ifZeroLikes }) => (e) => {
+    handleLikes: ({ match, addLikeToPost, postsInfo, removeLikeFromPost }) => (e) => {
       e.preventDefault(e);
       const { postId } = match.params;
       const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
@@ -145,9 +143,6 @@ export default compose(
       const { likes } = postsInfo[postId];
       const like = getKeyByValue(likes, nickname);
       if (like) {
-        if (Object.keys(likes).length === 1) {
-          ifZeroLikes(postId);
-        }
         removeLikeFromPost(postId, like);
       } else {
         addLikeToPost(postId, nickname);
