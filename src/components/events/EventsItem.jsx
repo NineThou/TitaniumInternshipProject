@@ -5,9 +5,14 @@ import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { compose, withHandlers } from 'recompose';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // colors
 import { grey } from '../../styles/colors';
+import { isLoggedIn } from '../../utils/AuthService';
+import { deleteEventRequest } from '../../actions/events-api';
 
 
 const EventWrap = styled('div')`
@@ -40,7 +45,7 @@ const ImageDiv = styled('div')`
   background-size: cover;
 `;
 
-const EventsItem = ({ details }) => (
+const EventsItem = ({ details, deleteEvent }) => (
   <EventWrap>
     <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
     <List.Item className={listpadding}>
@@ -56,6 +61,10 @@ const EventsItem = ({ details }) => (
           </Button>
         </List.Content>
       </Link>
+      {isLoggedIn() ?
+        <Button onClick={deleteEvent} basic inverted color="red">
+          <FormattedMessage id="events.delete" />
+        </Button> : null}
     </List.Item>
   </EventWrap>
 );
@@ -66,6 +75,21 @@ EventsItem.propTypes = {
     body: PropTypes.string,
     tags: PropTypes.array,
   }).isRequired,
+  deleteEvent: PropTypes.func.isRequired,
 };
 
-export default EventsItem;
+const mapDispatchToProps = dispatch => ({
+  deleteEventData: bindActionCreators(deleteEventRequest, dispatch),
+});
+
+export default compose(
+  connect(null, mapDispatchToProps),
+  withHandlers({
+    deleteEvent: ({ id, deleteEventData }) => (e) => {
+      e.preventDefault();
+      if (confirm('You sure bro?')) { // eslint-disable-line
+        deleteEventData(id);
+      }
+    },
+  }),
+)(EventsItem);

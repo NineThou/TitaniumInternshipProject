@@ -26,3 +26,18 @@ export const setEventsError = error => ({
   type: 'API_SET_EVENTS_ERROR',
   error,
 });
+
+export const deleteEventRequest = eventKey => ({
+  type: 'API_DELETE_EVENT_REQUEST',
+  eventKey,
+});
+
+export const deleteEventSuccess = payload => ({
+  type: 'API_DELETE_EVENT_SUCCESS',
+  payload,
+});
+
+export const deleteEventError = error => ({
+  type: 'API_DELETE_EVENT_ERROR',
+  error,
+});

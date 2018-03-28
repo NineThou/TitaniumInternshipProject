@@ -1,4 +1,4 @@
-const eventsInfo = (state = { events: [], loading: false, error: false }, action) => {
+const eventsInfo = (state = { events: {}, loading: false, error: false }, action) => {
   switch (action.type) {
     case 'API_GET_EVENTS_REQUEST':
       return {

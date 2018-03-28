@@ -81,7 +81,10 @@ const SinglePost = ({ details, id, deletePost }) => (
             </Button>
           </List.Content>
         </Link>
-        {isLoggedIn() ? <Button onClick={deletePost} basic inverted color="red">Delete</Button> : null}
+        {isLoggedIn() ?
+          <Button onClick={deletePost} basic inverted color="red">
+            <FormattedMessage id="posts.delete" />
+          </Button> : null}
       </Item.Content>
     </ContentWrap>
   </PostWrap>

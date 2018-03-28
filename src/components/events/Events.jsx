@@ -22,7 +22,8 @@ const wrapper = css`
 const Events = ({ eventsInfo }) => (
   <Container className={wrapper}>
     <List>
-      {Object.keys(eventsInfo).map(event => <EventsItem key={event} details={eventsInfo[event]} />)}
+      {Object.keys(eventsInfo)
+        .map(event => <EventsItem id={event} key={event} details={eventsInfo[event]} />)}
     </List>
     {isLoggedIn() ? <EventForm id={Object.keys(eventsInfo).length + 1} /> : null}
   </Container>
