@@ -32,9 +32,11 @@ const EventForm = (props) => {
   );
 };
 
+
 EventForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
+
 
 export default reduxForm({
   onSubmit: (values, dispatch, { id }) => {

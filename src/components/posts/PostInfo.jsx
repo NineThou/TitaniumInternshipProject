@@ -4,15 +4,17 @@ import { Message, Button } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import decode from 'jwt-decode';
 
 
 // colors
 import { grey } from '../../styles/colors';
-import { getPostsRequest } from '../../actions/posts-api';
+
+// actions
+import { getPostsRequest, addLikeRequest, removeLikeRequest } from '../../actions/posts-api';
 
 const Wrapper = styled('div')`
     width: 100;
@@ -51,8 +53,9 @@ const colors = css`
   background-color: ${grey} !important;
 `;
 
-const btn = css`
-  margin-top: 5px !important;
+const Btn = styled('span')`
+  position: relative;
+  top: 5px !important;
 `;
 
 const ImageDiv = styled('div')`
@@ -61,10 +64,11 @@ const ImageDiv = styled('div')`
 `;
 
 const PostInfo = ({
-  postsInfo, match, button, handleLikes, likesState,
+  postsInfo, match, button, handleLikes,
 }) => {
   const data = postsInfo[match.params.postId];
-
+  const userInfo = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
+  const { nickname } = userInfo;
   return (
     <Wrapper>
       <InfoWrap>
@@ -76,25 +80,21 @@ const PostInfo = ({
             {data && data.more}
           </p>
           <ImageDiv style={{ backgroundImage: `url(${data && data.image})` }} />
-          <span>
-            <Button className={btn}>
-              <FormattedMessage id="posts.delete" />
-            </Button>
+          <Btn>
             <Button
-              className="btn"
               disabled={button}
               onClick={e => handleLikes(e)}
               color="red"
-              content="Like"
+              content={data && !Object.values(data.likes).includes(nickname) ? 'Like' : 'Dislike'}
               icon="heart"
               label={{
                 basic: true,
                 color: 'red',
                 pointing: 'left',
-                content: data && data.likes + likesState,
+                content: data && Object.keys(data.likes).length,
               }}
             />
-          </span>
+          </Btn>
         </Message>
       </InfoWrap>
     </Wrapper>
@@ -122,27 +122,39 @@ PostInfo.propTypes = {
 const mapStateToProps = state => ({
   postsInfo: state.postsInfo && state.postsInfo.posts,
 });
-
 const mapDispatchToProps = dispatch => ({
   getPostsData: bindActionCreators(getPostsRequest, dispatch),
+  addLikeToPost: bindActionCreators(addLikeRequest, dispatch),
+  removeLikeFromPost: bindActionCreators(removeLikeRequest, dispatch),
 });
-
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  withState('button', 'isLiked', false),
+  withHandlers({
+    // TODO fix likes
+    handleLikes: ({ match, addLikeToPost, postsInfo, removeLikeFromPost }) => (e) => {
+      e.preventDefault(e);
+      const { postId } = match.params;
+      const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
+      const { nickname } = user;
+      const { likes } = postsInfo[postId];
+      function getKeyByValue(object, value) {
+        return Object.keys(object).find(key => object[key] === value);
+      }
+      const like = getKeyByValue(likes, nickname);
+      // console.log(getKeyByValue(likes, nickname) !== undefined);
+      if (getKeyByValue(likes, nickname) !== undefined) {
+        removeLikeFromPost(postId, like);
+      } else {
+        addLikeToPost(postId, nickname);
+      }
+    },
+  }),
   lifecycle({
     componentDidMount() {
       this.props.getPostsData();
-    },
-  }),
-  withRouter,
-  withState('likesState', 'increment', 0),
-  withState('button', 'isDisable', false),
-  withHandlers({
-    handleLikes: ({ increment, isDisable }) => (e) => {
-      e.preventDefault(e);
-      increment(n => n + 1);
-      isDisable(bool => !bool);
     },
   }),
 )(PostInfo);

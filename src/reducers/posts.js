@@ -1,5 +1,6 @@
 const postsInfo = (state = { posts: {}, loading: false, error: false }, action) => {
   switch (action.type) {
+    // initial load
     case 'API_GET_POSTS_REQUEST':
       return {
         ...state,
@@ -19,6 +20,7 @@ const postsInfo = (state = { posts: {}, loading: false, error: false }, action) 
         loading: false,
         error: true,
       };
+    // set new post
     case 'API_SET_POSTS_REQUEST':
       return {
         ...state,

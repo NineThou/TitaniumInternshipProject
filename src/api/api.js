@@ -21,6 +21,7 @@ export function getPostsData() {
   return axios.get(url).then(response => response.data);
 }
 
+// firebase settings
 const config = {
   apiKey: 'AIzaSyAYhQNgycDJ_-Oru2EaAUc_j9oVFKk2ArI',
   authDomain: 'foodblog-4859b.firebaseapp.com',
