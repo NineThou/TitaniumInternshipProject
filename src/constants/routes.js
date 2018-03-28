@@ -16,6 +16,7 @@ import Authentication from '../components/Authentication';
 import Menu from '../components/Menu';
 import Header from '../components/header/Header';
 import Footer from '../components/Footer';
+import PostEdit from '../components/posts/PostEdit';
 
 // authentication
 import { requireAuth } from '../utils/AuthService';
@@ -31,7 +32,8 @@ const router = (
         <Route path="/signup" component={SignUp} />
         <Route path="/events" component={Events} />
         <Route path="/eventInfo/:eventId" component={EventInfo} />
-        <Route path="/posts/:postId" component={PostInfo} />
+        <Route exact path="/posts/:postId" component={PostInfo} />
+        <Route path="/posts/edit/:postId" component={PostEdit} />
         <Route exact path="/posts" component={Posts} />
         <Route path="/users" component={Users} onEnter={requireAuth} />
         <Route path="/callback" component={Authentication} />
