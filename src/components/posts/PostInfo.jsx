@@ -139,7 +139,9 @@ export default compose(
   withState('button', 'isLiked', false),
   withHandlers({
     // TODO fix likes
-    handleLikes: ({ match, addLikeToPost, postsInfo, removeLikeFromPost }) => (e) => {
+    handleLikes: ({
+      match, addLikeToPost, postsInfo, removeLikeFromPost,
+    }) => (e) => {
       e.preventDefault(e);
       const { postId } = match.params;
       const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';

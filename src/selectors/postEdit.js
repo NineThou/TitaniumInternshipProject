@@ -7,10 +7,10 @@ const getPostInitialValues = createSelector(
   firstPost => (
     firstPost
       ?
-      firstPost.posts[1] 
+      firstPost.posts[1]
       :
       undefined
-  )
-)
+  ),
+);
 
 export default getPostInitialValues;

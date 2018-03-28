@@ -17,6 +17,7 @@ import Menu from '../components/Menu';
 import Header from '../components/header/Header';
 import Footer from '../components/Footer';
 import PostEdit from '../components/posts/PostEdit';
+import EventEdit from '../components/events/EventEdit';
 
 // authentication
 import { requireAuth } from '../utils/AuthService';
@@ -30,8 +31,9 @@ const router = (
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/events" component={Events} />
-        <Route path="/eventInfo/:eventId" component={EventInfo} />
+        <Route exact path="/events" component={Events} />
+        <Route exact path="/eventInfo/:eventId" component={EventInfo} />
+        <Route path="/events/edit/:eventId" component={EventEdit} />
         <Route exact path="/posts/:postId" component={PostInfo} />
         <Route path="/posts/edit/:postId" component={PostEdit} />
         <Route exact path="/posts" component={Posts} />

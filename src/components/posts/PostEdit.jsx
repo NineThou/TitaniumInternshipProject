@@ -42,7 +42,7 @@ export default compose(
   }),
   reduxForm({
     onSubmit: (values, dispatch, { match }) => {
-      const { postId } = match.params
+      const { postId } = match.params;
       const data = {
         ...values, id: postId,
       };

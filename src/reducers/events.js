@@ -32,7 +32,26 @@ const eventsInfo = (state = { events: {}, loading: false, error: false }, action
         loading: false,
         error: false,
       };
-    case 'API_SET_POSTS_ERROR':
+    case 'API_SET_EVENTS_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
+    case 'API_EDIT_EVENT_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case 'API_EDIT_EVENT_SUCCESS':
+      return {
+        ...state,
+        events: action.payload,
+        loading: false,
+        error: false,
+      };
+    case 'API_EDIT_EVENT_ERROR':
       return {
         ...state,
         loading: false,
