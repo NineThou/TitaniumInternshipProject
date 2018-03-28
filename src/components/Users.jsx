@@ -13,6 +13,10 @@ import 'react-table/react-table.css';
 // action creators
 import { getUsersRequest } from '../actions/users-api';
 
+const Wrapper = styled('div')`
+    min-height: calc(100vh - 190px);
+`;
+
 const columns = [
   {
     id: 'userName',
@@ -58,26 +62,28 @@ const TableWrap = styled('div')`
 `;
 
 const Users = ({ usersInfo, loading }) => (
-  <TableWrap>
-    <ReactTable
-      data={usersInfo}
-      columns={columns}
-      defaultPageSize={19}
-      showPageSizeOptions={false}
-      className="-striped -highlight"
-      SubComponent={({ original }) => (
-        <div style={{ padding: '10px' }}>
-          {
-            Object.keys(original)
-              .filter(key => key === 'role' || key === 'status')
-              .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
-          }
-        </div>
-      )}
-      filterable
-      loading={loading}
-    />
-  </TableWrap>
+  <Wrapper>
+    <TableWrap>
+      <ReactTable
+        data={Array.from(usersInfo)}
+        columns={columns}
+        defaultPageSize={19}
+        showPageSizeOptions={false}
+        className="-striped -highlight"
+        SubComponent={({ original }) => (
+          <div style={{ padding: '10px' }}>
+            {
+              Object.keys(original)
+                .filter(key => key === 'role' || key === 'status')
+                .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
+            }
+          </div>
+        )}
+        filterable
+        loading={loading}
+      />
+    </TableWrap>
+  </Wrapper>
 );
 
 

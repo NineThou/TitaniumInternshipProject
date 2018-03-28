@@ -90,3 +90,19 @@ function* removeLikePost({ postKey, likeKey }) {
 export function* removeLikeFromPost() {
   yield takeLatest('API_REMOVE_LIKE_POST_REQUEST', removeLikePost);
 }
+
+// fix zero likes
+function* fixLikes({ postKey }) {
+  try {
+    yield call(reduxSagaFirebase.database.update, `/node/posts/${postKey}/likes`, {});
+    yield put(postsApiActions.fixZeroLikeSuccess());
+    const posts = yield call(getPostsData);
+    yield put(postsApiActions.getPostsSuccess(posts));
+  } catch (error) {
+    yield put(postsApiActions.fixZeroLikeError(error));
+  }
+}
+
+export function* fixZeroLikes() {
+  yield takeLatest('ZERO_LIKE_REQUEST', fixLikes);
+}
