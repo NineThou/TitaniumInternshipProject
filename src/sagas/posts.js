@@ -90,3 +90,18 @@ function* removeLikePost({ postKey, likeKey }) {
 export function* removeLikeFromPost() {
   yield takeLatest('API_REMOVE_LIKE_POST_REQUEST', removeLikePost);
 }
+
+function* editPost({ postKey, data }) {
+  try {
+    yield call(reduxSagaFirebase.database.patch, `/node/posts/${postKey}`, data);
+    yield put(postsApiActions.editPostSuccess());
+    const posts = yield call(getPostsData);
+    yield put(postsApiActions.getPostsSuccess(posts));
+  } catch (error) {
+    yield put(postsApiActions.editPostError(error));
+  }
+}
+
+export function* editPostData() {
+  yield takeLatest('API_EDIT_POST_REQUEST', editPost);
+}

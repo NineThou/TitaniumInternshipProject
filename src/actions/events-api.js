@@ -41,3 +41,19 @@ export const deleteEventError = error => ({
   type: 'API_DELETE_EVENT_ERROR',
   error,
 });
+
+export const editEventRequest = (eventKey, data) => ({
+  type: 'API_EDIT_EVENT_REQUEST',
+  eventKey,
+  data,
+});
+
+export const editEventSuccess = payload => ({
+  type: 'API_EDIT_EVENT_SUCCESS',
+  payload,
+});
+
+export const editEventError = error => ({
+  type: 'API_EDIT_EVENT_ERROR',
+  error,
+});

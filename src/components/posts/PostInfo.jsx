@@ -8,6 +8,7 @@ import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import decode from 'jwt-decode';
+import { Link } from 'react-router-dom';
 
 // colors
 import { grey } from '../../styles/colors';
@@ -95,6 +96,11 @@ const PostInfo = ({
               }}
             />
           </Btn>
+          <Link to={`/posts/edit/${match.params.postId}`}>
+            <Button floated="left">
+              Edit
+            </Button>
+          </Link>
         </Message>
       </InfoWrap>
     </Wrapper>
@@ -103,7 +109,6 @@ const PostInfo = ({
 
 PostInfo.propTypes = {
   button: PropTypes.bool.isRequired,
-  likesState: PropTypes.number.isRequired,
   handleLikes: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -135,7 +140,9 @@ export default compose(
   withState('button', 'isLiked', false),
   withHandlers({
     // TODO fix likes
-    handleLikes: ({ match, addLikeToPost, postsInfo, removeLikeFromPost }) => (e) => {
+    handleLikes: ({
+      match, addLikeToPost, postsInfo, removeLikeFromPost,
+    }) => (e) => {
       e.preventDefault(e);
       const { postId } = match.params;
       const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';

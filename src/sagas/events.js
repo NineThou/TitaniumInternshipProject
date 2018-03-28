@@ -49,3 +49,19 @@ function* deleteEvent({ eventKey }) {
 export function* removeEvent() {
   yield takeLatest('API_DELETE_EVENT_REQUEST', deleteEvent);
 }
+
+function* editEvent({ eventKey, data }) {
+  try {
+    yield call(reduxSagaFirebase.database.patch, `/node/events/${eventKey}`, data);
+    yield put(eventsApiAction.editEventSuccess());
+    const events = yield call(getEventsData);
+    yield put(eventsApiAction.getEventsSuccess(events));
+  } catch (error) {
+    yield put(eventsApiAction.editEventError(error));
+  }
+}
+
+export function* editEventData() {
+  yield takeLatest('API_EDIT_EVENT_REQUEST', editEvent);
+}
+

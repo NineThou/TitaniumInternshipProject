@@ -1,9 +1,10 @@
 // modules
 import React from 'react';
-import { List } from 'semantic-ui-react';
+import { List, Button } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
@@ -92,6 +93,11 @@ const EventInfo = ({ match, eventsInfo }) => {
               .filter(tag => tag !== '')
               .map(tag => <a key={tag}><List.Content>#{tag}</List.Content></a>)} {/*eslint-disable-line*/}
           </List>
+          <Link to={`/events/edit/${match.params.eventId}`}>
+            <Button floated="left">
+              Edit
+            </Button>
+          </Link>
         </ContentWrap>
       </InfoWrap>
     </Wrapper>

@@ -77,3 +77,19 @@ export const removeLikeError = error => ({
   type: 'API_REMOVE_LIKE_POST_ERROR',
   error,
 });
+
+export const editPostRequest = (postKey, data) => ({
+  type: 'API_EDIT_POST_REQUEST',
+  postKey,
+  data,
+});
+
+export const editPostSuccess = payload => ({
+  type: 'API_EDIT_POST_SUCCESS',
+  payload,
+});
+
+export const editPostError = error => ({
+  type: 'API_EDIT_POST_ERROR',
+  error,
+});
