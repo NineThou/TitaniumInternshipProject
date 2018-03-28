@@ -1,3 +1,4 @@
+// initial load
 export const getPostsRequest = () => ({
   type: 'API_GET_POSTS_REQUEST',
 });
@@ -12,6 +13,7 @@ export const getPostsError = error => ({
   error,
 });
 
+// set new post
 export const setPostsRequest = data => ({
   type: 'API_SET_POSTS_REQUEST',
   data,
@@ -27,3 +29,67 @@ export const setPostsError = error => ({
   error,
 });
 
+// post deletion
+export const deletePostRequest = postKey => ({
+  type: 'API_DELETE_POST_REQUEST',
+  postKey,
+});
+
+export const deletePostSuccess = payload => ({
+  type: 'API_DELETE_POST_SUCCESS',
+  payload,
+});
+
+export const deletePostError = error => ({
+  type: 'API_DELETE_POST_ERROR',
+  error,
+});
+
+// like for posts
+export const addLikeRequest = (postKey, user) => ({
+  type: 'API_LIKE_POST_REQUEST',
+  postKey,
+  user,
+});
+
+export const addLikeSuccess = payload => ({
+  type: 'API_LIKE_POST_SUCCESS',
+  payload,
+});
+
+export const addLikeError = error => ({
+  type: 'API_LIKE_POST_ERROR',
+  error,
+});
+
+export const removeLikeRequest = (postKey, likeKey) => ({
+  type: 'API_REMOVE_LIKE_POST_REQUEST',
+  postKey,
+  likeKey,
+});
+
+export const removeLikeSuccess = payload => ({
+  type: 'API_REMOVE_LIKE_POST_SUCCESS',
+  payload,
+});
+
+export const removeLikeError = error => ({
+  type: 'API_REMOVE_LIKE_POST_ERROR',
+  error,
+});
+
+export const editPostRequest = (postKey, data) => ({
+  type: 'API_EDIT_POST_REQUEST',
+  postKey,
+  data,
+});
+
+export const editPostSuccess = payload => ({
+  type: 'API_EDIT_POST_SUCCESS',
+  payload,
+});
+
+export const editPostError = error => ({
+  type: 'API_EDIT_POST_ERROR',
+  error,
+});

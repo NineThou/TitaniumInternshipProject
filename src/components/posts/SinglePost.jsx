@@ -5,8 +5,16 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { compose, withHandlers } from 'recompose';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 // colors
 import { grey } from '../../styles/colors';
+
+// utils
+import { isLoggedIn } from '../../utils/AuthService';
+import { deletePostRequest } from '../../actions/posts-api';
 
 const PostWrap = styled('div')`
   display: flex;
@@ -43,7 +51,7 @@ const ImageDiv = styled('div')`
   margin-right: 30px;
   @media(max-width: 800px){
     margin-right: 0;
-    min-width: 270px;
+    min-width: 230px;
   }
 `;
 
@@ -57,18 +65,7 @@ const date = css`
   font-style: italic;
 `;
 
-const Delete = styled('button')`
-  position: absolute;
-  bottom: 100px;
-  left: 150px;
-  width: 20px;
-  height: 20px;
-  padding-bottom: 5px;
-  padding-right: 15px;
-  border-radius: 100%;
-`;
-
-const SinglePost = ({ details, id }) => (
+const SinglePost = ({ details, id, deletePost }) => (
   <PostWrap className={colors}>
     <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
     <ContentWrap>
@@ -84,7 +81,10 @@ const SinglePost = ({ details, id }) => (
             </Button>
           </List.Content>
         </Link>
-        <Delete>X</Delete>
+        {isLoggedIn() ?
+          <Button onClick={deletePost} basic inverted color="red">
+            <FormattedMessage id="posts.delete" />
+          </Button> : null}
       </Item.Content>
     </ContentWrap>
   </PostWrap>
@@ -95,6 +95,22 @@ SinglePost.propTypes = {
     title: PropTypes.string,
     body: PropTypes.string,
   }).isRequired,
+  id: PropTypes.string.isRequired,
+  deletePost: PropTypes.func.isRequired,
 };
 
-export default SinglePost;
+const mapDispatchToProps = dispatch => ({
+  deletePostData: bindActionCreators(deletePostRequest, dispatch),
+});
+
+export default compose(
+  connect(null, mapDispatchToProps),
+  withHandlers({
+    deletePost: ({ id, deletePostData }) => (e) => {
+      e.preventDefault(e);
+      if (confirm('You sure u want to delete?')) { // eslint-disable-line
+        deletePostData(id);
+      }
+    },
+  }),
+)(SinglePost);

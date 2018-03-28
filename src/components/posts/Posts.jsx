@@ -1,5 +1,6 @@
 // modules
 import React from 'react';
+import { css } from 'react-emotion';
 import { Container, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,8 +17,12 @@ import PostForm from './PostForm';
 // utils
 import { isLoggedIn } from '../../utils/AuthService';
 
+const wrapper = css`
+  padding: 70px 0;
+`;
+
 const Posts = ({ postsInfo }) => (
-  <Container>
+  <Container className={wrapper}>
     <List>
       {
         Object
@@ -44,7 +49,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Posts.propTypes = {
-  postsInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  postsInfo: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number,
+    likes: PropTypes.number,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    image: PropTypes.string,
+  })).isRequired,
 };
 
 export default compose(

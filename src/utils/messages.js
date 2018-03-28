@@ -2,12 +2,15 @@ export default {
   'en-US': {
     events: {
       readmore: 'Read More',
+      delete: 'Delete',
     },
     posts: {
       delete: 'Delete',
       readmore: 'How to cook',
     },
     sidebar: {
+      in: 'Sign In',
+      out: 'Sign Out',
       login: 'Login',
       signup: 'Sign Up',
       users: 'Users',
@@ -42,12 +45,15 @@ export default {
   'ru-RU': {
     events: {
       readmore: 'Читать',
+      delete: 'Удалить',
     },
     posts: {
       delete: 'Удалить',
       readmore: 'Как готовить',
     },
     sidebar: {
+      in: 'Войти',
+      out: 'Выйти',
       login: 'Логин',
       signup: 'Регистрация',
       users: 'Пользователи',
