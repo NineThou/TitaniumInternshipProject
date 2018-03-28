@@ -45,32 +45,29 @@ const ImageDiv = styled('div')`
   background-size: cover;
 `;
 
-const EventsItem = ({ details, id, deleteEvent }) => {
-  const { title, body, tags, image } = details;
-  return (
-    <EventWrap>
-      <ImageDiv style={{ backgroundImage: `url(${details && image})` }} />
-      <List.Item className={listpadding}>
-        <List.Content>{title}</List.Content>
-        <List.Content>{body}</List.Content>
-        <List>
-          {tags.map(tag => <Anchor href="#" key={tag}><List.Content>#{tag}</List.Content></Anchor>)}
-        </List>
-        <Link to={`/eventInfo/${id}`}>
-          <List.Content>
-            <Button floated="left">
-              <FormattedMessage id="events.readmore" />
-            </Button>
-          </List.Content>
-        </Link>
-        {isLoggedIn() ?
-          <Button onClick={deleteEvent} basic inverted color="red">
-            <FormattedMessage id="events.delete" />
-          </Button> : null}
-      </List.Item>
-    </EventWrap>
-  );
-}
+const EventsItem = ({ details, id, deleteEvent }) => (
+  <EventWrap>
+    <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
+    <List.Item className={listpadding}>
+      <List.Content>{details.title}</List.Content>
+      <List.Content>{details.body}</List.Content>
+      <List>
+        {details.tags.map(tag => <Anchor href="#" key={tag}><List.Content>#{tag}</List.Content></Anchor>)}
+      </List>
+      <Link to={`/eventInfo/${id}`}>
+        <List.Content>
+          <Button floated="left">
+            <FormattedMessage id="events.readmore" />
+          </Button>
+        </List.Content>
+      </Link>
+      {isLoggedIn() ?
+        <Button onClick={deleteEvent} basic inverted color="red">
+          <FormattedMessage id="events.delete" />
+        </Button> : null}
+    </List.Item>
+  </EventWrap>
+);
 
 EventsItem.propTypes = {
   details: PropTypes.shape({

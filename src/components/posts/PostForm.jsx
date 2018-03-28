@@ -37,7 +37,7 @@ export default reduxForm({
     const month = date.toLocaleDateString('en-US');
     const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
     const data = {
-      ...values, id, likes: 0, user: user.nickname, date: `${time} ${month}`,
+      ...values, id, likes: { blankLike: 'blankLike' }, user: user.nickname, date: `${time} ${month}`,
     };
     dispatch(setPostsRequest(data));
     /* eslint-disable no-param-reassign */

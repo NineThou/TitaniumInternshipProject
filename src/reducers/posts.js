@@ -59,6 +59,44 @@ const postsInfo = (state = { posts: {}, loading: false, error: false }, action) 
         loading: false,
         error: true,
       };
+    // add like
+    case 'API_LIKE_POST_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case 'API_LIKE_POST_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        error: false,
+      };
+    case 'API_LIKE_POST_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
+    // remove like
+    case 'API_REMOVE_LIKE_POST_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case 'API_REMOVE_LIKE_POST_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        error: false,
+      };
+    case 'API_REMOVE_LIKE_POST_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
     default:
       return state;
   }

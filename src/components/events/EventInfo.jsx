@@ -72,7 +72,8 @@ const ImageDiv = styled('div')`
 `;
 
 const EventInfo = ({ match, eventsInfo }) => {
-  const data = eventsInfo[match.params.eventId - 1];
+  const data = eventsInfo[match.params.eventId];
+  console.log(match.params.eventId);
   return (
     <Wrapper>
       <InfoWrap>
