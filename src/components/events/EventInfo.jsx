@@ -73,7 +73,6 @@ const ImageDiv = styled('div')`
 
 const EventInfo = ({ match, eventsInfo }) => {
   const data = eventsInfo[match.params.eventId];
-  console.log(match.params.eventId);
   return (
     <Wrapper>
       <InfoWrap>
@@ -110,12 +109,14 @@ EventInfo.propTypes = {
       eventId: PropTypes.string,
     }),
   }).isRequired,
-  eventsInfo: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
+  eventsInfo: PropTypes.shape({
     body: PropTypes.string,
+    id: PropTypes.number,
+    image: PropTypes.string,
     more: PropTypes.string,
     tags: PropTypes.arrayOf(PropTypes.string),
-  })).isRequired,
+    title: PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

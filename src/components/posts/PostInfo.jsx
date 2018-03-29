@@ -65,7 +65,7 @@ const ImageDiv = styled('div')`
 `;
 
 const PostInfo = ({
-  postsInfo, match, button, handleLikes, loading
+  postsInfo, match, handleLikes, loading,
 }) => {
   const data = postsInfo[match.params.postId];
   const userInfo = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
@@ -108,20 +108,23 @@ const PostInfo = ({
 };
 
 PostInfo.propTypes = {
-  button: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   handleLikes: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       postId: PropTypes.string,
     }),
   }).isRequired,
-  postsInfo: PropTypes.objectOf(PropTypes.shape({
+  postsInfo: PropTypes.shape({
+    date: PropTypes.string,
     id: PropTypes.number,
-    likes: PropTypes.number,
-    title: PropTypes.string,
-    text: PropTypes.string,
     image: PropTypes.string,
-  })).isRequired,
+    likes: PropTypes.object,
+    more: PropTypes.string,
+    text: PropTypes.string,
+    title: PropTypes.string,
+    user: PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

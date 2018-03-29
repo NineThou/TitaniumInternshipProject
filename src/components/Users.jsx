@@ -14,6 +14,7 @@ import 'react-table/react-table.css';
 import { getUsersRequest } from '../actions/users-api';
 
 const Wrapper = styled('div')`
+    padding-top: 80px;
     min-height: calc(100vh - 190px);
 `;
 
@@ -63,6 +64,7 @@ const TableWrap = styled('div')`
 
 const Users = ({ usersInfo, loading }) => (
   <Wrapper>
+    {console.log(usersInfo)}
     <TableWrap>
       <ReactTable
         data={Array.from(usersInfo)}
@@ -96,8 +98,12 @@ const mapDispatchToProps = dispatch => ({
   getUsersData: bindActionCreators(getUsersRequest, dispatch),
 });
 
+
 Users.propTypes = {
-  usersInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  usersInfo: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]).isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
