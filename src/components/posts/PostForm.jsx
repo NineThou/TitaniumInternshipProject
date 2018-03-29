@@ -2,29 +2,77 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import decode from 'jwt-decode';
+import styled, { css } from 'react-emotion';
 import { setPostsRequest } from '../../actions/posts-api';
 import RenderField from '../../utils/RenderField';
 import RenderTextArea from '../../utils/RenderTextArea';
 import { required, minLength15, minLength4 } from '../../utils/validation';
 
+// colors
+import { blue, lightBlue } from '../../styles/colors';
 
-const PostForm = ({ handleSubmit }) => (
-  <form onSubmit={handleSubmit}>
-    <div>
-      <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
-    </div>
-    <div>
-      <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[required, minLength15]} />
-    </div>
-    <div>
-      <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[required, minLength15]} />
-    </div>
-    <div>
-      <Field name="image" component={RenderField} type="text" label="Image" validate={required} />
-    </div>
-    <button type="submit">Submit</button>
-  </form>
-);
+const NiceForm = styled('div')`
+  width: 500px;
+  padding: 30px;
+  padding-top: 0px;
+  background: #FFFFFF;
+  margin: 50px auto;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+`;
+
+const Title = styled('h2')`
+  background: #4D4D4D;
+  text-transform: uppercase;
+  color: #797979;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 20px;
+  margin: -30px -30px 30px -30px;
+`;
+
+
+const Submit = styled('button')`
+    background-color: ${blue};
+    border: 1px solid ${blue};
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: .4s;
+    margin-top: 10px;
+    :hover {
+      background-color:${lightBlue};
+    }
+`;
+
+
+const PostForm = ({ handleSubmit }) => {
+  return (
+    <NiceForm>
+      <Title>Add new recipe!</Title>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
+        </div>
+        <div>
+          <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[required, minLength15]} />
+        </div>
+        <div>
+          <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[required, minLength15]} />
+        </div>
+        <div>
+          <Field name="image" component={RenderField} type="text" label="Paste image src here" validate={required} />
+        </div>
+        <Submit type="submit">Submit</Submit>
+      </form>
+    </NiceForm>
+  );
+};
 
 PostForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
