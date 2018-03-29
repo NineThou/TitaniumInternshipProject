@@ -3,6 +3,7 @@ import React from 'react';
 import { Message, Button } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
@@ -15,7 +16,6 @@ import { grey } from '../../styles/colors';
 
 // actions
 import { getPostsRequest, addLikeRequest, removeLikeRequest } from '../../actions/posts-api';
-import { FormattedMessage } from 'react-intl';
 
 // helper
 import { getKeyByValue } from '../../utils/helperFunctions';
