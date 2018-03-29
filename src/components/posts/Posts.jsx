@@ -30,7 +30,7 @@ const Posts = ({ postsInfo }) => (
         .keys(postsInfo)
         .map(post => (
           <SinglePost
-            key={postsInfo[post].id}
+            key={post}
             details={postsInfo[post]}
             id={post}
           />))
