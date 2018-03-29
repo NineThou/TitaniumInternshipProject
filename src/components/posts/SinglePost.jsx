@@ -18,7 +18,6 @@ import { deletePostRequest } from '../../actions/posts-api';
 
 const PostWrap = styled('div')`
   display: flex;
-  color: white;
   background-color: ${grey};
   margin: 30px !important;
   height: 100%;

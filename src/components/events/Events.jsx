@@ -38,7 +38,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Events.propTypes = {
-  eventsInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  eventsInfo: PropTypes.shape({
+    body: PropTypes.string,
+    id: PropTypes.number,
+    image: PropTypes.string,
+    more: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string,
+  }).isRequired,
 };
 
 export default compose(

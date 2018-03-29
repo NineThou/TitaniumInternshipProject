@@ -1,6 +1,6 @@
 // modules
 import React from 'react';
-import { Item, List, Button } from 'semantic-ui-react';
+import { List, Button } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -76,6 +76,7 @@ EventsItem.propTypes = {
     tags: PropTypes.array,
   }).isRequired,
   deleteEvent: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
