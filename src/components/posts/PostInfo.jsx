@@ -4,7 +4,7 @@ import { Message, Button } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { compose, withState, withHandlers, lifecycle } from 'recompose';
+import { compose, withHandlers, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import decode from 'jwt-decode';
@@ -60,6 +60,10 @@ const Btn = styled('span')`
   top: 5px !important;
 `;
 
+const Edit = css`
+  margin-top: 5px !important;
+`;
+
 const ImageDiv = styled('div')`
   height: 400px;
   background-size: cover;
@@ -97,11 +101,13 @@ const PostInfo = ({
               }}
             />
           </Btn>
-          <Link to={`/posts/edit/${match.params.postId}`}>
-            <Button floated="left">
-              <FormattedMessage id="posts.edit" />
-            </Button>
-          </Link>
+          <Btn>
+            <Link to={`/posts/edit/${match.params.postId}`}>
+              <Button className={Edit} floated="left">
+                <FormattedMessage id="posts.edit" />
+              </Button>
+            </Link>
+          </Btn>
         </Message>
       </InfoWrap>
     </Wrapper>
@@ -141,9 +147,7 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withRouter,
-  withState('button', 'isLiked', false),
   withHandlers({
-    // TODO fix likes
     handleLikes: ({
       match, addLikeToPost, postsInfo, removeLikeFromPost,
     }) => (e) => {

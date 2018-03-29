@@ -41,7 +41,6 @@ const RenderTextArea = ({
 }) => (
   <div>
     <label htmlFor="title">
-      {label}
       <TextareaAutosize className={Textarea} rows={2} {...input} placeholder={label} type={type} />
       {touched && ((error && <Error>{error}</Error>))}
     </label>

@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // colors
-import { grey, translucent, blue } from '../../styles/colors';
+import { grey, translucent } from '../../styles/colors';
 
 // authentication check
 import { isLoggedIn } from '../../utils/AuthService';
@@ -57,8 +57,8 @@ const tags = css`
   max-width: 80px;
   text-align: center;
   border-radius: 5px;
-  border: 2px solid ${blue};
-  color: ${blue} !important;
+  border: 2px solid #5D5D5D;
+  color: black !important;
 `;
 
 const EventsItem = ({ details, id, deleteEvent }) => (

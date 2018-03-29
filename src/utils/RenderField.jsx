@@ -38,7 +38,6 @@ const RenderField = ({
 }) => (
   <div>
     <label htmlFor="title">
-      {label}
       <InputText {...input} placeholder={label} type={type} />
       {touched && ((error && <Error>{error}</Error>))}
     </label>
