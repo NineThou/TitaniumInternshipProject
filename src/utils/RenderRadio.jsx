@@ -10,29 +10,41 @@ const RadioDish = css`
 `;
 
 
-const RenderRadio = ({ input }) => {
-  function handleChange(e, { value }) {
-    return input.onChange(value);
+class RenderRadio extends React.Component {
+  state = {
+    value: '',
+  };
+  handleChange = (e, { value }) => {
+    this.setState({ value });
+    console.log(this.state)
+    console.log(value, this.props.input);
+    return this.props.input.onChange(this.props.input.value);
   }
-  return (
-    <div>
-      <Radio
-        className={RadioDish}
-        label="Cold dish"
-        value="cold"
-        name="dishtype"
-        onChange={handleChange}
-      />
-      <Radio
-        className={RadioDish}
-        label="Hot dish"
-        name="dishtype"
-        value="hot"
-        onChange={handleChange}
-      />
-    </div>
-  );
-};
+  render() {
+    return (
+      <div>
+        <Radio
+          {...this.props.input}
+          className={RadioDish}
+          label="Cold dish"
+          value="cold"
+          name="dishtype"
+          checked={this.state.value === 'cold'}
+          onChange={this.handleChange}
+        />
+        <Radio
+          {...this.props.input}
+          className={RadioDish}
+          label="Hot dish"
+          name="dishtype"
+          value="hot"
+          checked={this.state.value === 'hot'}
+          onChange={this.handleChange}
+        />
+      </div>
+    );
+  }
+}
 
 RenderRadio.propTypes = {
   input: PropTypes.objectOf(PropTypes.any).isRequired,

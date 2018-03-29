@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import decode from 'jwt-decode';
 import styled from 'react-emotion';
+import { setPostsRequest } from '../../actions/posts-api';
 import RenderField from '../../utils/RenderField';
 import RenderTextArea from '../../utils/RenderTextArea';
 import RenderRadio from '../../utils/RenderRadio';
@@ -56,18 +57,45 @@ const PostForm = ({ handleSubmit }) => (
     <Title>Add new recipe!</Title>
     <form onSubmit={handleSubmit}>
       <div>
-        <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
+        <Field
+          name="title"
+          component={RenderField} 
+          type="text"
+          label="Title"
+          validate={[required, minLength4]}
+        />
       </div>
       <div>
-        <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[required, minLength15]} />
+        <Field
+          name="text"
+          component={RenderTextArea}
+          type="textarea"
+          label="Description"
+          validate={[required, minLength15]}
+        />
       </div>
       <div>
-        <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[required, minLength15]} />
+        <Field
+          name="more"
+          component={RenderTextArea}
+          type="textarea"
+          label="How to cook"
+          validate={[required, minLength15]}
+        />
       </div>
       <div>
-        <Field name="image" component={RenderField} type="text" label="Paste image src here" validate={required} />
+        <Field
+          name="image"
+          component={RenderField}
+          type="text"
+          label="Paste image src here"
+          validate={required}
+        />
       </div>
-      <Field name="dishtype" component={RenderRadio} type="radio" validate={required} />
+      <Field
+        name="dishtype"
+        component={RenderRadio}
+      />
       <Submit type="submit">Submit</Submit>
     </form>
   </NiceForm>
@@ -86,8 +114,8 @@ export default reduxForm({
     const data = {
       ...values, id, likes: { blankLike: 'blankLike' }, user: user.nickname, date: `${time} ${month}`,
     };
-    // dispatch(setPostsRequest(data));
     console.log(data);
+    // dispatch(setPostsRequest(data));
     /* eslint-disable no-param-reassign */
     Object.keys(values).map(item => delete values[item]);
     /* eslint-enable no-param-reassign */
