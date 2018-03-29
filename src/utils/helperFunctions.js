@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 export default function makeid() {
   let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

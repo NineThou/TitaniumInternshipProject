@@ -8,28 +8,26 @@ import RenderTextArea from '../../utils/RenderTextArea';
 import { required, minLength15, minLength4, splitWithCommas } from '../../utils/validation';
 
 
-const EventForm = ({ handleSubmit }) => {
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
-      </div>
-      <div>
-        <Field name="body" component={RenderTextArea} type="textarea" label="Body" validate={[required, minLength15]} />
-      </div>
-      <div>
-        <Field name="more" component={RenderTextArea} type="textarea" label="Text" validate={[required, minLength15]} />
-      </div>
-      <div>
-        <Field name="tags" component={RenderField} type="text" label="Tags" validate={[required, splitWithCommas]} />
-      </div>
-      <div>
-        <Field name="image" component={RenderField} type="text" label="Image" validate={required} />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
+const EventForm = ({ handleSubmit }) => (
+  <form onSubmit={handleSubmit}>
+    <div>
+      <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
+    </div>
+    <div>
+      <Field name="body" component={RenderTextArea} type="textarea" label="Body" validate={[required, minLength15]} />
+    </div>
+    <div>
+      <Field name="more" component={RenderTextArea} type="textarea" label="Text" validate={[required, minLength15]} />
+    </div>
+    <div>
+      <Field name="tags" component={RenderField} type="text" label="Tags" validate={[required, splitWithCommas]} />
+    </div>
+    <div>
+      <Field name="image" component={RenderField} type="text" label="Image" validate={required} />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+);
 
 
 EventForm.propTypes = {

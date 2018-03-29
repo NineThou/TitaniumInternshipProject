@@ -3,6 +3,7 @@ import React from 'react';
 import { List, Button } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -14,7 +15,6 @@ import { grey } from '../../styles/colors';
 
 // action
 import { getEventsRequest } from '../../actions/events-api';
-import { FormattedMessage } from 'react-intl';
 
 
 const Wrapper = styled('div')`

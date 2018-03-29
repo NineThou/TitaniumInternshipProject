@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createSelector } from 'reselect';
 
 const firstPost = state => state.postInfo;
