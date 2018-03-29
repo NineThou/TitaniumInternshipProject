@@ -10,8 +10,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // colors
-import { grey } from '../../styles/colors';
+import { grey, translucent, blue } from '../../styles/colors';
+
+// authentication check
 import { isLoggedIn } from '../../utils/AuthService';
+
+// action
 import { deleteEventRequest } from '../../actions/events-api';
 
 
@@ -26,23 +30,35 @@ const EventWrap = styled('div')`
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
 `;
 
+const Buttons = styled('div')`
+  position: relative;
+  top: 20px;
+`;
+
 const Anchor = styled('a')`
-  color: grey;
+  color: black;
   :hover {
     color: black;
   }
 `;
 
-
 const listpadding = css`
-  padding-top: 10px !important;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
+  padding: 15px 25px 15px 25px;
 `;
 
 const ImageDiv = styled('div')`
   height: 200px;
   background-size: cover;
+`;
+
+const tags = css`
+  background-color: ${translucent};
+  margin: 5px;
+  max-width: 80px;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid ${blue};
+  color: ${blue} !important;
 `;
 
 const EventsItem = ({ details, id, deleteEvent }) => (
@@ -52,19 +68,21 @@ const EventsItem = ({ details, id, deleteEvent }) => (
       <List.Content>{details.title}</List.Content>
       <List.Content>{details.body}</List.Content>
       <List>
-        {details.tags.map(tag => <Anchor href="#" key={tag}><List.Content>#{tag}</List.Content></Anchor>)}
+        {details.tags.map(tag => <Anchor href="#" key={tag}><List.Content className={tags}>#{tag}</List.Content></Anchor>)}
       </List>
-      <Link to={`/eventInfo/${id}`}>
-        <List.Content>
-          <Button floated="left">
-            <FormattedMessage id="events.readmore" />
-          </Button>
-        </List.Content>
-      </Link>
-      {isLoggedIn() ?
-        <Button onClick={deleteEvent} basic inverted color="red">
-          <FormattedMessage id="events.delete" />
-        </Button> : null}
+      <Buttons>
+        <Link to={`/eventInfo/${id}`}>
+          <List.Content>
+            <Button floated="left">
+              <FormattedMessage id="events.readmore" />
+            </Button>
+          </List.Content>
+        </Link>
+        {isLoggedIn() ?
+          <Button onClick={deleteEvent} basic inverted color="red">
+            <FormattedMessage id="events.delete" />
+          </Button> : null}
+      </Buttons>
     </List.Item>
   </EventWrap>
 );
