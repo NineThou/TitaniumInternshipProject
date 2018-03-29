@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import decode from 'jwt-decode';
-import styled, { css } from 'react-emotion';
-import { setPostsRequest } from '../../actions/posts-api';
+import styled from 'react-emotion';
 import RenderField from '../../utils/RenderField';
 import RenderTextArea from '../../utils/RenderTextArea';
+import RenderRadio from '../../utils/RenderRadio';
 import { required, minLength15, minLength4 } from '../../utils/validation';
 
 // colors
@@ -51,28 +51,27 @@ const Submit = styled('button')`
 `;
 
 
-const PostForm = ({ handleSubmit }) => {
-  return (
-    <NiceForm>
-      <Title>Add new recipe!</Title>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
-        </div>
-        <div>
-          <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[required, minLength15]} />
-        </div>
-        <div>
-          <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[required, minLength15]} />
-        </div>
-        <div>
-          <Field name="image" component={RenderField} type="text" label="Paste image src here" validate={required} />
-        </div>
-        <Submit type="submit">Submit</Submit>
-      </form>
-    </NiceForm>
-  );
-};
+const PostForm = ({ handleSubmit }) => (
+  <NiceForm>
+    <Title>Add new recipe!</Title>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
+      </div>
+      <div>
+        <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[required, minLength15]} />
+      </div>
+      <div>
+        <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[required, minLength15]} />
+      </div>
+      <div>
+        <Field name="image" component={RenderField} type="text" label="Paste image src here" validate={required} />
+      </div>
+      <Field name="dishtype" component={RenderRadio} type="radio" validate={required} />
+      <Submit type="submit">Submit</Submit>
+    </form>
+  </NiceForm>
+);
 
 PostForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
@@ -87,16 +86,17 @@ export default reduxForm({
     const data = {
       ...values, id, likes: { blankLike: 'blankLike' }, user: user.nickname, date: `${time} ${month}`,
     };
-    dispatch(setPostsRequest(data));
+    // dispatch(setPostsRequest(data));
+    console.log(data);
     /* eslint-disable no-param-reassign */
     Object.keys(values).map(item => delete values[item]);
     /* eslint-enable no-param-reassign */
   },
   form: 'PostForm',
-  // initialValues: {
-  //   title: 'njmbhm',
-  //   text: 'bhgnkjhjdasdasdasdasdasd',
-  //   more: 'dsadasdasdasdasdasdasddsa',
-  //   image: 'https://occ-0-2433-1001.1.nflxso.net/art/70ca4/a4f281c8b0db74f8c09cb25c05647a59c2070ca4.jpg',
-  // },
+  initialValues: {
+    title: 'njmbhm',
+    text: 'bhgnkjhjdasdasdasdasdasd',
+    more: 'dsadasdasdasdasdasdasddsa',
+    image: 'https://occ-0-2433-1001.1.nflxso.net/art/70ca4/a4f281c8b0db74f8c09cb25c05647a59c2070ca4.jpg',
+  },
 })(PostForm);
