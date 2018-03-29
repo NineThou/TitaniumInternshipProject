@@ -3,10 +3,12 @@ export default {
     events: {
       readmore: 'Read More',
       delete: 'Delete',
+      edit: 'Edit',
     },
     posts: {
       delete: 'Delete',
       readmore: 'How to cook',
+      edit: 'Edit',
     },
     sidebar: {
       in: 'Sign In',
@@ -46,10 +48,12 @@ export default {
     events: {
       readmore: 'Читать',
       delete: 'Удалить',
+      edit: 'Редактировать',
     },
     posts: {
       delete: 'Удалить',
       readmore: 'Как готовить',
+      edit: 'Редактировать',
     },
     sidebar: {
       in: 'Войти',
