@@ -1,11 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { compose, lifecycle } from 'recompose';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import RenderField from '../../utils/RenderField';
 import RenderTextArea from '../../utils/RenderTextArea';
 import { required, minLength4, minLength15, splitWithCommas } from '../../utils/validation';
-import { editEventRequest, getEventsRequest } from '../../actions/events-api';
+import { editEventRequest } from '../../actions/events-api';
 
 
 const EventEdit = ({ handleSubmit }) => (
@@ -28,6 +27,11 @@ const EventEdit = ({ handleSubmit }) => (
     <button type="submit">Submit</button>
   </form>
 );
+
+EventEdit.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
+
 
 export default reduxForm({
   onSubmit: (values, dispatch, { match }) => {

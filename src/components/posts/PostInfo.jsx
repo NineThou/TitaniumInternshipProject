@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import decode from 'jwt-decode';
 import { Link } from 'react-router-dom';
 
-
 // colors
 import { grey } from '../../styles/colors';
 
@@ -18,11 +17,12 @@ import { grey } from '../../styles/colors';
 import { getPostsRequest, addLikeRequest, removeLikeRequest } from '../../actions/posts-api';
 import { FormattedMessage } from 'react-intl';
 
+// helper
+import { getKeyByValue } from '../../utils/helperFunctions';
+
 const Wrapper = styled('div')`
-    width: 100;
     min-height: calc(100vh - 200px);
 `;
-
 const InfoWrap = styled('div')`
   position: relative;
   top: 100px;
@@ -66,7 +66,7 @@ const ImageDiv = styled('div')`
 `;
 
 const PostInfo = ({
-  postsInfo, match, button, handleLikes,
+  postsInfo, match, handleLikes, loading,
 }) => {
   const data = postsInfo[match.params.postId];
   const userInfo = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
@@ -84,7 +84,7 @@ const PostInfo = ({
           <ImageDiv style={{ backgroundImage: `url(${data && data.image})` }} />
           <Btn>
             <Button
-              disabled={button}
+              disabled={loading}
               onClick={e => handleLikes(e)}
               color="red"
               content={data && !Object.values(data.likes).includes(nickname) ? 'Like' : 'Dislike'}
@@ -93,7 +93,7 @@ const PostInfo = ({
                 basic: true,
                 color: 'red',
                 pointing: 'left',
-                content: data && Object.keys(data.likes).length,
+                content: data && Object.keys(data.likes).length - 1,
               }}
             />
           </Btn>
@@ -109,24 +109,28 @@ const PostInfo = ({
 };
 
 PostInfo.propTypes = {
-  button: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   handleLikes: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       postId: PropTypes.string,
     }),
   }).isRequired,
-  postsInfo: PropTypes.objectOf(PropTypes.shape({
+  postsInfo: PropTypes.shape({
+    date: PropTypes.string,
     id: PropTypes.number,
-    likes: PropTypes.number,
-    title: PropTypes.string,
-    text: PropTypes.string,
     image: PropTypes.string,
-  })).isRequired,
+    likes: PropTypes.object,
+    more: PropTypes.string,
+    text: PropTypes.string,
+    title: PropTypes.string,
+    user: PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
   postsInfo: state.postsInfo && state.postsInfo.posts,
+  loading: state.postsInfo && state.postsInfo.loading,
 });
 const mapDispatchToProps = dispatch => ({
   getPostsData: bindActionCreators(getPostsRequest, dispatch),
@@ -148,12 +152,8 @@ export default compose(
       const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
       const { nickname } = user;
       const { likes } = postsInfo[postId];
-      function getKeyByValue(object, value) {
-        return Object.keys(object).find(key => object[key] === value);
-      }
       const like = getKeyByValue(likes, nickname);
-      // console.log(getKeyByValue(likes, nickname) !== undefined);
-      if (getKeyByValue(likes, nickname) !== undefined) {
+      if (like) {
         removeLikeFromPost(postId, like);
       } else {
         addLikeToPost(postId, nickname);

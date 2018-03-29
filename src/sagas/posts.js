@@ -8,7 +8,7 @@ import * as postsApiActions from '../actions/posts-api';
 import { getPostsData, reduxSagaFirebase } from '../api/api';
 
 // utils
-import makeid from '../utils/makeIdFunc';
+import makeid from '../utils/helperFunctions';
 
 // initial posts load
 function* getPosts() {
@@ -67,7 +67,6 @@ function* addLikePost({ postKey, user }) {
     const posts = yield call(getPostsData);
     yield put(postsApiActions.getPostsSuccess(posts));
   } catch (error) {
-    // console.error(error);
     yield put(postsApiActions.addLikeError(error));
   }
 }
@@ -84,7 +83,6 @@ function* removeLikePost({ postKey, likeKey }) {
     const posts = yield call(getPostsData);
     yield put(postsApiActions.getPostsSuccess(posts));
   } catch (error) {
-    // console.error(error);
     yield put(postsApiActions.removeLikeError(error));
   }
 }

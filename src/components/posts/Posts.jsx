@@ -49,13 +49,16 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Posts.propTypes = {
-  postsInfo: PropTypes.objectOf(PropTypes.shape({
+  postsInfo: PropTypes.shape({
+    date: PropTypes.string,
     id: PropTypes.number,
-    likes: PropTypes.number,
-    title: PropTypes.string,
-    text: PropTypes.string,
     image: PropTypes.string,
-  })).isRequired,
+    likes: PropTypes.object,
+    more: PropTypes.string,
+    text: PropTypes.string,
+    title: PropTypes.string,
+    user: PropTypes.string,
+  }).isRequired,
 };
 
 export default compose(

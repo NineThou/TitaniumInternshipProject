@@ -8,8 +8,7 @@ import RenderTextArea from '../../utils/RenderTextArea';
 import { required, minLength15, minLength4, splitWithCommas } from '../../utils/validation';
 
 
-const EventForm = (props) => {
-  const { handleSubmit } = props;
+const EventForm = ({ handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
