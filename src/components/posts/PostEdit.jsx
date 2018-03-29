@@ -49,12 +49,12 @@ export default compose(
       dispatch(editPostRequest(postId, data));
     },
     form: 'Post Edit',
-    // initialValues:
-    //   {
-    //     title: 'eqewqweqwe',
-    //     text: 'bhgnkjhjdasdasdasdasdasd',
-    //     more: 'eeeeeeeweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-    //     image: 'https://occ-0-2433-1001.1.nflxso.net/art/70ca4/a4f281c8b0db74f8c09cb25c05647a59c2070ca4.jpg',
-    //   },
+    initialValues:
+      {
+        title: 'eqewqweqwe',
+        text: 'bhgnkjhjdasdasdasdasdasd',
+        more: 'eeeeeeeweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+        image: 'https://occ-0-2433-1001.1.nflxso.net/art/70ca4/a4f281c8b0db74f8c09cb25c05647a59c2070ca4.jpg',
+      },
   }),
 )(PostEdit);

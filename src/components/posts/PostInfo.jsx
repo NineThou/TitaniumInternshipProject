@@ -16,6 +16,7 @@ import { grey } from '../../styles/colors';
 
 // actions
 import { getPostsRequest, addLikeRequest, removeLikeRequest } from '../../actions/posts-api';
+import { FormattedMessage } from 'react-intl';
 
 const Wrapper = styled('div')`
     width: 100;
@@ -98,7 +99,7 @@ const PostInfo = ({
           </Btn>
           <Link to={`/posts/edit/${match.params.postId}`}>
             <Button floated="left">
-              Edit
+              <FormattedMessage id="posts.edit" />
             </Button>
           </Link>
         </Message>

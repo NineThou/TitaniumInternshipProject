@@ -14,6 +14,7 @@ import { grey } from '../../styles/colors';
 
 // action
 import { getEventsRequest } from '../../actions/events-api';
+import { FormattedMessage } from 'react-intl';
 
 
 const Wrapper = styled('div')`
@@ -94,7 +95,7 @@ const EventInfo = ({ match, eventsInfo }) => {
           </List>
           <Link to={`/events/edit/${match.params.eventId}`}>
             <Button floated="left">
-              Edit
+              <FormattedMessage id="events.edit" />
             </Button>
           </Link>
         </ContentWrap>
