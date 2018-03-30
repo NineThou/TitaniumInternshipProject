@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import decode from 'jwt-decode';
 import { Link } from 'react-router-dom';
+import { isLoggedIn } from '../../utils/AuthService';
 
 // colors
 import { grey } from '../../styles/colors';
@@ -98,9 +99,10 @@ const PostInfo = ({
             />
           </Btn>
           <Link to={`/posts/edit/${match.params.postId}`}>
-            <Button floated="left">
-              <FormattedMessage id="posts.edit" />
-            </Button>
+            {isLoggedIn() ?
+              <Button floated="left">
+                <FormattedMessage id="posts.edit" />
+              </Button> : null}
           </Link>
         </Message>
       </InfoWrap>

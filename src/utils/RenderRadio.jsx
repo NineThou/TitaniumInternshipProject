@@ -49,7 +49,8 @@ class RenderRadio extends React.Component {
           checked={this.state.value === 'hot'}
           onChange={this.handleChange}
         />
-        {this.props.meta.touched && ((this.props.meta.error && <Error>{this.props.meta.error}</Error>))}
+        {this.props.meta.touched &&
+           ((this.props.meta.error && <Error>{this.props.meta.error}</Error>))}
       </div>
     );
   }
@@ -57,6 +58,17 @@ class RenderRadio extends React.Component {
 
 RenderRadio.propTypes = {
   input: PropTypes.objectOf(PropTypes.any).isRequired,
+  meta: PropTypes.shape({
+    error: PropTypes.string,
+    touched: PropTypes.bool,
+  }),
+};
+
+RenderRadio.defaultProps = {
+  meta: PropTypes.shape({
+    error: '',
+    touched: false,
+  }),
 };
 
 export default RenderRadio;

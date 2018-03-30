@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
+import { isLoggedIn } from '../../utils/AuthService';
 
 // colors
 import { grey } from '../../styles/colors';
@@ -94,9 +95,10 @@ const EventInfo = ({ match, eventsInfo }) => {
               .map(tag => <a key={tag}><List.Content>#{tag}</List.Content></a>)} {/*eslint-disable-line*/}
           </List>
           <Link to={`/events/edit/${match.params.eventId}`}>
-            <Button floated="left">
-              <FormattedMessage id="events.edit" />
-            </Button>
+            {isLoggedIn() ? 
+              <Button floated="left">
+                <FormattedMessage id="events.edit" />
+              </Button> : null}
           </Link>
         </ContentWrap>
       </InfoWrap>

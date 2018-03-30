@@ -115,8 +115,8 @@ export default reduxForm({
     const data = {
       ...values, id, likes: { blankLike: 'blankLike' }, user: user.nickname, date: `${time} ${month}`,
     };
-    console.log(data);
-    // dispatch(setPostsRequest(data));
+    // console.log(data);
+    dispatch(setPostsRequest(data));
     /* eslint-disable no-param-reassign */
     Object.keys(values).map(item => delete values[item]);
     /* eslint-enable no-param-reassign */

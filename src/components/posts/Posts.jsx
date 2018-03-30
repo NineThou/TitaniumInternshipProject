@@ -23,7 +23,8 @@ const wrapper = css`
 
 const Posts = ({ postsInfo }) => (
   <Container className={wrapper}>
-    {isLoggedIn() ? <PostForm id={Object.keys(postsInfo).length + 1} /> : null}
+    {console.log('posts info: ', postsInfo)}
+    {isLoggedIn() ? <PostForm id={Object.keys(postsInfo).length + 1} /> : ''}
     <List>
       {
         Object

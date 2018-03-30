@@ -69,7 +69,7 @@ const SinglePost = ({ details, id, deletePost }) => (
     <ImageDiv style={{ backgroundImage: `url(${details && details.image})` }} />
     <ContentWrap>
       <Item.Content verticalAlign="middle">
-        <Item.Header as="h2">{details.title}</Item.Header>
+        <Item.Header as="h2">{details.title} ({details.dishtype})</Item.Header>
         <Item.Description>{details.text}</Item.Description>
         <Item.Description className={username}>{`Added by: ${details.user}`}</Item.Description>
         <Item.Description className={date}>{details.date}</Item.Description>
