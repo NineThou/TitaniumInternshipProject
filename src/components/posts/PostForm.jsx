@@ -15,7 +15,7 @@ import RenderTextArea from '../../utils/RenderTextArea';
 import RenderRadio from '../../utils/RenderRadio';
 
 // redux form validation
-import { required, minLength15, minLength4 } from '../../utils/validation';
+import { required, minLength15, minLength4, maxLength500 } from '../../utils/validation';
 
 // emotion styles
 import { NiceForm, Title, Submit, formField } from '../../styles/emotionComponents';
@@ -74,7 +74,7 @@ export default compose(
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
           >
-            <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
+            <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4, maxLength500]} />
           </CSSTransitionGroup>
         </div>
         <div>
@@ -85,7 +85,7 @@ export default compose(
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
           >
-            <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[required, minLength15]} />
+            <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[required, minLength15, maxLength500]} />
           </CSSTransitionGroup>
         </div>
         <div>
@@ -96,7 +96,7 @@ export default compose(
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
           >
-            <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[required, minLength15]} />
+            <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[required, minLength15, maxLength500]} />
           </CSSTransitionGroup>
         </div>
         <div>

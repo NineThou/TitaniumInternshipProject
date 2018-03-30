@@ -7,7 +7,7 @@ import styled from 'react-emotion';
 import RenderField from '../../utils/RenderField';
 import RenderTextArea from '../../utils/RenderTextArea';
 import RenderRadio from '../../utils/RenderRadio';
-import { minLength4, minLength15 } from '../../utils/validation';
+import { minLength4, minLength15, maxLength500 } from '../../utils/validation';
 import { editPostRequest, getPostsRequest } from '../../actions/posts-api';
 import getPostInitialValues from '../../selectors/postEdit';
 import { NiceForm, Submit, Title, formField } from '../../styles/emotionComponents';
@@ -23,13 +23,13 @@ const PostEdit = ({ handleSubmit }) => (
       <Title>Edit the post</Title>
       <form className={formField} onSubmit={handleSubmit}>
         <div>
-          <Field name="title" component={RenderField} type="text" label="Title" validate={minLength4} />
+          <Field name="title" component={RenderField} type="text" label="Title" validate={[minLength4, maxLength500]} />
         </div>
         <div>
-          <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={minLength15} />
+          <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[minLength15, maxLength500]} />
         </div>
         <div>
-          <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={minLength15} />
+          <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[minLength15, maxLength500]} />
         </div>
         <div>
           <Field name="image" component={RenderField} type="text" label="Image" />
