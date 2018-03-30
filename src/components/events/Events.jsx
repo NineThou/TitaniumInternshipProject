@@ -18,10 +18,6 @@ const wrapper = css`
   padding: 70px 0;
 `;
 
-const EventsList = styled('div')`
-  margin-top: -250px;
-`;
-
 const AddForm = styled('div')`
   margin-top: -50px;
 `;
@@ -29,12 +25,10 @@ const AddForm = styled('div')`
 const Events = ({ eventsInfo }) => (
   <Container className={wrapper}>
     {isLoggedIn() ? <AddForm><EventForm id={Object.keys(eventsInfo).length + 1} /></AddForm> : null}
-    <EventsList>
-      <List>
-        {Object.keys(eventsInfo)
-          .map(event => <EventsItem id={event} key={event} details={eventsInfo[event]} />)}
-      </List>
-    </EventsList>
+    <List>
+      {Object.keys(eventsInfo)
+        .map(event => <EventsItem id={event} key={event} details={eventsInfo[event]} />)}
+    </List>
   </Container>
 );
 

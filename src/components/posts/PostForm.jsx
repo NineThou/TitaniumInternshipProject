@@ -4,10 +4,18 @@ import { Field, reduxForm } from 'redux-form';
 import decode from 'jwt-decode';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { compose, withState, withHandlers } from 'recompose';
+
+// action
 import { setPostsRequest } from '../../actions/posts-api';
+
+// helper components for redux form Field
 import RenderField from '../../utils/RenderField';
 import RenderTextArea from '../../utils/RenderTextArea';
+
+// redux form validation
 import { required, minLength15, minLength4 } from '../../utils/validation';
+
+// emotion styles
 import { NiceForm, Title, Submit, formField } from '../../styles/emotionComponents';
 
 const PostForm = ({ handleClick, isShown, slideForm }) => {

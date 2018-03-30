@@ -2,7 +2,7 @@ import styled, { css } from 'react-emotion';
 import { blue, lightBlue } from './colors';
 
 export const NiceForm = styled('div')`
-  width: 500px;
+  max-width: 500px;
   padding: 0 30px;
   background: #FFFFFF;
   margin: 50px auto;

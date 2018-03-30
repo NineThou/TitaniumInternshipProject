@@ -17,13 +17,15 @@ import { grey } from '../../styles/colors';
 import { getPostsRequest, addLikeRequest, removeLikeRequest } from '../../actions/posts-api';
 import { FormattedMessage } from 'react-intl';
 
-// helper
+// helpers
 import { getKeyByValue } from '../../utils/helperFunctions';
+import { isLoggedIn } from '../../utils/AuthService';
 
 const Wrapper = styled('div')`
     min-height: calc(100vh - 200px);
 `;
 const InfoWrap = styled('div')`
+  overflow: hidden;
   position: relative;
   top: 100px;
   display: flex;
@@ -53,6 +55,7 @@ const InfoWrap = styled('div')`
 const colors = css`
   color: white !important;
   background-color: ${grey} !important;
+  width: 100%;
 `;
 
 const Btn = styled('span')`
@@ -101,13 +104,16 @@ const PostInfo = ({
               }}
             />
           </Btn>
-          <Btn>
-            <Link to={`/posts/edit/${match.params.postId}`}>
-              <Button className={Edit} floated="left">
-                <FormattedMessage id="posts.edit" />
-              </Button>
-            </Link>
-          </Btn>
+          {
+            isLoggedIn() ?
+              <Btn>
+                <Link to={`/posts/edit/${match.params.postId}`}>
+                  <Button className={Edit} floated="left">
+                    <FormattedMessage id="posts.edit" />
+                  </Button>
+                </Link>
+              </Btn> : null
+          }
         </Message>
       </InfoWrap>
     </Wrapper>
