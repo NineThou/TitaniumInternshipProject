@@ -5,12 +5,11 @@ import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import { compose, withState, withHandlers, lifecycle } from 'recompose';
+import { compose, withHandlers, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import decode from 'jwt-decode';
 import { Link } from 'react-router-dom';
-import { isLoggedIn } from '../../utils/AuthService';
 
 // colors
 import { grey } from '../../styles/colors';
@@ -18,13 +17,15 @@ import { grey } from '../../styles/colors';
 // actions
 import { getPostsRequest, addLikeRequest, removeLikeRequest } from '../../actions/posts-api';
 
-// helper
+// helpers
 import { getKeyByValue } from '../../utils/helperFunctions';
+import { isLoggedIn } from '../../utils/AuthService';
 
 const Wrapper = styled('div')`
     min-height: calc(100vh - 200px);
 `;
 const InfoWrap = styled('div')`
+  overflow: hidden;
   position: relative;
   top: 100px;
   display: flex;
@@ -54,11 +55,16 @@ const InfoWrap = styled('div')`
 const colors = css`
   color: white !important;
   background-color: ${grey} !important;
+  width: 100%;
 `;
 
 const Btn = styled('span')`
   position: relative;
   top: 5px !important;
+`;
+
+const Edit = css`
+  margin-top: 5px !important;
 `;
 
 const ImageDiv = styled('div')`
@@ -98,12 +104,16 @@ const PostInfo = ({
               }}
             />
           </Btn>
-          <Link to={`/posts/edit/${match.params.postId}`}>
-            {isLoggedIn() ?
-              <Button floated="left">
-                <FormattedMessage id="posts.edit" />
-              </Button> : null}
-          </Link>
+          {
+            isLoggedIn() ?
+              <Btn>
+                <Link to={`/posts/edit/${match.params.postId}`}>
+                  <Button className={Edit} floated="left">
+                    <FormattedMessage id="posts.edit" />
+                  </Button>
+                </Link>
+              </Btn> : null
+          }
         </Message>
       </InfoWrap>
     </Wrapper>
@@ -143,9 +153,7 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withRouter,
-  withState('button', 'isLiked', false),
   withHandlers({
-    // TODO fix likes
     handleLikes: ({
       match, addLikeToPost, postsInfo, removeLikeFromPost,
     }) => (e) => {

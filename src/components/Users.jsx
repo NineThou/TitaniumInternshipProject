@@ -64,7 +64,6 @@ const TableWrap = styled('div')`
 
 const Users = ({ usersInfo, loading }) => (
   <Wrapper>
-    {console.log(usersInfo)}
     <TableWrap>
       <ReactTable
         data={Array.from(usersInfo)}

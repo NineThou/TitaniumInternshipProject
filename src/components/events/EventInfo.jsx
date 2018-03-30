@@ -9,13 +9,15 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
-import { isLoggedIn } from '../../utils/AuthService';
 
 // colors
 import { grey } from '../../styles/colors';
 
 // action
 import { getEventsRequest } from '../../actions/events-api';
+
+// authentication check
+import { isLoggedIn } from '../../utils/AuthService';
 
 
 const Wrapper = styled('div')`
@@ -57,6 +59,9 @@ const ContentWrap = styled('div')`
 const colors = css`
   color: white !important;
   background-color: ${grey} !important;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px;
 `;
 
 const ImageDiv = styled('div')`
@@ -94,12 +99,14 @@ const EventInfo = ({ match, eventsInfo }) => {
               .filter(tag => tag !== '')
               .map(tag => <a key={tag}><List.Content>#{tag}</List.Content></a>)} {/*eslint-disable-line*/}
           </List>
-          <Link to={`/events/edit/${match.params.eventId}`}>
-            {isLoggedIn() ? 
-              <Button floated="left">
-                <FormattedMessage id="events.edit" />
-              </Button> : null}
-          </Link>
+          {
+            isLoggedIn() ?
+              <Link to={`/events/edit/${match.params.eventId}`}>
+                <Button floated="left">
+                  <FormattedMessage id="events.edit" />
+                </Button>
+              </Link> : null
+          }
         </ContentWrap>
       </InfoWrap>
     </Wrapper>
