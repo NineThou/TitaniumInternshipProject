@@ -95,6 +95,7 @@ const PostForm = ({ handleSubmit }) => (
       <Field
         name="dishtype"
         component={RenderRadio}
+        validate={required}
       />
       <Submit type="submit">Submit</Submit>
     </form>

@@ -1,12 +1,22 @@
 import React from 'react';
 import { Radio } from 'semantic-ui-react';
-import { css } from 'react-emotion';
+import styled, { css } from 'react-emotion';
 import PropTypes from 'prop-types';
 
 const RadioDish = css`
   position: center;
   padding: 20px 65px 20px 65px;
   font-size: 15px !important;
+`;
+
+const Error = styled('span')`
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  border-radius: 3px;
+  width: 100%;
+  padding: 3px;
+  text-align: center;
+  margin: 20px 180px;
 `;
 
 
@@ -16,8 +26,6 @@ class RenderRadio extends React.Component {
   };
   handleChange = (e, { value }) => {
     this.setState({ value });
-    console.log(this.state)
-    console.log(value, this.props.input);
     return this.props.input.onChange(this.props.input.value);
   }
   render() {
@@ -41,6 +49,7 @@ class RenderRadio extends React.Component {
           checked={this.state.value === 'hot'}
           onChange={this.handleChange}
         />
+        {this.props.meta.touched && ((this.props.meta.error && <Error>{this.props.meta.error}</Error>))}
       </div>
     );
   }
