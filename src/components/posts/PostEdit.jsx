@@ -3,29 +3,44 @@ import { Field, reduxForm } from 'redux-form';
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import styled from 'react-emotion';
 import RenderField from '../../utils/RenderField';
 import RenderTextArea from '../../utils/RenderTextArea';
-import { required, minLength4, minLength15 } from '../../utils/validation';
+import RenderRadio from '../../utils/RenderRadio';
+import { minLength4, minLength15 } from '../../utils/validation';
 import { editPostRequest, getPostsRequest } from '../../actions/posts-api';
 import getPostInitialValues from '../../selectors/postEdit';
+import { NiceForm, Submit, Title, formField } from '../../styles/emotionComponents';
 
+const Wrapper = styled('div')`
+    min-height: calc(100vh - 220px);
+    padding-top: 50px;
+`;
 
 const PostEdit = ({ handleSubmit }) => (
-  <form onSubmit={handleSubmit}>
-    <div>
-      <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
-    </div>
-    <div>
-      <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[required, minLength15]} />
-    </div>
-    <div>
-      <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[required, minLength15]} />
-    </div>
-    <div>
-      <Field name="image" component={RenderField} type="text" label="Image" validate={required} />
-    </div>
-    <button type="submit">Submit</button>
-  </form>
+  <Wrapper>
+    <NiceForm>
+      <Title>Edit the post</Title>
+      <form className={formField} onSubmit={handleSubmit}>
+        <div>
+          <Field name="title" component={RenderField} type="text" label="Title" validate={minLength4} />
+        </div>
+        <div>
+          <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={minLength15} />
+        </div>
+        <div>
+          <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={minLength15} />
+        </div>
+        <div>
+          <Field name="image" component={RenderField} type="text" label="Image" />
+        </div>
+        <div>
+          <Field name="dishtype" component={RenderRadio} type="radio" />
+        </div>
+        <Submit type="submit">Submit</Submit>
+      </form>
+    </NiceForm>
+  </Wrapper>
 );
 
 PostEdit.propTypes = {
@@ -53,13 +68,12 @@ export default compose(
       dispatch(editPostRequest(postId, data));
     },
     form: 'Post Edit',
-    // initialValues:
-    //   {
-    //     title: 'eqewqweqwe',
-    //     text: 'bhgnkjhjdasdasdasdasdasd',
-    //     more: 'eeeeeeeweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-    // eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-    //     image: 'https://occ-0-2433-1001.1.nflxso.net/art/70ca4/a4f281c8b0db74f8c09cb25c05647a59c2070ca4.jpg',
-    //   },
+    initialValues:
+      {
+        title: 'eqewqweqwe',
+        text: 'bhgnkjhjdasdasdasdasdasd',
+        more: 'eeeeeeeweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+        image: 'https://occ-0-2433-1001.1.nflxso.net/art/70ca4/a4f281c8b0db74f8c09cb25c05647a59c2070ca4.jpg',
+      },
   }),
 )(PostEdit);

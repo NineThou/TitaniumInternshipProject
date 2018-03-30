@@ -29,3 +29,5 @@ export const dustyrose = '#b6a19e';
 export const translucent = 'rgba(255,255,255,0.3)';
 
 export const blue = '#181929';
+
+export const lightBlue = '#2a4eb8';

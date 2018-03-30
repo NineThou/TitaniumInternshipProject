@@ -23,19 +23,20 @@ const wrapper = css`
 
 const Posts = ({ postsInfo }) => (
   <Container className={wrapper}>
+    {console.log('posts info: ', postsInfo)}
+    {isLoggedIn() ? <PostForm id={Object.keys(postsInfo).length + 1} /> : ''}
     <List>
       {
         Object
         .keys(postsInfo)
         .map(post => (
           <SinglePost
-            key={postsInfo[post].id}
+            key={post}
             details={postsInfo[post]}
             id={post}
           />))
       }
     </List>
-    {isLoggedIn() ? <PostForm id={Object.keys(postsInfo).length + 1} /> : null}
   </Container>
 );
 
