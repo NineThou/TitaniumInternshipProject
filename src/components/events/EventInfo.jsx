@@ -1,6 +1,6 @@
 // modules
 import React from 'react';
-import { List, Button } from 'semantic-ui-react';
+import { List, Button, Loader, Dimmer } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import { FormattedMessage } from 'react-intl';
@@ -83,6 +83,12 @@ const EventInfo = ({ match, eventsInfo }) => {
   return (
     <Wrapper>
       <InfoWrap>
+        {
+          !Object.keys(eventsInfo).length &&
+          <Dimmer active>
+            <Loader>Loading</Loader>
+          </Dimmer>
+          }
         <ImageDiv style={{ backgroundImage: `url(${data && data.image})` }} />
         <ContentWrap className={colors}>
           <h1>
@@ -126,11 +132,16 @@ EventInfo.propTypes = {
     more: PropTypes.string,
     tags: PropTypes.arrayOf(PropTypes.string),
     title: PropTypes.string,
-  }).isRequired,
+  }),
+};
+
+EventInfo.defaultProps = {
+  eventsInfo: {},
 };
 
 const mapStateToProps = state => ({
   eventsInfo: state.eventsInfo && state.eventsInfo.events,
+  loading: state.postsInfo && state.postsInfo.loading,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -55,7 +55,9 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentDidMount() {
-      this.props.getEventsData();
+      if (!Object.keys(this.props.eventsInfo).length) {
+        this.props.getEventsData();
+      }
     },
   }),
 )(Events);

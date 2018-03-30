@@ -32,7 +32,7 @@ const router = (
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route exact path="/events" component={Events} />
-        <Route exact path="/eventInfo/:eventId" component={EventInfo} />
+        <Route exact path="/events/:eventId" component={EventInfo} />
         <Route path="/events/edit/:eventId" component={EventEdit} />
         <Route exact path="/posts/:postId" component={PostInfo} />
         <Route path="/posts/edit/:postId" component={PostEdit} />

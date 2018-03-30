@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,36 +9,64 @@ import RenderTextArea from '../../utils/RenderTextArea';
 import RenderRadio from '../../utils/RenderRadio';
 import { minLength4, minLength15, maxLength500 } from '../../utils/validation';
 import { editPostRequest, getPostsRequest } from '../../actions/posts-api';
-import getPostInitialValues from '../../selectors/postEdit';
-import { NiceForm, Submit, Title, formField } from '../../styles/emotionComponents';
+import MyCustomForm from '../../commons/MyCustomForm';
+import { NiceForm, Title } from '../../styles/emotionComponents';
 
 const Wrapper = styled('div')`
     min-height: calc(100vh - 220px);
     padding-top: 50px;
 `;
 
+const data = [
+  {
+    name: 'title',
+    type: 'text',
+    component: RenderField,
+    label: 'Title',
+    validate: [
+      minLength4,
+      maxLength500,
+    ],
+  },
+  {
+    name: 'text',
+    type: 'textarea',
+    component: RenderTextArea,
+    label: 'Description',
+    validate: [
+      minLength15,
+      maxLength500,
+    ],
+  },
+  {
+    name: 'more',
+    type: 'textarea',
+    component: RenderTextArea,
+    label: 'How to cook',
+    validate: [
+      minLength15,
+      maxLength500,
+    ],
+  },
+  {
+    name: 'image',
+    type: 'text',
+    component: RenderField,
+    label: 'Image',
+  },
+  {
+    name: 'dishtype',
+    type: 'radio',
+    component: RenderRadio,
+  },
+];
+
 const PostEdit = ({ handleSubmit }) => (
   <Wrapper>
     <NiceForm>
       <Title>Edit the post</Title>
-      <form className={formField} onSubmit={handleSubmit}>
-        <div>
-          <Field name="title" component={RenderField} type="text" label="Title" validate={[minLength4, maxLength500]} />
-        </div>
-        <div>
-          <Field name="text" component={RenderTextArea} type="textarea" label="Description" validate={[minLength15, maxLength500]} />
-        </div>
-        <div>
-          <Field name="more" component={RenderTextArea} type="textarea" label="How to cook" validate={[minLength15, maxLength500]} />
-        </div>
-        <div>
-          <Field name="image" component={RenderField} type="text" label="Image" />
-        </div>
-        <div>
-          <Field name="dishtype" component={RenderRadio} type="radio" />
-        </div>
-        <Submit type="submit">Submit</Submit>
-      </form>
+      <MyCustomForm handleSubmit={handleSubmit} data={data} />
+
     </NiceForm>
   </Wrapper>
 );
@@ -47,33 +75,31 @@ PostEdit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+
+const mapStateToProps = (state, { match }) => ({
   postInfo: state.postsInfo.posts,
-  lol: getPostInitialValues(state),
+  initialValues: state.postsInfo.posts[match.params.postId],
 });
+
+const PostEditForm = reduxForm({
+  onSubmit: (values, dispatch, { match, history }) => {
+    const { postId } = match.params;
+    const formData = {
+      ...values, id: postId,
+    };
+    dispatch(editPostRequest(postId, formData));
+    history.push(`/posts/${postId}`);
+  },
+  form: 'Post Edit',
+})(PostEdit);
 
 export default compose(
   connect(mapStateToProps, { getPostsRequest }),
   lifecycle({
     componentDidMount() {
-      this.props.getPostsRequest();
+      if (!Object.keys(this.props.postInfo).length) {
+        this.props.getPostsRequest();
+      }
     },
   }),
-  reduxForm({
-    onSubmit: (values, dispatch, { match }) => {
-      const { postId } = match.params;
-      const data = {
-        ...values, id: postId,
-      };
-      dispatch(editPostRequest(postId, data));
-    },
-    form: 'Post Edit',
-    initialValues:
-      {
-        title: 'eqewqweqwe',
-        text: 'bhgnkjhjdasdasdasdasdasd',
-        more: 'eeeeeeeweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-        image: 'https://occ-0-2433-1001.1.nflxso.net/art/70ca4/a4f281c8b0db74f8c09cb25c05647a59c2070ca4.jpg',
-      },
-  }),
-)(PostEdit);
+)(PostEditForm);

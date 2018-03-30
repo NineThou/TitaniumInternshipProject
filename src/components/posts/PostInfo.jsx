@@ -1,6 +1,6 @@
 // modules
 import React from 'react';
-import { Message, Button } from 'semantic-ui-react';
+import { Message, Button, Loader, Dimmer } from 'semantic-ui-react';
 import styled, { css } from 'react-emotion';
 import { withRouter } from 'react-router';
 import { FormattedMessage } from 'react-intl';
@@ -81,6 +81,12 @@ const PostInfo = ({
   return (
     <Wrapper>
       <InfoWrap>
+        {
+          !Object.keys(postsInfo).length &&
+          <Dimmer active>
+            <Loader>Loading</Loader>
+          </Dimmer>
+        }
         <Message className={colors}>
           <Message.Header>
             {data && data.title}
@@ -137,7 +143,11 @@ PostInfo.propTypes = {
     text: PropTypes.string,
     title: PropTypes.string,
     user: PropTypes.string,
-  }).isRequired,
+  }),
+};
+
+PostInfo.defaultProps = {
+  postsInfo: {},
 };
 
 const mapStateToProps = state => ({
@@ -172,7 +182,9 @@ export default compose(
   }),
   lifecycle({
     componentDidMount() {
-      this.props.getPostsData();
+      if (!Object.keys(this.props.postsInfo).length) {
+        this.props.getPostsData();
+      }
     },
   }),
 )(PostInfo);

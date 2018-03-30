@@ -71,7 +71,7 @@ const EventsItem = ({ details, id, deleteEvent }) => (
         {details.tags.map(tag => <Anchor href="#" key={tag}><List.Content className={tags}>#{tag}</List.Content></Anchor>)}
       </List>
       <Buttons>
-        <Link to={`/eventInfo/${id}`}>
+        <Link to={`/events/${id}`}>
           <List.Content>
             <Button floated="left">
               <FormattedMessage id="events.readmore" />

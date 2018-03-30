@@ -23,7 +23,13 @@ const wrapper = css`
 
 const Posts = ({ postsInfo }) => (
   <Container className={wrapper}>
-    {isLoggedIn() ? <PostForm id={Object.keys(postsInfo).length + 1} /> : ''}
+    {
+      isLoggedIn && isLoggedIn()
+      ?
+        <PostForm id={Object.keys(postsInfo).length + 1} />
+      :
+        ''
+    }
     <List>
       {
         Object
@@ -53,19 +59,25 @@ Posts.propTypes = {
     date: PropTypes.string,
     id: PropTypes.number,
     image: PropTypes.string,
-    likes: PropTypes.object,
+    likes: PropTypes.objectOf(PropTypes.any),
     more: PropTypes.string,
     text: PropTypes.string,
     title: PropTypes.string,
     user: PropTypes.string,
-  }).isRequired,
+  }),
+};
+
+Posts.defaultProps = {
+  postsInfo: {},
 };
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentDidMount() {
-      this.props.getPostsData();
+      if (!Object.keys(this.props.postsInfo).length) {
+        this.props.getPostsData();
+      }
     },
   }),
 )(Posts);

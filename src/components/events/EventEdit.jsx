@@ -1,40 +1,75 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
+import { compose, lifecycle } from 'recompose';
+import { connect } from 'react-redux';
 import styled from 'react-emotion';
 import RenderField from '../../utils/RenderField';
 import RenderTextArea from '../../utils/RenderTextArea';
-import { required, minLength4, minLength15, splitWithCommas } from '../../utils/validation';
-import { editEventRequest } from '../../actions/events-api';
-import { NiceForm, Submit, Title, formField } from '../../styles/emotionComponents';
+import { required, minLength4, minLength15, splitWithCommas, maxLength500 } from '../../utils/validation';
+import { editEventRequest, getEventsRequest } from '../../actions/events-api';
+import { NiceForm, Title } from '../../styles/emotionComponents';
+import MyCustomForm from '../../commons/MyCustomForm';
 
 const Wrapper = styled('div')`
     min-height: calc(100vh - 220px);
     padding-top: 50px;
 `;
 
+const data = [
+  {
+    name: 'title',
+    type: 'text',
+    component: RenderField,
+    label: 'Title',
+    validate: [
+      minLength4,
+      maxLength500,
+    ],
+  },
+  {
+    name: 'body',
+    type: 'textarea',
+    component: RenderTextArea,
+    label: 'Body',
+    validate: [
+      minLength4,
+      maxLength500,
+    ],
+  },
+  {
+    name: 'more',
+    type: 'textarea',
+    component: RenderTextArea,
+    label: 'Text',
+    validate: [
+      minLength15,
+      maxLength500,
+    ],
+  },
+  {
+    name: 'tags',
+    type: 'text',
+    component: RenderField,
+    label: 'Tags',
+    validate: [
+      required,
+      splitWithCommas,
+    ],
+  },
+  {
+    name: 'image',
+    type: 'text',
+    component: RenderField,
+    label: 'Image',
+  },
+];
+
 const EventEdit = ({ handleSubmit }) => (
   <Wrapper>
     <NiceForm>
       <Title>Event Edit</Title>
-      <form className={formField} onSubmit={handleSubmit}>
-        <div>
-          <Field name="title" component={RenderField} type="text" label="Title" validate={[required, minLength4]} />
-        </div>
-        <div>
-          <Field name="body" component={RenderTextArea} type="textarea" label="Body" validate={[required, minLength15]} />
-        </div>
-        <div>
-          <Field name="more" component={RenderTextArea} type="textarea" label="Text" validate={[required, minLength15]} />
-        </div>
-        <div>
-          <Field name="tags" component={RenderField} type="text" label="Tags" validate={[required, splitWithCommas]} />
-        </div>
-        <div>
-          <Field name="image" component={RenderField} type="text" label="Image" validate={required} />
-        </div>
-        <Submit type="submit">Submit</Submit>
-      </form>
+      <MyCustomForm handleSubmit={handleSubmit} data={data} />
     </NiceForm>
   </Wrapper>
 );
@@ -43,22 +78,31 @@ EventEdit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state, { match }) => ({
+  eventsInfo: state.eventsInfo.events,
+  initialValues: state.eventsInfo.events[match.params.eventId],
+});
 
-export default reduxForm({
-  onSubmit: (values, dispatch, { match }) => {
+const EventEditForm = reduxForm({
+  onSubmit: (values, dispatch, { match, history }) => {
     const { eventId } = match.params;
-    const data = {
-      ...values, id: eventId, tags: values.tags.split(', '),
+    const eventData = {
+      ...values,
+      id: eventId,
     };
-    dispatch(editEventRequest(eventId, data));
+    dispatch(editEventRequest(eventId, eventData));
+    history.push(`/events/${eventId}`);
   },
   form: 'Event Edit',
-  initialValues:
-    {
-      title: 'eqewqweqwe',
-      body: 'bhgnkjhjdasdasdasdasdasd',
-      more: 'eeeeeeeweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-      tags: 'dasdas, sadas',
-      image: 'https://occ-0-2433-1001.1.nflxso.net/art/70ca4/a4f281c8b0db74f8c09cb25c05647a59c2070ca4.jpg',
-    },
 })(EventEdit);
+
+export default compose(
+  connect(mapStateToProps, { getEventsRequest }),
+  lifecycle({
+    componentDidMount() {
+      if (!Object.keys(this.props.eventsInfo).length) {
+        this.props.getEventsRequest();
+      }
+    },
+  }),
+)(EventEditForm);
