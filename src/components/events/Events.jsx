@@ -12,6 +12,7 @@ import { getEventsRequest } from '../../actions/events-api';
 import EventsItem from './EventsItem';
 import EventForm from './EventForm';
 import { isLoggedIn } from '../../utils/AuthService';
+import SearchFilter from '../../utils/SearchFilter';
 
 
 const wrapper = css`
@@ -22,9 +23,10 @@ const AddForm = styled('div')`
   margin-top: -50px;
 `;
 
-const Events = ({ eventsInfo }) => (
+const Events = ({ eventsInfo, match }) => (
   <Container className={wrapper}>
     {isLoggedIn() ? <AddForm><EventForm id={Object.keys(eventsInfo).length + 1} /></AddForm> : null}
+    <SearchFilter details={eventsInfo} url={match.url} />
     <List>
       {Object.keys(eventsInfo)
         .map(event => <EventsItem id={event} key={event} details={eventsInfo[event]} />)}
@@ -49,6 +51,7 @@ Events.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.string),
     title: PropTypes.string,
   }).isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default compose(
