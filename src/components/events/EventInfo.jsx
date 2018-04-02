@@ -25,10 +25,14 @@ const Wrapper = styled('div')`
     min-height: calc(100vh - 230px);
 `;
 
+const inlineList = css`
+  display: inline-block;
+`;
+
 const InfoWrap = styled('div')`
   display: flex;
   position: relative;
-  top: 150px;
+  top: 120px;
   display: flex;
   align-items: center;
   color: white;
@@ -102,8 +106,7 @@ const EventInfo = ({ match, eventsInfo }) => {
           </p>
           <List>
             {data && data.tags
-              .filter(tag => tag !== '')
-              .map(tag => <a key={tag}><List.Content>#{tag}</List.Content></a>)} {/*eslint-disable-line*/}
+              .map((tag, index) => <a className={inlineList} key={index}><List.Content>#{tag}&nbsp;&nbsp;</List.Content></a>)} {/*eslint-disable-line*/}
           </List>
           {
             isLoggedIn() ?

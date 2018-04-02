@@ -1,5 +1,5 @@
 import styled, { css } from 'react-emotion';
-import { blue, lightBlue } from './colors';
+import { blue, lightBlue, grey } from './colors';
 
 export const NiceForm = styled('div')`
   max-width: 500px;
@@ -13,7 +13,7 @@ export const NiceForm = styled('div')`
 
 export const Title = styled('h2')`
   cursor: pointer;
-  background: #4D4D4D;
+  background: ${grey};
   text-transform: uppercase;
   color: #797979;
   font-size: 18px;

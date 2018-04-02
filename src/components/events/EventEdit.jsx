@@ -86,8 +86,17 @@ const mapStateToProps = (state, { match }) => ({
 const EventEditForm = reduxForm({
   onSubmit: (values, dispatch, { match, history }) => {
     const { eventId } = match.params;
+    let { tags } = values;
+    tags = tags.toString().trim();
+    if (tags.indexOf(' ') !== -1) {
+      tags = tags.split(', ');
+    } else {
+      tags = tags.split(',');
+    }
+    tags = tags.filter(tag => tag !== '');
     const eventData = {
       ...values,
+      tags,
       id: eventId,
     };
     dispatch(editEventRequest(eventId, eventData));

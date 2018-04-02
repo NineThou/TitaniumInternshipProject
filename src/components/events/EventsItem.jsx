@@ -51,10 +51,14 @@ const ImageDiv = styled('div')`
   background-size: cover;
 `;
 
+const FlexTags = css`
+  display: flex;
+`;
+
 const tags = css`
   background-color: ${translucent};
   margin: 5px;
-  max-width: 80px;
+  width: 100%;
   text-align: center;
   border-radius: 5px;
   border: 2px solid #5D5D5D;
@@ -67,7 +71,7 @@ const EventsItem = ({ details, id, deleteEvent }) => (
     <List.Item className={listpadding}>
       <List.Content>{details.title}</List.Content>
       <List.Content>{details.body}</List.Content>
-      <List>
+      <List className={FlexTags}>
         {details.tags.map(tag => <Anchor href="#" key={tag}><List.Content className={tags}>#{tag}</List.Content></Anchor>)}
       </List>
       <Buttons>

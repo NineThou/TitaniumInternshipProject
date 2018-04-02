@@ -8,7 +8,7 @@ export const minLength4 = minLength(4);
 export const minLength15 = minLength(15);
 
 export const splitWithCommas = value => (
-  value.toString().trim().match(/(,$)/g) ? 'Split tags with comma' : undefined
+  value.toString().trim().match(/(\w+\s)/i) ? 'There should be no spaces inside the tags' : undefined
 );
 
 export const maxLength = max => value => (
