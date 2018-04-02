@@ -21,9 +21,24 @@ import { getPostsRequest, addLikeRequest, removeLikeRequest } from '../../action
 import { getKeyByValue } from '../../utils/helperFunctions';
 import { isLoggedIn } from '../../utils/AuthService';
 
+// components
+import Comments from '../../commons/Comments';
+import AddCommentForm from '../../commons/AddCommentForm';
+
 const Wrapper = styled('div')`
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 `;
+
+const CommentsSection = styled('div')`
+  position: relative;
+  top: 130px;
+  margin-bottom: 150px;
+`;
+
 const InfoWrap = styled('div')`
   overflow: hidden;
   position: relative;
@@ -122,6 +137,10 @@ const PostInfo = ({
           }
         </Message>
       </InfoWrap>
+      <CommentsSection>
+        <Comments postData={data} />
+        <AddCommentForm />
+      </CommentsSection>
     </Wrapper>
   );
 };

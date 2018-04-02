@@ -1,5 +1,5 @@
 import { compose, lifecycle } from 'recompose';
-import { setIdToken, setAccessToken, getAccessToken } from '../utils/AuthService';
+import { setIdToken, setAccessToken } from '../utils/AuthService';
 
 /* eslint-disable*/
 
@@ -12,7 +12,6 @@ export default compose(
     componentDidMount() {
       setAccessToken();
       setIdToken();
-      console.log(getAccessToken());
       window.location.href = '/';
     },
   }),

@@ -64,6 +64,7 @@ const TableWrap = styled('div')`
 
 const Users = ({ usersInfo, loading }) => {
   const { data } = usersInfo;
+  console.log(usersInfo);
   return (
     <Wrapper>
       <TableWrap>
