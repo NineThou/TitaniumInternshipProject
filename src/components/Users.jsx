@@ -22,22 +22,22 @@ const columns = [
   {
     id: 'userName',
     Header: 'Username',
-    accessor: row => row.local.username || 'No username',
+    accessor: ({ name }) => name || 'No username',
   },
   {
-    id: 'walletAddress',
-    Header: 'Wallet Address',
-    accessor: ({ walletAddress }) => walletAddress || 'No wallet address',
+    id: 'loginsCount',
+    Header: 'Logins Count',
+    accessor: ({ logins_count }) => logins_count || 'No wallet address',
   },
   {
-    id: 'referralBonus',
-    Header: 'Referral Bonus',
-    accessor: ({ referralBonus }) => referralBonus || 'No bonus',
+    id: 'email',
+    Header: 'Email',
+    accessor: ({ email }) => email || 'No bonus',
   },
   {
-    id: 'role',
-    Header: 'User Role',
-    accessor: ({ role }) => (role === '1' ? 'user' : 'admin'),
+    id: 'emailVerification',
+    Header: 'Email Status',
+    accessor: ({ email_verified }) => (email_verified ? 'email IS verified' : 'email IS NOT verified'),
   },
   {
     expander: true,
@@ -62,30 +62,33 @@ const TableWrap = styled('div')`
   margin-bottom: 19px;
 `;
 
-const Users = ({ usersInfo, loading }) => (
-  <Wrapper>
-    <TableWrap>
-      <ReactTable
-        data={Array.from(usersInfo)}
-        columns={columns}
-        defaultPageSize={19}
-        showPageSizeOptions={false}
-        className="-striped -highlight"
-        SubComponent={({ original }) => (
-          <div style={{ padding: '10px' }}>
-            {
-              Object.keys(original)
-                .filter(key => key === 'role' || key === 'status')
-                .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
-            }
-          </div>
-        )}
-        filterable
-        loading={loading}
-      />
-    </TableWrap>
-  </Wrapper>
-);
+const Users = ({ usersInfo, loading }) => {
+  const { data } = usersInfo;
+  return (
+    <Wrapper>
+      <TableWrap>
+        <ReactTable
+          data={data}
+          columns={columns}
+          defaultPageSize={19}
+          showPageSizeOptions={false}
+          className="-striped -highlight"
+          SubComponent={({ original }) => (
+            <div style={{ padding: '10px' }}>
+              {
+                Object.keys(original)
+                  .filter(key => key === 'last_login' || key === 'last_ip')
+                  .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
+              }
+            </div>
+          )}
+          filterable
+          loading={loading}
+        />
+      </TableWrap>
+    </Wrapper>
+  )
+};
 
 
 const mapStateToProps = state => ({
