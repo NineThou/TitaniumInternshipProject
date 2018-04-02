@@ -33,7 +33,6 @@ class SearchFilter extends React.Component {
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
       const isMatch = result => re.test(result.title);
-      console.log(this.props.details);
       return this.setState({
         isLoading: false,
         results: _.filter(this.props.details, isMatch),

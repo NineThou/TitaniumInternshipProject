@@ -27,7 +27,7 @@ const columns = [
   {
     id: 'loginsCount',
     Header: 'Logins Count',
-    accessor: ({ logins_count }) => logins_count || 'No wallet address',
+    accessor: ({ loginsCount }) => loginsCount || 'No wallet address',
   },
   {
     id: 'email',
@@ -37,7 +37,7 @@ const columns = [
   {
     id: 'emailVerification',
     Header: 'Email Status',
-    accessor: ({ email_verified }) => (email_verified ? 'email IS verified' : 'email IS NOT verified'),
+    accessor: ({ emailVerified }) => (emailVerified ? 'email IS verified' : 'email IS NOT verified'),
   },
   {
     expander: true,
@@ -87,7 +87,7 @@ const Users = ({ usersInfo, loading }) => {
         />
       </TableWrap>
     </Wrapper>
-  )
+  );
 };
 
 
