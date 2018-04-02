@@ -67,6 +67,7 @@ Posts.propTypes = {
     title: PropTypes.string,
     user: PropTypes.string,
   }),
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 Posts.defaultProps = {

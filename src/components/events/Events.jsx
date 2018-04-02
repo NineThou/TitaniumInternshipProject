@@ -51,6 +51,7 @@ Events.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.string),
     title: PropTypes.string,
   }).isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default compose(

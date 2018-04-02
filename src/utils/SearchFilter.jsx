@@ -2,6 +2,7 @@ import React from 'react';
 import { Search } from 'semantic-ui-react';
 import _ from 'lodash';
 import styled from 'react-emotion';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled('div')`
   margin: 0 auto;
@@ -32,8 +33,8 @@ class SearchFilter extends React.Component {
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
       const isMatch = result => re.test(result.title);
-
-      this.setState({
+      console.log(this.props.details);
+      return this.setState({
         isLoading: false,
         results: _.filter(this.props.details, isMatch),
       });
@@ -59,5 +60,24 @@ class SearchFilter extends React.Component {
   }
 }
 
+SearchFilter.propTypes = {
+  url: PropTypes.string.isRequired,
+  details: PropTypes.shape({
+    date: PropTypes.string,
+    id: PropTypes.number,
+    image: PropTypes.string,
+    likes: PropTypes.objectOf(PropTypes.any),
+    more: PropTypes.string,
+    text: PropTypes.string,
+    title: PropTypes.string,
+    user: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    body: PropTypes.string,
+  }),
+};
+
+SearchFilter.defaultProps = {
+  details: {},
+};
 
 export default SearchFilter;
