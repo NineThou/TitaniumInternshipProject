@@ -16,12 +16,13 @@ import PostForm from './PostForm';
 
 // utils
 import { isLoggedIn } from '../../utils/AuthService';
+import SearchFilter from '../../utils/SearchFilter';
 
 const wrapper = css`
   padding: 70px 0;
 `;
 
-const Posts = ({ postsInfo }) => (
+const Posts = ({ postsInfo, match }) => (
   <Container className={wrapper}>
     {
       isLoggedIn && isLoggedIn()
@@ -30,6 +31,7 @@ const Posts = ({ postsInfo }) => (
       :
         ''
     }
+    <SearchFilter details={postsInfo} url={match.url} />
     <List>
       {
         Object
