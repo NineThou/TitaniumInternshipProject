@@ -97,6 +97,25 @@ const postsInfo = (state = { posts: {}, loading: false, error: false }, action) 
         loading: false,
         error: true,
       };
+    // add post comment
+    case 'ADD_POST_COMMENT_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case 'ADD_POST_COMMENT_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        error: false,
+      };
+    case 'ADD_POST_COMMENT_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
     default:
       return state;
   }

@@ -1,10 +1,14 @@
 // modules
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'react-emotion';
+import styled from 'react-emotion';
+import decode from 'jwt-decode';
+import { bindActionCreators } from 'redux';
 
 // colors
 import { grey } from '../styles/colors';
+// helpers
+import { editUsername } from '../utils/helperFunctions';
 
 const CommentsWrap = styled('div')`
   display: flex;
@@ -14,6 +18,17 @@ const CommentsWrap = styled('div')`
   -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
   width: 500px;
+  div:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+`;
+
+const DeleteIcon = styled('span')`
+  cursor: pointer;
+  :hover {
+    color: #dc3545;
+  }
 `;
 
 const SingleComment = styled('div')`
@@ -24,7 +39,7 @@ const SingleComment = styled('div')`
   grid-template-rows: 1fr 2fr 1fr;
   grid-template-columns: 1fr 5fr;
   border-bottom: 1px solid grey;
-  padding-bottom: 20px; 
+  padding-bottom: 23px; 
   margin: 15px;
 `;
 
@@ -37,6 +52,8 @@ const Image = styled('div')`
 const UserName = styled('div')`
   grid-area: username;
   margin-left: 15px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Text = styled('div')`
@@ -53,16 +70,22 @@ const Date = styled('div')`
 
 const Comments = ({ postData }) => {
   const { comments } = postData;
-  console.log(comments);
+  const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
+  const { name } = user;
+  const username = editUsername(name);
   return (
     <CommentsWrap>
       {
         Object
         .keys(comments)
+        .sort((a, b) => (b - a))
         .map(comment => (
-          <SingleComment>
+          <SingleComment key={comment}>
             <Image style={{ backgroundImage: `url(${comments[comment].image})` }} />
-            <UserName>{comment}</UserName>
+            <UserName>
+              {comments[comment].username}
+              {username === comments[comment].username ? <DeleteIcon>X</DeleteIcon> : null}
+            </UserName>
             <Text>{comments[comment].comment}</Text>
             <Date>{comments[comment].date}</Date>
           </SingleComment>

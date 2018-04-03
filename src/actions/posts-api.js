@@ -13,6 +13,7 @@ export const getPostsError = error => ({
   error,
 });
 
+
 // set new post
 export const setPostsRequest = data => ({
   type: 'API_SET_POSTS_REQUEST',
@@ -29,6 +30,7 @@ export const setPostsError = error => ({
   error,
 });
 
+
 // post deletion
 export const deletePostRequest = postKey => ({
   type: 'API_DELETE_POST_REQUEST',
@@ -44,6 +46,7 @@ export const deletePostError = error => ({
   type: 'API_DELETE_POST_ERROR',
   error,
 });
+
 
 // like for posts
 export const addLikeRequest = (postKey, user) => ({
@@ -91,5 +94,40 @@ export const editPostSuccess = payload => ({
 
 export const editPostError = error => ({
   type: 'API_EDIT_POST_ERROR',
+  error,
+});
+
+
+// add comments
+export const addCommentRequest = (postKey, commentData) => ({
+  type: 'ADD_POST_COMMENT_REQUEST',
+  postKey,
+  commentData,
+});
+
+export const addCommentSuccess = payload => ({
+  type: 'ADD_POST_COMMENT_SUCCESS',
+  payload,
+});
+
+export const addCommentError = error => ({
+  type: 'ADD_POST_COMMENT_ERROR',
+  error,
+});
+
+// delete
+export const deleteCommentRequest = (postKey, commentData) => ({
+  type: 'DELETE_POST_COMMENT_REQUEST',
+  postKey,
+  commentData,
+});
+
+export const deleteCommentSuccess = payload => ({
+  type: 'DELETE_POST_COMMENT_SUCCESS',
+  payload,
+});
+
+export const deleteCommentError = error => ({
+  type: 'DELETE_POST_COMMENT_ERROR',
   error,
 });

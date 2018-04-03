@@ -91,6 +91,7 @@ export function* removeLikeFromPost() {
   yield takeLatest('API_REMOVE_LIKE_POST_REQUEST', removeLikePost);
 }
 
+// post edit
 function* editPost({ postKey, data }) {
   try {
     yield call(reduxSagaFirebase.database.patch, `/node/posts/${postKey}`, data);
@@ -104,4 +105,23 @@ function* editPost({ postKey, data }) {
 
 export function* editPostData() {
   yield takeLatest('API_EDIT_POST_REQUEST', editPost);
+}
+
+// add comment to post
+function* addComment({ postKey, commentData }) {
+  const commentKey = Date.now();
+  try {
+    yield call(reduxSagaFirebase.database.patch, `/node/posts/${postKey}/comments`, {
+      [commentKey]: commentData,
+    });
+    yield put(postsApiActions.addCommentSuccess());
+    const posts = yield call(getPostsData);
+    yield put(postsApiActions.getPostsSuccess(posts));
+  } catch (error) {
+    yield put(postsApiActions.addCommentError(error));
+  }
+}
+
+export function* addCommentToPost() {
+  yield takeLatest('ADD_POST_COMMENT_REQUEST', addComment);
 }

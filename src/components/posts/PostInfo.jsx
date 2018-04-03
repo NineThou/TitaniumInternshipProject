@@ -139,7 +139,7 @@ const PostInfo = ({
       </InfoWrap>
       <CommentsSection>
         <Comments postData={data} />
-        <AddCommentForm />
+        <AddCommentForm postKey={match.params.postId} />
       </CommentsSection>
     </Wrapper>
   );
