@@ -26,6 +26,7 @@ const data = [
       minLength4,
       maxLength500,
     ],
+    disabled: false,
   },
   {
     name: 'body',
@@ -36,6 +37,7 @@ const data = [
       minLength4,
       maxLength500,
     ],
+    disabled: false,
   },
   {
     name: 'more',
@@ -46,6 +48,7 @@ const data = [
       minLength15,
       maxLength500,
     ],
+    disabled: false,
   },
   {
     name: 'tags',
@@ -56,12 +59,14 @@ const data = [
       required,
       splitWithCommas,
     ],
+    disabled: false,
   },
   {
     name: 'image',
     type: 'text',
     component: RenderField,
     label: 'Image',
+    disabled: false,
   },
 ];
 

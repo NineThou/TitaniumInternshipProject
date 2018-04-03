@@ -139,7 +139,7 @@ const PostInfo = ({
       </InfoWrap>
       <CommentsSection>
         <Comments postData={data} postKey={match.params.postId} />
-        <AddCommentForm postKey={match.params.postId} />
+        {isLoggedIn() ? <AddCommentForm postKey={match.params.postId} /> : null}
       </CommentsSection>
     </Wrapper>
   );

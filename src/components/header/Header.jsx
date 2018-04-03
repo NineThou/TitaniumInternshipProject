@@ -78,7 +78,7 @@ const iconpos = css`
 const Header = ({ user }) => (
   <Head>
     <Name>
-      Hi, {user && user.nickname ? `${user.nickname}!` : 'anonymous!'}
+      Hi, {user && user.nickname ? `${user.nickname}!` : 'anonymous! Sign Up to use all features!'}
     </Name>
     <HomeLink>
       <Link to="/">

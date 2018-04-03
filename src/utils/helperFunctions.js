@@ -13,6 +13,6 @@ export function getKeyByValue(object, value) {
 }
 
 export function editUsername(str) {
-  return str.split('@')[0];
+  return str ? str.split('@')[0] : null;
 }
 

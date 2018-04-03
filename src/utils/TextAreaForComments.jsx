@@ -30,7 +30,7 @@ const Error = styled('span')`
   text-align: center;
 `;
 
-const RenderTextArea = ({
+const TextAreaForComments = ({
   input,
   label,
   type,
@@ -49,7 +49,7 @@ const RenderTextArea = ({
   </div>
 );
 
-RenderTextArea.propTypes = {
+TextAreaForComments.propTypes = {
   input: PropTypes.objectOf(PropTypes.any).isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -61,7 +61,7 @@ RenderTextArea.propTypes = {
   className: PropTypes.string,
 };
 
-RenderTextArea.defaultProps = {
+TextAreaForComments.defaultProps = {
   meta: PropTypes.shape({
     error: '',
     touched: false,
@@ -70,4 +70,4 @@ RenderTextArea.defaultProps = {
   className: Textarea,
 };
 
-export default RenderTextArea;
+export default TextAreaForComments;
