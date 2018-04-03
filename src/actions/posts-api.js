@@ -116,10 +116,10 @@ export const addCommentError = error => ({
 });
 
 // delete
-export const deleteCommentRequest = (postKey, commentData) => ({
+export const deleteCommentRequest = (postKey, commentKey) => ({
   type: 'DELETE_POST_COMMENT_REQUEST',
   postKey,
-  commentData,
+  commentKey,
 });
 
 export const deleteCommentSuccess = payload => ({

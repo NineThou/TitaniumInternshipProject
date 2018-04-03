@@ -3,12 +3,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import decode from 'jwt-decode';
+import { compose, withHandlers } from 'recompose';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 // colors
 import { grey } from '../styles/colors';
+
 // helpers
 import { editUsername } from '../utils/helperFunctions';
+
+// actions
+import { deleteCommentRequest } from '../actions/posts-api';
 
 const CommentsWrap = styled('div')`
   display: flex;
@@ -36,7 +42,7 @@ const SingleComment = styled('div')`
   grid-template-areas: "image username" 
                        "image text" 
                        "image date";
-  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-rows: 25px 2fr 25px;
   grid-template-columns: 1fr 5fr;
   border-bottom: 1px solid grey;
   padding-bottom: 23px; 
@@ -47,13 +53,15 @@ const Image = styled('div')`
   grid-area: image;
   border-radius: 100%;
   background-size: cover;
+  height: 80px;
 `;
 
-const UserName = styled('div')`
+const UserName = styled('strong')`
   grid-area: username;
   margin-left: 15px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const Text = styled('div')`
@@ -61,14 +69,18 @@ const Text = styled('div')`
   display: flex;
   align-items: center;
   margin-left: 15px;
+  padding: 10px 0;
 `;
 
 const Date = styled('div')`
   grid-area: date;
   margin-left: 15px;
+  display: flex;
+  align-items: center;
+  font-style: italic;
 `;
 
-const Comments = ({ postData }) => {
+const Comments = ({ postData, removeComment }) => {
   const { comments } = postData;
   const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
   const { name } = user;
@@ -84,7 +96,11 @@ const Comments = ({ postData }) => {
             <Image style={{ backgroundImage: `url(${comments[comment].image})` }} />
             <UserName>
               {comments[comment].username}
-              {username === comments[comment].username ? <DeleteIcon>X</DeleteIcon> : null}
+              {
+                username === comments[comment].username ?
+                  <DeleteIcon onClick={() => removeComment(comment)}>X</DeleteIcon> :
+                  null
+              }
             </UserName>
             <Text>{comments[comment].comment}</Text>
             <Date>{comments[comment].date}</Date>
@@ -100,6 +116,10 @@ Comments.defaultProps = {
     comments: {},
   },
 };
+
+const mapDispatchToProps = dispatch => ({
+  deleteComment: bindActionCreators(deleteCommentRequest, dispatch),
+});
 
 Comments.propTypes = {
   postData: PropTypes.shape({
@@ -120,6 +140,16 @@ Comments.propTypes = {
       image: PropTypes.string,
     }),
   }),
+  removeComment: PropTypes.func.isRequired,
 };
 
-export default Comments;
+export default compose(
+  connect(null, mapDispatchToProps),
+  withHandlers({
+    removeComment: ({ deleteComment, postKey }) => (comment) => {
+      if (confirm('You sure you want to delete this comment?')) { // eslint-disable-line
+        deleteComment(postKey, comment);
+      }
+    },
+  }),
+)(Comments);

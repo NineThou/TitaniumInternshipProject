@@ -125,3 +125,19 @@ function* addComment({ postKey, commentData }) {
 export function* addCommentToPost() {
   yield takeLatest('ADD_POST_COMMENT_REQUEST', addComment);
 }
+
+// remove comment from post
+function* removeComment({ postKey, commentKey }) {
+  try {
+    yield call(reduxSagaFirebase.database.delete, `/node/posts/${postKey}/comments/${commentKey}`);
+    yield put(postsApiActions.deleteCommentSuccess());
+    const posts = yield call(getPostsData);
+    yield put(postsApiActions.getPostsSuccess(posts));
+  } catch (error) {
+    yield put(postsApiActions.deleteCommentError(error));
+  }
+}
+
+export function* removeCommentFromPost() {
+  yield takeLatest('DELETE_POST_COMMENT_REQUEST', removeComment);
+}
