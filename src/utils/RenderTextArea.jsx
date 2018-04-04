@@ -38,12 +38,17 @@ const RenderTextArea = ({
     touched,
     error,
   },
-  disabled,
   className,
 }) => (
   <div>
     <label htmlFor="title">
-      <TextareaAutosize className={className} rows={2} {...input} placeholder={label} type={type} disabled={disabled}/>
+      <TextareaAutosize
+        className={className}
+        rows={2}
+        {...input}
+        placeholder={label}
+        type={type}
+      />
       {touched && ((error && <Error>{error}</Error>))}
     </label>
   </div>
@@ -57,7 +62,6 @@ RenderTextArea.propTypes = {
     error: PropTypes.string,
     touched: PropTypes.bool,
   }),
-  disabled: PropTypes.bool,
   className: PropTypes.string,
 };
 
@@ -66,7 +70,6 @@ RenderTextArea.defaultProps = {
     error: '',
     touched: false,
   }),
-  disabled: true,
   className: Textarea,
 };
 

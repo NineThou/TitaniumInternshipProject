@@ -3,22 +3,42 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import TextareaAutosize from 'react-autosize-textarea';
 
-const Textarea = css`
+const TextareaForComments = css`
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   outline: none;
-  display: block;
-  width: 100%;
-  padding: 7px;
+  display: flex;
+  width: 300px;
+  padding: 15px 0;
   border: none;
-  border-bottom: 1px solid #ddd;
   background: transparent;
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin: 10px 15px;
+  font-size: 16px;
   height: 45px;
   resize:none;
   overflow: hidden;
+  grid-area: text;
+  align-items: center;
+`;
+
+const TextAreaForCommentsActive = css`
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  display: flex;
+  width: 100%;
+  padding-top: 15px;
+  border: 2px solid #5DADE2;
+  background: transparent;
+  margin: 10px 15px;
+  font-size: 16px;
+  height: 45px;
+  resize:none;
+  overflow: hidden;
+  grid-area: text;
+  align-items: center;
 `;
 
 const Error = styled('span')`
@@ -26,7 +46,8 @@ const Error = styled('span')`
   border: 2px solid #dc3545;
   border-radius: 3px;
   width: 100%;
-  padding: 3px;
+  padding: 0 3px;
+  margin: 0 15px;
   text-align: center;
 `;
 
@@ -39,12 +60,18 @@ const TextAreaForComments = ({
     error,
   },
   disabled,
-  className,
 }) => (
   <div>
     <label htmlFor="title">
-      <TextareaAutosize className={className} rows={2} {...input} placeholder={label} type={type} disabled={disabled}/>
-      {touched && ((error && <Error>{error}</Error>))}
+      {!disabled ? touched && ((error && <Error>{error}</Error>)) : null}
+      <TextareaAutosize
+        rows={2}
+        {...input}
+        placeholder={label}
+        type={type}
+        disabled={disabled}
+        className={disabled ? TextareaForComments : TextAreaForCommentsActive}
+      />
     </label>
   </div>
 );
@@ -58,7 +85,6 @@ TextAreaForComments.propTypes = {
     touched: PropTypes.bool,
   }),
   disabled: PropTypes.bool,
-  className: PropTypes.string,
 };
 
 TextAreaForComments.defaultProps = {
@@ -67,7 +93,7 @@ TextAreaForComments.defaultProps = {
     touched: false,
   }),
   disabled: true,
-  className: Textarea,
 };
 
 export default TextAreaForComments;
+

@@ -1,7 +1,7 @@
 // modules
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'react-emotion';
+import styled from 'react-emotion';
 import decode from 'jwt-decode';
 import { compose, withHandlers, withState } from 'recompose';
 import { bindActionCreators } from 'redux';
@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 
 // colors
-import { grey, blue } from '../styles/colors';
+import { grey } from '../styles/colors';
 
 // helpers
 import { editUsername } from '../utils/helperFunctions';
@@ -17,7 +17,7 @@ import { editUsername } from '../utils/helperFunctions';
 // actions
 import { deleteCommentRequest } from '../actions/posts-api';
 import { isLoggedIn } from '../utils/AuthService';
-import RenderTextArea from '../utils/RenderTextArea';
+import TextAreaForComments from '../utils/TextAreaForComments';
 import { maxLength500, minLength15, required } from '../utils/validation';
 
 const CommentsWrap = styled('div')`
@@ -41,16 +41,38 @@ const DeleteIcon = styled('span')`
   }
 `;
 
-const Edit = styled('strong')`
+const Edit = styled('button')`
+  font-size: 16px;
   cursor: pointer;
-  padding: 0 3px;
+  padding: 1px 3px;
   border: 3px solid #5DADE2;
   color: #5DADE2;
+  font-weight: bold;
+  font-style: italic;
+  background: transparent;
   border-radius: 3px;
   transition: .4s;
   :hover {
-    border-color: ${blue};
-    color: ${blue};
+    border-color: white;
+    color: white;
+  }
+  margin-left: 5px;
+`;
+
+const SubmitButton = styled('button')`
+  font-size: 16px;
+  cursor: pointer;
+  padding: 1px 3px;
+  border: 3px solid #58D68D;
+  background: transparent;
+  font-style: italic;
+  font-weight: bold;
+  color: #58D68D;
+  border-radius: 3px;
+  transition: .4s;
+  :hover {
+    border-color: white;
+    color: white;
   }
 `;
 
@@ -81,28 +103,28 @@ const UserName = styled('strong')`
   align-items: center;
 `;
 
-const Text = css`
-  grid-area: text;
-  display: flex;
-  align-items: center;
-  margin-left: 15px;
-  padding: 10px 0;
-  border-bottom: 0;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  display: block;
-  width: 100%;
-  padding: 7px;
-  border: none;
-  background: transparent;
-  margin-bottom: 10px;
-  font-size: 20px;
-  height: 45px;
-  resize:none;
-  overflow: hidden;
-`;
+// const Text = css`
+//   grid-area: text;
+//   display: flex;
+//   align-items: center;
+//   margin-left: 15px;
+//   padding: 10px 0;
+//   border-bottom: 0;
+//   box-sizing: border-box;
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   outline: none;
+//   display: block;
+//   width: 100%;
+//   padding: 7px;
+//   border: none;
+//   background: transparent;
+//   margin-bottom: 10px;
+//   font-size: 20px;
+//   height: 45px;
+//   resize:none;
+//   overflow: hidden;
+// `;
 
 const Date = styled('div')`
   grid-area: date;
@@ -114,7 +136,9 @@ const Date = styled('div')`
   justify-content: space-between;
 `;
 
-const Comments = ({ postData, removeComment, handleSubmit, disabled }) => {
+const Comments = ({
+  postData, removeComment, handleSubmit, disabled, editComment,
+}) => {
   const { comments } = postData;
   const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
   const { name } = user;
@@ -136,14 +160,27 @@ const Comments = ({ postData, removeComment, handleSubmit, disabled }) => {
                   null
               }
             </UserName>
-            <Field className={Text} value={comments[comment].comment} name="comment" type="textarea" component={RenderTextArea} label="enter comment" validate={[required, minLength15, maxLength500]} disabled={disabled} />
+            <Field
+              onSubmit={handleSubmit}
+              name={`comment:${comment}`}
+              type="textarea"
+              component={TextAreaForComments}
+              label="enter comment"
+              validate={[required, minLength15, maxLength500]}
+              disabled={disabled}
+            />
             <Date>
               {comments[comment].date}
-              {
-                username === comments[comment].username ?
-                  <Edit>Edit comment</Edit> :
-                  null
-              }
+              <div>
+                {disabled ? null : <SubmitButton>Submit</SubmitButton>}
+                {
+                  isLoggedIn() && username === comments[comment].username ?
+                    <Edit onClick={editComment}>
+                      {disabled ? 'Edit comment' : 'Cancel editing'}
+                    </Edit> :
+                    null
+                }
+              </div>
             </Date>
           </SingleComment>
         ))
@@ -189,6 +226,7 @@ Comments.propTypes = {
   removeComment: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
+  editComment: PropTypes.func.isRequired,
 };
 
 export default compose(
@@ -200,9 +238,9 @@ export default compose(
         deleteComment(postKey, comment);
       }
     },
-    editComment: ({ initialValues }) => (e) => {
+    editComment: ({ isDisabled }) => (e) => {
       e.preventDefault(e);
-      console.log(initialValues);
+      isDisabled(n => !n);
     },
   }),
   reduxForm({
