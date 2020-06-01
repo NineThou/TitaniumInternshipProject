@@ -1,4 +1,4 @@
-const usersInfo = (state = { users: [], loading: false, error: false }, action) => {
+const usersInfo = (state = { users: {}, loading: false, error: false }, action) => {
   switch (action.type) {
     case 'API_GET_USERS_REQUEST':
       return {

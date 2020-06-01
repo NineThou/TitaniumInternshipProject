@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
 import LanguageChange from '../LanguageChange';
-import { black, grey, blue } from '../../styles/colors';
+import { black, grey, lightBlue } from '../../styles/colors';
 import { login, logout, isLoggedIn } from '../../utils/AuthService';
 
 const navLinkStyle = css`
@@ -14,11 +14,11 @@ const navLinkStyle = css`
 `;
 
 const activeNav = css`
-  background-color: ${blue};
+  background-color: ${lightBlue};
   color: white;
   :hover {
     color: white;
-    background-color: ${blue} !important;
+    background-color: ${lightBlue} !important;
   }
 `;
 
@@ -55,11 +55,11 @@ const SidebarContent = () => (
     {(isLoggedIn()) ?
       (<NavLink to="/" className={`${inactive} ${navLinkStyle}`} onClick={() => logout()}>
         <i className="reply outline icon" />
-           Log out
+        <FormattedMessage id="sidebar.out" />
       </NavLink>) //eslint-disable-line
       : (<NavLink to="/" className={`${inactive} ${navLinkStyle}`} onClick={() => login()}>
         <i className="user outline icon" />
-        Log In
+        <FormattedMessage id="sidebar.in" />
       </NavLink>) //eslint-disable-line
     }
     <NavLink

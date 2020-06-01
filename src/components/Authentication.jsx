@@ -1,16 +1,20 @@
-import { Component } from 'react';
-import { setIdToken, setAccessToken, userInfo } from '../utils/AuthService';
+import { compose, lifecycle } from 'recompose';
+import { setIdToken, setAccessToken, getAccessToken } from '../utils/AuthService';
 
-class Callback extends Component {
-  componentDidMount() {
-    setAccessToken();
-    setIdToken();
-    userInfo();
-    window.location.href = '/';
-  }
-  render() {
-    return null;
-  }
-}
+/* eslint-disable*/
 
-export default Callback;
+const Authentication = () => {
+  return null;
+};
+
+export default compose(
+  lifecycle({
+    componentDidMount() {
+      setAccessToken();
+      setIdToken();
+      console.log(getAccessToken());
+      window.location.href = '/';
+    },
+  }),
+)(Authentication);
+

@@ -3,17 +3,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
 import { Icon } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { compose, withState } from 'recompose';
+import decode from 'jwt-decode';
 
 // colors
 import { black } from '../../styles/colors';
-
 
 // clock
 import Clock from './Clock';
 
 const Head = styled('div')` 
-  z-index: 999;
-  position: relative;
+  z-index: 2;
+  position: fixed;
   background-color: ${black};
   height: 70px;
   width: 100%;
@@ -26,6 +28,12 @@ const Head = styled('div')`
   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   font-weight: 700;
   font-size: 30px;
+  @media(max-width: 1068px) {
+    font-size: 25px !important;
+  }
+  @media(max-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
   @media (max-width: 800px) {
     font-size: 20px;
     grid-template-areas: "hiddenhome clock";
@@ -39,7 +47,7 @@ const ClockArea = styled('div')`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 30px;
+  padding-right: 200px;
 `;
 
 const Name = styled('div')`
@@ -67,10 +75,10 @@ const iconpos = css`
   color: white;
 `;
 
-const Header = () => (
+const Header = ({ user }) => (
   <Head>
     <Name>
-      Hi, John Smith
+      Hi, {user && user.nickname ? `${user.nickname}!` : 'anonymous!'}
     </Name>
     <HomeLink>
       <Link to="/">
@@ -83,5 +91,18 @@ const Header = () => (
   </Head>
 );
 
-export default Header;
+Header.defaultProps = {
+  user: PropTypes.object,
+};
+
+Header.propTypes = {
+  user: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
+};
+
+const user = localStorage.getItem('id_token') ? decode(localStorage.getItem('id_token')) : '';
+
+export default compose(withState('user', 'getUserInfo', user))(Header);
 

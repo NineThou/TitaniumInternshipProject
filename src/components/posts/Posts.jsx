@@ -1,23 +1,52 @@
 // modules
 import React from 'react';
+import { css } from 'react-emotion';
 import { Container, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, lifecycle } from 'recompose';
 import PropTypes from 'prop-types';
 
+// action
 import { getPostsRequest } from '../../actions/posts-api';
 
 // components
 import SinglePost from './SinglePost';
+import PostForm from './PostForm';
 
-const Posts = ({ postsInfo }) => (
-  <Container>
+// utils
+import { isLoggedIn } from '../../utils/AuthService';
+import SearchFilter from '../../utils/SearchFilter';
+
+const wrapper = css`
+  padding: 70px 0;
+`;
+
+const Posts = ({ postsInfo, match }) => (
+  <Container className={wrapper}>
+    {
+      isLoggedIn && isLoggedIn()
+      ?
+        <PostForm id={Object.keys(postsInfo).length + 1} />
+      :
+        ''
+    }
+    <SearchFilter details={postsInfo} url={match.url} />
     <List>
-      {postsInfo.map(event => <SinglePost key={event.id} details={event} />)}
+      {
+        Object
+        .keys(postsInfo)
+        .map(post => (
+          <SinglePost
+            key={post}
+            details={postsInfo[post]}
+            id={post}
+          />))
+      }
     </List>
   </Container>
 );
+
 
 const mapStateToProps = state => ({
   postsInfo: state.postsInfo.posts,
@@ -28,14 +57,30 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Posts.propTypes = {
-  postsInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  postsInfo: PropTypes.shape({
+    date: PropTypes.string,
+    id: PropTypes.number,
+    image: PropTypes.string,
+    likes: PropTypes.objectOf(PropTypes.any),
+    more: PropTypes.string,
+    text: PropTypes.string,
+    title: PropTypes.string,
+    user: PropTypes.string,
+  }),
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
+Posts.defaultProps = {
+  postsInfo: {},
 };
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentDidMount() {
-      this.props.getPostsData();
+      if (!Object.keys(this.props.postsInfo).length) {
+        this.props.getPostsData();
+      }
     },
   }),
 )(Posts);

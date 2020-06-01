@@ -1,3 +1,8 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   background-color: #121322 !important;
   color: white;
@@ -33,5 +38,32 @@ body ::-webkit-scrollbar {
 
 .ui.menu {
   border-radius: 0 !important;
+}
+
+.slide-appear {
+  opacity    : 0;
+  transition : opacity .5s ease-in;
+}
+
+.slide-appear.slide-appear-active {
+  opacity : 1;
+}
+
+.slide-enter {
+  max-height : 0;
+  transition : all .3s ease-in;
+}
+
+.slide-enter.slide-enter-active {
+  max-height : 1000px;
+}
+
+.slide-leave {
+  max-height : 4000px;
+  transition : all .3s ease-out;
+}
+
+.slide-leave.slide-leave-active {
+  max-height : 0;
 }
 

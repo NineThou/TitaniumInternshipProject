@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, lifecycle } from 'recompose';
 import PropTypes from 'prop-types';
+import styled from 'react-emotion';
 
 // css
 import 'react-table/react-table.css';
@@ -12,26 +13,31 @@ import 'react-table/react-table.css';
 // action creators
 import { getUsersRequest } from '../actions/users-api';
 
+const Wrapper = styled('div')`
+    padding-top: 80px;
+    min-height: calc(100vh - 190px);
+`;
+
 const columns = [
   {
     id: 'userName',
     Header: 'Username',
-    accessor: row => row.local.username || 'No username',
+    accessor: ({ name }) => name || 'No username',
   },
   {
-    id: 'walletAddress',
-    Header: 'Wallet Address',
-    accessor: ({ walletAddress }) => walletAddress || 'No wallet address',
+    id: 'loginsCount',
+    Header: 'Logins Count',
+    accessor: ({ loginsCount }) => loginsCount || 'No wallet address',
   },
   {
-    id: 'referralBonus',
-    Header: 'Referral Bonus',
-    accessor: ({ referralBonus }) => referralBonus || 'No bonus',
+    id: 'email',
+    Header: 'Email',
+    accessor: ({ email }) => email || 'No bonus',
   },
   {
-    id: 'role',
-    Header: 'User Role',
-    accessor: ({ role }) => (role === '1' ? 'user' : 'admin'),
+    id: 'emailVerification',
+    Header: 'Email Status',
+    accessor: ({ emailVerified }) => (emailVerified ? 'email IS verified' : 'email IS NOT verified'),
   },
   {
     expander: true,
@@ -52,26 +58,37 @@ const columns = [
   },
 ];
 
-const Users = ({ usersInfo, loading }) => (
-  <ReactTable
-    data={usersInfo}
-    columns={columns}
-    defaultPageSize={10}
-    showPageSizeOptions={false}
-    className="-striped -highlight"
-    SubComponent={({ original }) => (
-      <div style={{ padding: '10px' }}>
-        {
-          Object.keys(original)
-            .filter(key => key === 'role' || key === 'status')
-            .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
-        }
-      </div>
-    )}
-    filterable
-    loading={loading}
-  />
-);
+const TableWrap = styled('div')`
+  margin-bottom: 19px;
+`;
+
+const Users = ({ usersInfo, loading }) => {
+  const { data } = usersInfo;
+  return (
+    <Wrapper>
+      <TableWrap>
+        <ReactTable
+          data={data}
+          columns={columns}
+          defaultPageSize={19}
+          showPageSizeOptions={false}
+          className="-striped -highlight"
+          SubComponent={({ original }) => (
+            <div style={{ padding: '10px' }}>
+              {
+                Object.keys(original)
+                  .filter(key => key === 'last_login' || key === 'last_ip')
+                  .map(key => <p key={key}>{`${key}: ${original[key]}`}</p>)
+              }
+            </div>
+          )}
+          filterable
+          loading={loading}
+        />
+      </TableWrap>
+    </Wrapper>
+  );
+};
 
 
 const mapStateToProps = state => ({
@@ -83,8 +100,12 @@ const mapDispatchToProps = dispatch => ({
   getUsersData: bindActionCreators(getUsersRequest, dispatch),
 });
 
+
 Users.propTypes = {
-  usersInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  usersInfo: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]).isRequired,
   loading: PropTypes.bool.isRequired,
 };
 

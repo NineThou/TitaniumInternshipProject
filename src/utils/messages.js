@@ -2,12 +2,17 @@ export default {
   'en-US': {
     events: {
       readmore: 'Read More',
+      delete: 'Delete',
+      edit: 'Edit',
     },
     posts: {
       delete: 'Delete',
-      readmore: 'Read More',
+      readmore: 'How to cook',
+      edit: 'Edit',
     },
     sidebar: {
+      in: 'Sign In',
+      out: 'Sign Out',
       login: 'Login',
       signup: 'Sign Up',
       users: 'Users',
@@ -42,12 +47,17 @@ export default {
   'ru-RU': {
     events: {
       readmore: 'Читать',
+      delete: 'Удалить',
+      edit: 'Редактировать',
     },
     posts: {
       delete: 'Удалить',
-      readmore: 'Читать',
+      readmore: 'Как готовить',
+      edit: 'Редактировать',
     },
     sidebar: {
+      in: 'Войти',
+      out: 'Выйти',
       login: 'Логин',
       signup: 'Регистрация',
       users: 'Пользователи',
